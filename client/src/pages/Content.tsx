@@ -29,7 +29,7 @@ export default function Content() {
 
   const tabs = [
     { value: "all", label: "Tudo", testId: "tab-all" },
-    { value: "gaming", label: "Gaming", testId: "tab-gaming" },
+    { value: "gaming", label: "Call of Duty Mobile", testId: "tab-gaming" },
     { value: "photography", label: "Fotografia", testId: "tab-photography" },
     { value: "agriculture", label: "Agricultura", testId: "tab-agriculture" },
     { value: "development", label: "Dev Pessoal", testId: "tab-development" },

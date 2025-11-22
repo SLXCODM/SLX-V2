@@ -46,21 +46,33 @@ export class MemStorage implements IStorage {
     const mockProjects: Array<InsertProject & { id: string }> = [
       {
         id: "proj-gaming-1",
-        title: "Tutorial de Precisão - CODM",
+        title: "Meus Tutoriais Exclusivos",
         category: "gaming",
-        description: "Guia completo para melhorar sua precisão no Call of Duty Mobile com técnicas profissionais",
+        description: "Conteúdo exclusivo para melhorar sua gameplay",
         imageUrl: "/attached_assets/precision1.jpg",
-        externalUrl: "https://youtube.com/@slx",
+        externalUrl: JSON.stringify({
+          isLocked: true,
+          links: [
+            { label: "TikTok", url: "https://www.tiktok.com/@slxcodm_/collection/Dicas%20e%20tutoriais-7505787344423766790?is_from_webapp=1&sender_device=pc" },
+            { label: "YouTube", url: "https://youtube.com/playlist?list=PLNjPit_9myAFBhDzh635QGPgzukbXRYLg&si=Yiq6MVgx8GJG0Fq8" }
+          ]
+        }),
         featured: true,
         order: "1",
       },
       {
         id: "proj-gaming-2",
-        title: "Melhores Loadouts Sniper",
+        title: "Minhas configurações",
         category: "gaming",
-        description: "Configurações otimizadas para snipers com sensibilidade e HUD personalizados",
+        description: "As melhores configurações do jogo",
         imageUrl: "/attached_assets/precision2.jpg",
-        externalUrl: "https://youtube.com/@slx",
+        externalUrl: JSON.stringify({
+          isLocked: true,
+          links: [
+            { label: "TikTok", url: "https://www.tiktok.com/@slxcodm_/collection/Configs,%20loadouts,%20sensi%20etc-7510645794769668869?is_from_webapp=1&sender_device=pc" },
+            { label: "YouTube", url: "https://youtube.com/playlist?list=PLNjPit_9myAFwYgp2zNBJs6EzzZ-qs839&si=2mEzeWonPFB5Leen" }
+          ]
+        }),
         featured: true,
         order: "2",
       },
