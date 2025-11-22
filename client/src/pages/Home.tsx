@@ -66,7 +66,8 @@ export default function Home() {
       tagline: "Estrategista de pensamento. Criador de estilo próprio.",
       description: "Perfil analítico com foco em performance mental, disciplina e conteúdo profundo.\nGaming, Fotografia, Agricultura e Desenvolvimento Pessoal.",
       explore: "Explorar Conteúdo",
-      about: "Sobre Mim",
+      donate: "Apoiar",
+      contact: "Contato",
       categories: "Áreas de Conteúdo",
       categoriesDesc: "Explore diferentes aspectos do que faço e compartilho",
     },
@@ -74,7 +75,8 @@ export default function Home() {
       tagline: "Thought strategist. Creator of own style.",
       description: "Analytical profile focused on mental performance, discipline and deep content.\nGaming, Photography, Agriculture and Personal Development.",
       explore: "Explore Content",
-      about: "About Me",
+      donate: "Support",
+      contact: "Contact",
       categories: "Content Areas",
       categoriesDesc: "Explore different aspects of what I do and share",
     }
@@ -138,9 +140,9 @@ export default function Home() {
                 size="lg"
                 className="px-8 py-6 text-base"
                 asChild
-                data-testid="button-hero-about"
+                data-testid="button-hero-donate"
               >
-                <a href="/sobre">{t.about}</a>
+                <a href="/doacoes">{t.donate}</a>
               </Button>
             </div>
 
