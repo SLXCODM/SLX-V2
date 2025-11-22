@@ -4,6 +4,11 @@ import { SiTiktok } from "react-icons/si";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const handleResetLanguageSelector = () => {
+    localStorage.removeItem("slx_language_selected");
+    window.location.reload();
+  };
+
   const socialLinks = [
     {
       name: "Instagram",
@@ -87,10 +92,19 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-xs text-center text-muted-foreground" data-testid="text-footer-copyright">
-            © {currentYear} SLX. Todos os direitos reservados.
-          </p>
+        <div className="mt-12 pt-8 border-t border-border space-y-4">
+          <div className="flex justify-center gap-4 text-xs">
+            <p className="text-muted-foreground" data-testid="text-footer-copyright">
+              © {currentYear} SLX. Todos os direitos reservados.
+            </p>
+            <button
+              onClick={handleResetLanguageSelector}
+              className="text-muted-foreground hover:text-primary transition-colors duration-300 underline cursor-pointer"
+              data-testid="button-reset-language-selector"
+            >
+              Resetar Seletor
+            </button>
+          </div>
         </div>
       </div>
     </footer>
