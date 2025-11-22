@@ -32,7 +32,7 @@ export default function Donations({ language }: DonationsProps) {
         },
         {
           title: "Ajude o H7",
-          description: "Conserto da moto",
+          description: "Estou ajudando meu amigo H7 a consertar sua moto após um acidente grave. O motor trincou e os amortecedores quebraram. Ele está passando por um momento difícil e precisa de nossa ajuda! Meta: R$ 4.000,00 para o conserto.",
           link: "https://www.vakinha.com.br/vaquinha/conserto-da-moto-slx"
         },
         {
@@ -89,14 +89,14 @@ export default function Donations({ language }: DonationsProps) {
               <div className="flex flex-col items-center gap-6">
                 <Button
                   size="lg"
-                  className="px-12 py-8 text-lg h-auto pulse-glow"
+                  className="px-16 py-4 text-lg h-auto pulse-glow"
                   onClick={() => window.open('https://livepix.gg/slx', '_blank')}
                   data-testid="button-donate-livepix"
                 >
-                  {t.livepixMain}
+                  Acessar LivePix
                 </Button>
                 <p className="text-sm text-muted-foreground text-center max-w-md">
-                  {t.livepixDesc}
+                  Ou escaneie o QR Code abaixo
                 </p>
               </div>
 

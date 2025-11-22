@@ -287,14 +287,14 @@
     inset: -1px;
   }
 
-  /* Pulsing Glow Animation */
+  /* Pulsing Glow Animation - Light Blue */
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(195, 136, 53, 0.4), 0 0 40px rgba(195, 136, 53, 0.2);
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.4), 0 0 40px rgba(96, 165, 250, 0.2);
       transform: scale(1);
     }
     50% {
-      box-shadow: 0 0 30px rgba(195, 136, 53, 0.6), 0 0 60px rgba(195, 136, 53, 0.3);
+      box-shadow: 0 0 30px rgba(96, 165, 250, 0.6), 0 0 60px rgba(96, 165, 250, 0.3);
       transform: scale(1.02);
     }
   }
