@@ -1,8 +1,24 @@
 import { ArrowDown, Gamepad2, Camera, Sprout, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import LanguageSelector from "@/components/LanguageSelector";
+import RafflePopup from "@/components/RafflePopup";
+import SocialLinks from "@/components/SocialLinks";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
+  const { language, setLanguage } = useLanguage();
+  const [showRaffle, setShowRaffle] = useState(false);
+
+  useEffect(() => {
+    // Show raffle popup only on first load and only in Portuguese
+    const hasSeenRaffle = localStorage.getItem("hasSeenRaffle") === "true";
+    if (!hasSeenRaffle && language === "pt") {
+      setShowRaffle(true);
+      localStorage.setItem("hasSeenRaffle", "true");
+    }
+  }, [language]);
   const categories = [
     {
       id: "gaming",
@@ -46,8 +62,39 @@ export default function Home() {
     document.getElementById("categories")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const texts = {
+    pt: {
+      tagline: "Estrategista de pensamento. Criador de estilo próprio.",
+      description: "Perfil analítico com foco em performance mental, disciplina e conteúdo profundo.\nGaming, Fotografia, Agricultura e Desenvolvimento Pessoal.",
+      explore: "Explorar Conteúdo",
+      about: "Sobre Mim",
+      categories: "Áreas de Conteúdo",
+      categoriesDesc: "Explore diferentes aspectos do que faço e compartilho",
+    },
+    en: {
+      tagline: "Thought strategist. Creator of own style.",
+      description: "Analytical profile focused on mental performance, discipline and deep content.\nGaming, Photography, Agriculture and Personal Development.",
+      explore: "Explore Content",
+      about: "About Me",
+      categories: "Content Areas",
+      categoriesDesc: "Explore different aspects of what I do and share",
+    }
+  };
+
+  const t = texts[language];
+
   return (
     <div className="min-h-screen">
+      {/* Language Selector - Top Bar */}
+      <div className="fixed top-0 right-0 z-40 pt-20 md:pt-16 pr-4 md:pr-8" data-testid="language-selector-bar">
+        <LanguageSelector language={language} onChange={setLanguage} />
+      </div>
+
+      {/* Raffle Popup */}
+      {showRaffle && language === "pt" && (
+        <RafflePopup onClose={() => setShowRaffle(false)} language={language} />
+      )}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" data-testid="section-hero">
         {/* Gradient Background */}
@@ -69,17 +116,16 @@ export default function Home() {
                 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" 
                 data-testid="text-hero-tagline"
               >
-                Estrategista de pensamento. Criador de estilo próprio.
+                {t.tagline}
               </p>
             </div>
 
             {/* Description */}
             <p 
-              className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" 
+              className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed whitespace-pre-line" 
               data-testid="text-hero-description"
             >
-              Perfil analítico com foco em performance mental, disciplina e conteúdo profundo.
-              Gaming, Fotografia, Agricultura e Desenvolvimento Pessoal.
+              {t.description}
             </p>
 
             {/* CTA */}
@@ -90,7 +136,7 @@ export default function Home() {
                 className="px-8 py-6 text-base"
                 data-testid="button-hero-explore"
               >
-                Explorar Conteúdo
+                {t.explore}
                 <ArrowDown className="ml-2 h-5 w-5" />
               </Button>
               <Button
@@ -100,8 +146,13 @@ export default function Home() {
                 asChild
                 data-testid="button-hero-about"
               >
-                <a href="/sobre">Sobre Mim</a>
+                <a href="/sobre">{t.about}</a>
               </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-8 border-t border-border/30">
+              <SocialLinks language={language} />
             </div>
           </div>
         </div>
@@ -128,10 +179,10 @@ export default function Home() {
             {/* Section Header */}
             <div className="text-center space-y-4">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight" data-testid="text-categories-title">
-                Áreas de Conteúdo
+                {t.categories}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-categories-description">
-                Explore diferentes aspectos do que faço e compartilho
+                {t.categoriesDesc}
               </p>
             </div>
 

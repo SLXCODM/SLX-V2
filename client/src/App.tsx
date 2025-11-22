@@ -10,7 +10,9 @@ import About from "./pages/About";
 import Content from "./pages/Content";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import Donations from "./pages/Donations";
 import NotFound from "@/pages/not-found";
+import { LanguageProvider, useLanguage } from "./contexts/LanguageContext";
 
 function Router() {
   return (
@@ -20,25 +22,33 @@ function Router() {
       <Route path="/conteudo" component={Content} />
       <Route path="/projetos" component={Projects} />
       <Route path="/contato" component={Contact} />
+      <Route path="/doacoes" component={DonationsPage} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
+function DonationsPage() {
+  const { language } = useLanguage();
+  return <Donations language={language} />;
+}
+
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1 pt-16 md:pt-20">
-            <Router />
-          </main>
-          <Footer />
-        </div>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <LanguageProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1 pt-16 md:pt-20">
+              <Router />
+            </main>
+            <Footer />
+          </div>
+          <Toaster />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </LanguageProvider>
   );
 }
 

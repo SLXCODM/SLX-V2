@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -10,15 +10,24 @@ export default function Header() {
 
   const navItems = [
     { path: "/", label: "Início" },
-    { path: "/sobre", label: "Sobre" },
     { path: "/conteudo", label: "Conteúdo" },
-    { path: "/projetos", label: "Projetos" },
-    { path: "/contato", label: "Contato" },
+    { path: "/sobre", label: "Sobre" },
+    { path: "/projetos", label: "Classes" },
+    { path: "/doacoes", label: "Doações" },
   ];
+
+  // CODM ID
+  const codmId = "6870254103403626497";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" data-testid="header-main">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
+        {/* CODM ID Bar */}
+        <div className="hidden md:flex items-center justify-end gap-2 py-2 border-b border-border/50 text-xs text-muted-foreground" data-testid="codm-id-bar">
+          <Gamepad2 className="h-4 w-4" />
+          <span>ID: {codmId}</span>
+        </div>
+
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" data-testid="link-home-logo">
