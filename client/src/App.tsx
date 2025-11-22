@@ -11,6 +11,7 @@ import Content from "./pages/Content";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import Donations from "./pages/Donations";
+import LanguageSelect from "./pages/LanguageSelect";
 import NotFound from "@/pages/not-found";
 import { LanguageProvider, useLanguage } from "./contexts/LanguageContext";
 
@@ -33,18 +34,30 @@ function DonationsPage() {
   return <Donations language={language} />;
 }
 
+function AppContent() {
+  const { isLanguageSelected, completeLanguageSelection } = useLanguage();
+
+  if (!isLanguageSelected) {
+    return <LanguageSelect onComplete={completeLanguageSelection} />;
+  }
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1 pt-16 md:pt-20">
+        <Router />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
 function App() {
   return (
     <LanguageProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1 pt-16 md:pt-20">
-              <Router />
-            </main>
-            <Footer />
-          </div>
+          <AppContent />
           <Toaster />
         </TooltipProvider>
       </QueryClientProvider>
