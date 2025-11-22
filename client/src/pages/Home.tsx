@@ -11,7 +11,15 @@ import agricultureBgImage from "@assets/IMG_20250627_135015_1_1763837432932.jpg"
 import devIcon from "@assets/generated_images/personal_development_icon.png";
 
 export default function Home() {
-  const { language, showRaffle, setShowRaffle } = useLanguage();
+  const { language } = useLanguage();
+  const [showRaffle, setShowRaffle] = useState(false);
+
+  useEffect(() => {
+    // Show raffle popup when Home page loads and language is Portuguese
+    if (language === "pt") {
+      setShowRaffle(true);
+    }
+  }, []);
   const categories = [
     {
       id: "gaming",
