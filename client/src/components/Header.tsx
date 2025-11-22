@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Gamepad2 } from "lucide-react";
+import { Menu, X, Gamepad2, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   const navItems = [
     { path: "/", label: "Início" },
@@ -28,7 +30,7 @@ export default function Header() {
           <span>ID: {codmId}</span>
         </div>
 
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 md:h-20 gap-4">
           {/* Logo */}
           <Link href="/" data-testid="link-home-logo">
             <span className="text-2xl md:text-3xl font-bold tracking-tight hover:text-primary transition-colors duration-300">
@@ -54,6 +56,28 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          {/* Language Selector */}
+          <div className="flex gap-1" data-testid="language-selector-header">
+            <Button
+              variant={language === "pt" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setLanguage("pt")}
+              className="text-xs"
+              data-testid="button-lang-pt-header"
+            >
+              PT
+            </Button>
+            <Button
+              variant={language === "en" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setLanguage("en")}
+              className="text-xs"
+              data-testid="button-lang-en-header"
+            >
+              EN
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <Button

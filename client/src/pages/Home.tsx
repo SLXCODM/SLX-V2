@@ -2,13 +2,12 @@ import { ArrowDown, Gamepad2, Camera, Sprout, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import LanguageSelector from "@/components/LanguageSelector";
 import RafflePopup from "@/components/RafflePopup";
 import SocialLinks from "@/components/SocialLinks";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const [showRaffle, setShowRaffle] = useState(false);
 
   useEffect(() => {
@@ -85,11 +84,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Language Selector - Top Bar */}
-      <div className="fixed top-0 right-0 z-40 pt-20 md:pt-16 pr-4 md:pr-8" data-testid="language-selector-bar">
-        <LanguageSelector language={language} onChange={setLanguage} />
-      </div>
-
       {/* Raffle Popup */}
       {showRaffle && language === "pt" && (
         <RafflePopup onClose={() => setShowRaffle(false)} language={language} />
