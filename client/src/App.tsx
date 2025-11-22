@@ -36,7 +36,7 @@ function DonationsPage() {
 }
 
 function AppContent() {
-  const { isLanguageSelected, completeLanguageSelection, language, showRaffle, setShowRaffle } = useLanguage();
+  const { isLanguageSelected, completeLanguageSelection } = useLanguage();
 
   if (!isLanguageSelected) {
     return <LanguageSelect onComplete={completeLanguageSelection} />;
@@ -44,9 +44,6 @@ function AppContent() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {showRaffle && language === "pt" && (
-        <RafflePopup onClose={() => setShowRaffle(false)} language={language} />
-      )}
       <Header />
       <main className="flex-1 pt-16 md:pt-20">
         <Router />
