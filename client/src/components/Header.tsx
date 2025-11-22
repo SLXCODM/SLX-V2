@@ -13,9 +13,9 @@ export default function Header() {
   const navItems = [
     { path: "/", label: "Início" },
     { path: "/conteudo", label: "Conteúdo" },
-    { path: "/sobre", label: "Sobre" },
     { path: "/projetos", label: "Classes" },
     { path: "/doacoes", label: "Doações" },
+    { path: "/sobre", label: "Sobre" },
   ];
 
   // CODM ID

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import RafflePopup from "@/components/RafflePopup";
 import SocialLinks from "@/components/SocialLinks";
 import { useLanguage } from "@/contexts/LanguageContext";
+import codmBgImage from "@assets/Picsart_25-01-08_09-25-56-556_1763836943841.jpg";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -21,10 +22,10 @@ export default function Home() {
   const categories = [
     {
       id: "gaming",
-      title: "Gaming",
+      title: "Call Of Duty Mobile",
       icon: Gamepad2,
-      description: "Call of Duty Mobile - Estratégias, loadouts e gameplay profissional",
-      imageUrl: "/attached_assets/precision1.jpg",
+      description: "Estratégias, loadouts e gameplay profissional",
+      imageUrl: codmBgImage,
       link: "/conteudo?category=gaming",
       testId: "card-category-gaming"
     },
