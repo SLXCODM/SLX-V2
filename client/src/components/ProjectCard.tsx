@@ -1,6 +1,8 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import type { Project } from "@shared/schema";
 
 interface ProjectCardProps {
@@ -15,26 +17,110 @@ const categoryColors: Record<string, string> = {
 };
 
 const categoryLabels: Record<string, string> = {
-  gaming: "Gaming",
+  gaming: "Call of Duty Mobile",
   agriculture: "Agricultura",
   photography: "Fotografia",
   development: "Dev Pessoal",
 };
 
+interface ParsedUrl {
+  isLocked?: boolean;
+  links?: Array<{ label: string; url: string }>;
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const handleClick = () => {
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
+  const [parsedUrl, setParsedUrl] = useState<ParsedUrl | null>(null);
+
+  useEffect(() => {
+    const globalUnlockKey = 'slx_site_unlocked';
+    const isAlreadyUnlocked = localStorage.getItem(globalUnlockKey) === 'true';
+    setIsUnlocked(isAlreadyUnlocked);
+
     if (project.externalUrl) {
+      try {
+        const parsed = JSON.parse(project.externalUrl);
+        setParsedUrl(parsed);
+      } catch {
+        setParsedUrl(null);
+      }
+    }
+  }, [project.externalUrl]);
+
+  const handleClick = () => {
+    if (!parsedUrl?.isLocked && project.externalUrl && !parsedUrl?.links) {
       window.open(project.externalUrl, "_blank", "noopener,noreferrer");
     }
   };
+
+  const handleFollowClick = () => {
+    window.open('https://www.instagram.com/slx_codm', '_blank');
+  };
+
+  const handleFollowCheck = async () => {
+    setIsChecking(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    const globalUnlockKey = 'slx_site_unlocked';
+    localStorage.setItem(globalUnlockKey, 'true');
+    setIsUnlocked(true);
+    setIsChecking(false);
+  };
+
+  if (parsedUrl?.isLocked && !isUnlocked) {
+    return (
+      <Card className="relative overflow-hidden flex items-center justify-center min-h-[300px]" data-testid={`card-project-${project.id}`}>
+        {project.imageUrl && (
+          <div className="absolute inset-0">
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              data-testid={`img-project-${project.id}`}
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+        )}
+        <div className="relative z-10 text-center space-y-4 p-4">
+          <Lock className="h-10 w-10 text-primary mx-auto" />
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
+            <p className="text-sm text-white/80 mb-4">Siga para desbloquear</p>
+          </div>
+          <div className="space-y-2">
+            <Button
+              onClick={handleFollowClick}
+              size="sm"
+              className="w-full"
+              data-testid="button-follow-instagram"
+            >
+              Seguir no Instagram
+            </Button>
+            <Button
+              onClick={handleFollowCheck}
+              disabled={isChecking}
+              variant="outline"
+              size="sm"
+              className="w-full"
+              data-testid="button-check-follow"
+            >
+              {isChecking ? "Verificando..." : "Já Segui"}
+            </Button>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+
+  const hasMultipleLinks = parsedUrl?.links && parsedUrl.links.length > 1;
 
   return (
     <Card
       className={cn(
         "group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300",
-        project.externalUrl && "cursor-pointer"
+        !hasMultipleLinks && project.externalUrl ? "cursor-pointer" : ""
       )}
-      onClick={handleClick}
+      onClick={!hasMultipleLinks ? handleClick : undefined}
       data-testid={`card-project-${project.id}`}
     >
       {/* Image */}
@@ -67,13 +153,31 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {categoryLabels[project.category] || project.category}
             </Badge>
           </div>
-          {project.externalUrl && (
+          {!hasMultipleLinks && project.externalUrl && (
             <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" data-testid={`icon-external-link-${project.id}`} />
           )}
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed" data-testid={`text-project-description-${project.id}`}>
           {project.description}
         </p>
+
+        {/* Multiple Links */}
+        {hasMultipleLinks && parsedUrl?.links && (
+          <div className="flex gap-2 pt-2">
+            {parsedUrl.links.map((link, idx) => (
+              <Button
+                key={idx}
+                size="sm"
+                variant="outline"
+                onClick={() => window.open(link.url, '_blank')}
+                className="flex-1 text-xs"
+                data-testid={`button-project-link-${project.id}-${idx}`}
+              >
+                {link.label}
+              </Button>
+            ))}
+          </div>
+        )}
       </div>
     </Card>
   );

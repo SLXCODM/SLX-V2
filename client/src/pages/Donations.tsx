@@ -95,9 +95,6 @@ export default function Donations({ language }: DonationsProps) {
                 >
                   Acessar LivePix
                 </Button>
-                <p className="text-sm text-muted-foreground text-center max-w-md">
-                  Ou escaneie o QR Code abaixo
-                </p>
               </div>
 
               {/* QR Code Section */}
@@ -154,16 +151,16 @@ export default function Donations({ language }: DonationsProps) {
                     </div>
 
                     {method && 'isPix' in method && method.isPix ? (
-                      <div className="bg-background/50 p-3 rounded border border-border/30 font-mono text-xs text-center break-all">
+                      <div className="bg-card p-3 rounded border border-border/30 font-mono text-xs text-center break-all">
                         {method.description}
                       </div>
                     ) : method && 'link' in method ? (
                       <Button
-                        variant="outline"
                         size="sm"
                         onClick={() => window.open(method.link, '_blank')}
                         data-testid={`button-donate-${method.title.toLowerCase().replace(/\s+/g, '-')}`}
                         className="w-full"
+                        style={{ backgroundColor: "hsl(195, 85%, 30%)" }}
                       >
                         Abrir
                       </Button>

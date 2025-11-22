@@ -1,4 +1,5 @@
-import { Youtube, Instagram, Music, Gift, MessageCircle, Heart } from "lucide-react";
+import { Youtube, Instagram, Heart } from "lucide-react";
+import { SiTiktok, SiDiscord } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 
 interface SocialLinksProps {
@@ -30,8 +31,8 @@ export default function SocialLinks({ language }: SocialLinksProps) {
   const links = [
     { icon: Youtube, label: t.youtube, url: "https://www.youtube.com/@SLXCODM", testId: "link-youtube" },
     { icon: Instagram, label: t.instagram, url: "https://www.instagram.com/slx.wav", testId: "link-instagram" },
-    { icon: Music, label: t.tiktok, url: "https://www.tiktok.com/@slxcodm_", testId: "link-tiktok" },
-    { icon: MessageCircle, label: t.discord, url: "https://discord.com/invite/RyMuC8wwCt", testId: "link-discord" },
+    { icon: SiTiktok, label: t.tiktok, url: "https://www.tiktok.com/@slxcodm_", testId: "link-tiktok", isIcon: true },
+    { icon: SiDiscord, label: t.discord, url: "https://discord.com/invite/RyMuC8wwCt", testId: "link-discord", isIcon: true },
     { icon: Heart, label: t.donate, url: "/doacoes", testId: "link-donate", internal: true },
   ];
 

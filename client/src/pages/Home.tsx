@@ -15,11 +15,9 @@ export default function Home() {
   const [showRaffle, setShowRaffle] = useState(false);
 
   useEffect(() => {
-    // Show raffle popup only on first load and only in Portuguese
-    const hasSeenRaffle = localStorage.getItem("hasSeenRaffle") === "true";
-    if (!hasSeenRaffle && language === "pt") {
+    // Show raffle popup only in Portuguese
+    if (language === "pt") {
       setShowRaffle(true);
-      localStorage.setItem("hasSeenRaffle", "true");
     }
   }, [language]);
   const categories = [
@@ -28,8 +26,8 @@ export default function Home() {
       titlePt: "Call Of Duty Mobile",
       titleEn: "Call Of Duty Mobile",
       icon: Gamepad2,
-      descriptionPt: "Tutoriais, classes, HUD, Sensibilidade e etc.",
-      descriptionEn: "Tutorials, classes, HUD, Sensitivity and more.",
+      descriptionPt: "Tutoriais, Loadouts, HUD, Sensibilidade e etc.",
+      descriptionEn: "Tutorials, Loadouts, HUD, Sensitivity and more.",
       imageUrl: codmBgImage,
       link: "/conteudo?category=gaming",
       testId: "card-category-gaming"
