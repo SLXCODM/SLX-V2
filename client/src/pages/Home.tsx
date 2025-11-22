@@ -67,13 +67,13 @@ export default function Home() {
 
   const texts = {
     pt: {
-      tagline: "Estrategista de pensamento. Criador de estilo próprio.",
+      tagline: "Estrategista mental. Criando minha autenticidade.",
       description: "Perfil analítico com foco em performance mental, disciplina e conteúdo profundo.\nGaming, Fotografia, Agricultura e Desenvolvimento Pessoal.",
       explore: "Explorar Conteúdo",
       donate: "Apoiar",
       contact: "Contato",
       categories: "Áreas de Conteúdo",
-      categoriesDesc: "Explore diferentes aspectos do que faço e compartilho",
+      categoriesDesc: "Descubra meus projetos e conteúdos",
     },
     en: {
       tagline: "Thought strategist. Creator of own style.",
@@ -178,7 +178,7 @@ export default function Home() {
           <div className="space-y-12">
             {/* Section Header */}
             <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight" data-testid="text-categories-title">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }} data-testid="text-categories-title">
                 {t.categories}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-categories-description">

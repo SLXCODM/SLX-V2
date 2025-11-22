@@ -33,7 +33,6 @@ export default function SocialLinks({ language }: SocialLinksProps) {
     { icon: Music, label: t.tiktok, url: "https://www.tiktok.com/@slxcodm_", testId: "link-tiktok" },
     { icon: MessageCircle, label: t.discord, url: "https://discord.com/invite/RyMuC8wwCt", testId: "link-discord" },
     { icon: Heart, label: t.donate, url: "/doacoes", testId: "link-donate", internal: true },
-    { icon: Gift, label: t.live, url: "https://vm.tiktok.com/ZMSs91c6U/", testId: "link-live" },
   ];
 
   return (
