@@ -1,37 +1,52 @@
 import { useState } from "react";
 import { Mail, Send } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
+import { apiRequest } from "@/lib/queryClient";
+import type { InsertContact } from "@shared/schema";
 
 export default function Contact() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
+    honeypot: "", // Anti-spam field (hidden from user)
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: async (data: InsertContact) => {
+      return await apiRequest("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Mensagem enviada!",
+        description: "Obrigado por entrar em contato. Responderei em breve.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Erro ao enviar",
+        description: error.message || "Ocorreu um erro. Tente novamente.",
+        variant: "destructive",
+      });
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    toast({
-      title: "Mensagem enviada!",
-      description: "Obrigado por entrar em contato. Responderei em breve.",
-    });
-
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+    contactMutation.mutate(formData);
   };
 
   const handleChange = (
@@ -107,6 +122,17 @@ export default function Contact() {
           <div>
             <Card className="p-6 md:p-8" data-testid="card-contact-form">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field - hidden from real users */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleChange}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                
                 {/* Name */}
                 <div className="space-y-2">
                   <Label htmlFor="name" data-testid="label-name">
@@ -181,10 +207,10 @@ export default function Contact() {
                 <Button
                   type="submit"
                   className="w-full"
-                  disabled={isSubmitting}
+                  disabled={contactMutation.isPending}
                   data-testid="button-submit-contact"
                 >
-                  {isSubmitting ? (
+                  {contactMutation.isPending ? (
                     "Enviando..."
                   ) : (
                     <>

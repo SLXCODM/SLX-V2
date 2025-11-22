@@ -1,75 +1,18 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import ProjectCard from "@/components/ProjectCard";
 import type { Project } from "@shared/schema";
 
-const mockProjects: Project[] = [
-  {
-    id: "1",
-    title: "Tutorial de Precisão - CODM",
-    category: "gaming",
-    description: "Guia completo para melhorar sua precisão no Call of Duty Mobile com técnicas profissionais",
-    imageUrl: "/attached_assets/precision1.jpg",
-    externalUrl: "https://youtube.com/@slx",
-    featured: true,
-    order: "1",
-  },
-  {
-    id: "2",
-    title: "Melhores Loadouts Sniper",
-    category: "gaming",
-    description: "Configurações otimizadas para snipers com sensibilidade e HUD personalizados",
-    imageUrl: "/attached_assets/precision2.jpg",
-    externalUrl: "https://youtube.com/@slx",
-    featured: true,
-    order: "2",
-  },
-  {
-    id: "3",
-    title: "Fotografia de Paisagens",
-    category: "photography",
-    description: "Explorando a melancolia através de paisagens naturais e urbanas",
-    imageUrl: "/attached_assets/1000004347.jpg",
-    externalUrl: "https://instagram.com/slx",
-    featured: false,
-    order: "3",
-  },
-  {
-    id: "4",
-    title: "Retratos Minimalistas",
-    category: "photography",
-    description: "Capturando essências através da simplicidade e contraste",
-    imageUrl: "/attached_assets/1000004348.jpg",
-    externalUrl: "https://instagram.com/slx",
-    featured: false,
-    order: "4",
-  },
-  {
-    id: "5",
-    title: "Agricultura Sustentável",
-    category: "agriculture",
-    description: "Meu trabalho no campo e conexão com a natureza",
-    imageUrl: "/attached_assets/setup1.jpg",
-    externalUrl: "https://youtube.com/@slx-agricultura",
-    featured: false,
-    order: "5",
-  },
-  {
-    id: "6",
-    title: "Desenvolvimento Pessoal",
-    category: "development",
-    description: "Reflexões sobre psicologia, filosofia e autoconhecimento",
-    imageUrl: "/attached_assets/setup2.jpg",
-    externalUrl: "https://tiktok.com/@slx",
-    featured: false,
-    order: "6",
-  },
-];
-
 export default function Content() {
   const [location] = useLocation();
   const [activeTab, setActiveTab] = useState("all");
+
+  // Fetch projects from API
+  const { data: projects = [], isLoading, isError, error } = useQuery<Project[]>({
+    queryKey: ["/api/projects"],
+  });
 
   // Check URL params for category filter
   useEffect(() => {
@@ -81,8 +24,8 @@ export default function Content() {
   }, [location]);
 
   const filteredProjects = activeTab === "all" 
-    ? mockProjects 
-    : mockProjects.filter(p => p.category === activeTab);
+    ? projects 
+    : projects.filter(p => p.category === activeTab);
 
   const tabs = [
     { value: "all", label: "Tudo", testId: "tab-all" },
@@ -122,8 +65,23 @@ export default function Content() {
             </TabsList>
 
             <TabsContent value={activeTab} className="mt-8">
-              {/* Projects Grid */}
-              {filteredProjects.length > 0 ? (
+              {/* Error State */}
+              {isError ? (
+                <div className="text-center py-16 space-y-4" data-testid="error-state-content">
+                  <p className="text-destructive font-medium">
+                    Erro ao carregar projetos
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {error instanceof Error ? error.message : "Tente novamente mais tarde"}
+                  </p>
+                </div>
+              ) : isLoading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="loading-content-projects">
+                  {[1, 2, 3, 4, 5, 6].map(i => (
+                    <div key={i} className="h-96 bg-card border border-border rounded-lg animate-pulse" />
+                  ))}
+                </div>
+              ) : filteredProjects.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
                   {filteredProjects.map(project => (
                     <ProjectCard key={project.id} project={project} />
@@ -132,7 +90,9 @@ export default function Content() {
               ) : (
                 <div className="text-center py-16" data-testid="empty-state-content">
                   <p className="text-muted-foreground">
-                    Nenhum conteúdo encontrado nesta categoria ainda.
+                    {projects.length === 0 
+                      ? "Nenhum projeto disponível no momento." 
+                      : "Nenhum conteúdo encontrado nesta categoria ainda."}
                   </p>
                 </div>
               )}

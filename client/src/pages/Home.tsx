@@ -87,7 +87,7 @@ export default function Home() {
                 onClick={scrollToCategories}
                 size="lg"
                 className="px-8 py-6 text-base"
-                data-testid="button-explore-content"
+                data-testid="button-hero-explore"
               >
                 Explorar Conteúdo
                 <ArrowDown className="ml-2 h-5 w-5" />
@@ -97,7 +97,7 @@ export default function Home() {
                 size="lg"
                 className="px-8 py-6 text-base"
                 asChild
-                data-testid="button-about-me"
+                data-testid="button-hero-about"
               >
                 <a href="/sobre">Sobre Mim</a>
               </Button>
