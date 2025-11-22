@@ -7,6 +7,7 @@ import SocialLinks from "@/components/SocialLinks";
 import { useLanguage } from "@/contexts/LanguageContext";
 import codmBgImage from "@assets/Picsart_25-01-08_09-25-56-556_1763836943841.jpg";
 import photoBgImage from "@assets/IMG_20250719_145627~2_1763837256708.jpg";
+import agricultureBgImage from "@assets/IMG_20250627_135015_1_1763837432932.jpg";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -44,7 +45,7 @@ export default function Home() {
       title: "Agricultura",
       icon: Sprout,
       description: "Meu trabalho, desenvolvimento pessoal e conexão com a natureza",
-      imageUrl: "/attached_assets/setup1.jpg",
+      imageUrl: agricultureBgImage,
       link: "/conteudo?category=agriculture",
       testId: "card-category-agriculture"
     },
@@ -202,7 +203,7 @@ export default function Home() {
                           src={category.imageUrl}
                           alt={category.title}
                           className={`w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover ${
-                            category.id === "gaming" ? "brightness-125" : ""
+                            category.id === "gaming" ? "brightness-200" : ""
                           }`}
                           style={
                             category.id === "gaming"
