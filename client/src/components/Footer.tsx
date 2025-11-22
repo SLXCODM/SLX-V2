@@ -40,7 +40,7 @@ export default function Footer() {
               SLX
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm" data-testid="text-footer-tagline">
-              Estrategista de pensamento. Superdotado focado em excelência mental, disciplina e criação de conteúdo profundo que transforma vidas.
+              Estrategista de pensamento. Superdotado focado em excelência mental, disciplina e criação de conteúdo profundo que transforma ideias.
             </p>
           </div>
 
