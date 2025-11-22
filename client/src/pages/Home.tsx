@@ -8,6 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import codmBgImage from "@assets/Picsart_25-01-08_09-25-56-556_1763836943841.jpg";
 import photoBgImage from "@assets/IMG_20250719_145627~2_1763837256708.jpg";
 import agricultureBgImage from "@assets/IMG_20250627_135015_1_1763837432932.jpg";
+import devIcon from "@assets/generated_images/personal_development_icon.png";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -54,7 +55,7 @@ export default function Home() {
       title: "Dev Pessoal",
       icon: Brain,
       description: "Psicologia, filosofia, neurociência e autoconhecimento",
-      imageUrl: "/attached_assets/setup2.jpg",
+      imageUrl: devIcon,
       link: "/conteudo?category=development",
       testId: "card-category-development"
     },
