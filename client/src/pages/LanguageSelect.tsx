@@ -44,7 +44,7 @@ export default function LanguageSelect({ onComplete }: LanguageSelectProps) {
             <div className="flex justify-center mb-8">
               <Globe className="h-16 w-16 text-primary" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight" style={{ fontFamily: "Montserrat, sans-serif", fontWeight: 900 }}>
               SLX
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">

@@ -33,7 +33,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20 gap-4">
           {/* Logo */}
           <Link href="/" data-testid="link-home-logo">
-            <span className="text-2xl md:text-3xl font-bold tracking-tight hover:text-primary transition-colors duration-300">
+            <span className="text-2xl md:text-3xl font-bold tracking-tight hover:text-primary transition-colors duration-300" style={{ fontFamily: "Montserrat, sans-serif", fontWeight: 900 }}>
               SLX
             </span>
           </Link>
