@@ -29,7 +29,7 @@ export default function SocialLinks({ language }: SocialLinksProps) {
 
   const links = [
     { icon: Youtube, label: t.youtube, url: "https://www.youtube.com/@SLXCODM", testId: "link-youtube" },
-    { icon: Instagram, label: t.instagram, url: "https://www.instagram.com/slx_codm", testId: "link-instagram" },
+    { icon: Instagram, label: t.instagram, url: "https://www.instagram.com/slx.wav", testId: "link-instagram" },
     { icon: Music, label: t.tiktok, url: "https://www.tiktok.com/@slxcodm_", testId: "link-tiktok" },
     { icon: MessageCircle, label: t.discord, url: "https://discord.com/invite/RyMuC8wwCt", testId: "link-discord" },
     { icon: Heart, label: t.donate, url: "/doacoes", testId: "link-donate", internal: true },

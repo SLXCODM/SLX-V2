@@ -1,4 +1,4 @@
-import { Instagram, Youtube, Music } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 
 export default function Footer() {
@@ -12,27 +12,21 @@ export default function Footer() {
   const socialLinks = [
     {
       name: "Instagram",
-      url: "https://instagram.com/slx",
+      url: "https://www.instagram.com/slx.wav",
       icon: Instagram,
       testId: "link-social-instagram"
     },
     {
       name: "TikTok",
-      url: "https://tiktok.com/@slx",
+      url: "https://www.tiktok.com/@slxcodm_",
       icon: SiTiktok,
       testId: "link-social-tiktok"
     },
     {
       name: "YouTube Gaming",
-      url: "https://youtube.com/@slx",
+      url: "https://www.youtube.com/@SLXCODM",
       icon: Youtube,
       testId: "link-social-youtube-gaming"
-    },
-    {
-      name: "YouTube Agricultura",
-      url: "https://youtube.com/@slx-agricultura",
-      icon: Music,
-      testId: "link-social-youtube-agriculture"
     },
   ];
 
@@ -46,8 +40,7 @@ export default function Footer() {
               SLX
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm" data-testid="text-footer-tagline">
-              Estrategista de pensamento. Criador de estilo próprio.
-              Foco em performance mental e disciplina.
+              Estrategista de pensamento. Superdotado focado em excelência mental, disciplina e criação de conteúdo profundo que transforma vidas.
             </p>
           </div>
 

@@ -27,7 +27,7 @@ export default function Home() {
       id: "gaming",
       title: "Call Of Duty Mobile",
       icon: Gamepad2,
-      description: "Estratégias, loadouts e gameplay profissional",
+      description: "Tutoriais, classes, HUD, Sensibilidade e etc.",
       imageUrl: codmBgImage,
       link: "/conteudo?category=gaming",
       testId: "card-category-gaming"
@@ -36,7 +36,7 @@ export default function Home() {
       id: "photography",
       title: "Fotografia",
       icon: Camera,
-      description: "Capturando momentos, explorando a melancolia visual",
+      description: "Capturando momentos, escritor, amante da melancolia",
       imageUrl: photoBgImage,
       link: "/conteudo?category=photography",
       testId: "card-category-photography"
@@ -56,7 +56,7 @@ export default function Home() {
       icon: Brain,
       description: "Psicologia, filosofia, neurociência e autoconhecimento",
       imageUrl: devIcon,
-      link: "/conteudo?category=development",
+      link: null,
       testId: "card-category-development"
     },
   ];
@@ -190,14 +190,8 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {categories.map((category) => {
                 const Icon = category.icon;
-                return (
-                  <a
-                    key={category.id}
-                    href={category.link}
-                    className="group"
-                    data-testid={category.testId}
-                  >
-                    <Card className="relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300">
+                const CardContent = (
+                  <Card className={`relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300 ${!category.link ? 'opacity-60 cursor-not-allowed' : ''}`}>
                       {/* Background Image with Overlay */}
                       <div className="absolute inset-0">
                         <img
@@ -228,7 +222,25 @@ export default function Home() {
                         </div>
                       </div>
                     </Card>
+                );
+                
+                return category.link ? (
+                  <a
+                    key={category.id}
+                    href={category.link}
+                    className="group"
+                    data-testid={category.testId}
+                  >
+                    {CardContent}
                   </a>
+                ) : (
+                  <div
+                    key={category.id}
+                    className="group"
+                    data-testid={category.testId}
+                  >
+                    {CardContent}
+                  </div>
                 );
               })}
             </div>
