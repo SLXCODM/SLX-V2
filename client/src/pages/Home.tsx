@@ -1,0 +1,181 @@
+import { ArrowDown, Gamepad2, Camera, Sprout, Brain } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+export default function Home() {
+  const categories = [
+    {
+      id: "gaming",
+      title: "Gaming",
+      icon: Gamepad2,
+      description: "Call of Duty Mobile - Estratégias, loadouts e gameplay profissional",
+      imageUrl: "/attached_assets/precision1.jpg",
+      link: "/conteudo?category=gaming",
+      testId: "card-category-gaming"
+    },
+    {
+      id: "photography",
+      title: "Fotografia",
+      icon: Camera,
+      description: "Capturando momentos, explorando a melancolia visual",
+      imageUrl: "/attached_assets/1000004347.jpg",
+      link: "/conteudo?category=photography",
+      testId: "card-category-photography"
+    },
+    {
+      id: "agriculture",
+      title: "Agricultura",
+      icon: Sprout,
+      description: "Meu trabalho, desenvolvimento pessoal e conexão com a natureza",
+      imageUrl: "/attached_assets/setup1.jpg",
+      link: "/conteudo?category=agriculture",
+      testId: "card-category-agriculture"
+    },
+    {
+      id: "development",
+      title: "Dev Pessoal",
+      icon: Brain,
+      description: "Psicologia, filosofia, neurociência e autoconhecimento",
+      imageUrl: "/attached_assets/setup2.jpg",
+      link: "/conteudo?category=development",
+      testId: "card-category-development"
+    },
+  ];
+
+  const scrollToCategories = () => {
+    document.getElementById("categories")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" data-testid="section-hero">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-24 md:py-32 text-center">
+          <div className="space-y-8 md:space-y-12">
+            {/* Main Heading */}
+            <div className="space-y-4">
+              <h1 
+                className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none" 
+                data-testid="text-hero-title"
+              >
+                SLX
+              </h1>
+              <p 
+                className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" 
+                data-testid="text-hero-tagline"
+              >
+                Estrategista de pensamento. Criador de estilo próprio.
+              </p>
+            </div>
+
+            {/* Description */}
+            <p 
+              className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" 
+              data-testid="text-hero-description"
+            >
+              Perfil analítico com foco em performance mental, disciplina e conteúdo profundo.
+              Gaming, Fotografia, Agricultura e Desenvolvimento Pessoal.
+            </p>
+
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                onClick={scrollToCategories}
+                size="lg"
+                className="px-8 py-6 text-base"
+                data-testid="button-explore-content"
+              >
+                Explorar Conteúdo
+                <ArrowDown className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="px-8 py-6 text-base"
+                asChild
+                data-testid="button-about-me"
+              >
+                <a href="/sobre">Sobre Mim</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <button
+          onClick={scrollToCategories}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors duration-300 animate-bounce"
+          aria-label="Scroll para categorias"
+          data-testid="button-scroll-indicator"
+        >
+          <ArrowDown className="h-8 w-8" />
+        </button>
+      </section>
+
+      {/* Categories Section */}
+      <section 
+        id="categories" 
+        className="py-16 md:py-24 bg-card" 
+        data-testid="section-categories"
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="space-y-12">
+            {/* Section Header */}
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight" data-testid="text-categories-title">
+                Áreas de Conteúdo
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-categories-description">
+                Explore diferentes aspectos do que faço e compartilho
+              </p>
+            </div>
+
+            {/* Categories Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {categories.map((category) => {
+                const Icon = category.icon;
+                return (
+                  <a
+                    key={category.id}
+                    href={category.link}
+                    className="group"
+                    data-testid={category.testId}
+                  >
+                    <Card className="relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300">
+                      {/* Background Image with Overlay */}
+                      <div className="absolute inset-0">
+                        <img
+                          src={category.imageUrl}
+                          alt={category.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="relative h-full flex flex-col justify-end p-6 md:p-8">
+                        <div className="space-y-3">
+                          <Icon className="h-8 w-8 text-primary" />
+                          <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors duration-300">
+                            {category.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {category.description}
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
