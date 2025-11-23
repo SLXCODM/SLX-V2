@@ -55,7 +55,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
 
   const handleFollowClick = () => {
-    window.open('https://www.instagram.com/slx_codm', '_blank');
+    window.open('https://www.instagram.com/slx.wav', '_blank');
   };
 
   const handleFollowCheck = async () => {

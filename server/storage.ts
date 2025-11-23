@@ -45,11 +45,27 @@ export class MemStorage implements IStorage {
     // Use fixed IDs to prevent re-shuffling on server restart
     const mockProjects: Array<InsertProject & { id: string }> = [
       {
+        id: "proj-gaming-0",
+        title: "Classes",
+        category: "gaming",
+        description: "Classes de armas profissionais do SLX",
+        imageUrl: "/attached_assets/generated_images/weapon_classes_background.png",
+        externalUrl: JSON.stringify({
+          isLocked: true,
+          links: [
+            { label: "TikTok", url: "https://www.tiktok.com/@slxcodm_" },
+            { label: "YouTube", url: "https://www.youtube.com/@SLXCODM" }
+          ]
+        }),
+        featured: true,
+        order: "0",
+      },
+      {
         id: "proj-gaming-1",
         title: "Meus Tutoriais Exclusivos",
         category: "gaming",
         description: "Conteúdo exclusivo para melhorar sua gameplay",
-        imageUrl: "/attached_assets/precision1.jpg",
+        imageUrl: "/attached_assets/generated_images/professional_tutorials_background.png",
         externalUrl: JSON.stringify({
           isLocked: true,
           links: [
@@ -65,7 +81,7 @@ export class MemStorage implements IStorage {
         title: "Minhas configurações",
         category: "gaming",
         description: "As melhores configurações do jogo",
-        imageUrl: "/attached_assets/precision2.jpg",
+        imageUrl: "/attached_assets/generated_images/settings_configuration_background.png",
         externalUrl: JSON.stringify({
           isLocked: true,
           links: [
@@ -75,6 +91,22 @@ export class MemStorage implements IStorage {
         }),
         featured: true,
         order: "2",
+      },
+      {
+        id: "proj-gaming-3",
+        title: "Handcam",
+        category: "gaming",
+        description: "Handcam do SLX",
+        imageUrl: "/attached_assets/vf_VID_20250117_144838_26424_1763907669167.jpeg",
+        externalUrl: JSON.stringify({
+          isLocked: true,
+          links: [
+            { label: "TikTok", url: "https://www.tiktok.com/@slxcodm_" },
+            { label: "YouTube", url: "https://www.youtube.com/@SLXCODM" }
+          ]
+        }),
+        featured: true,
+        order: "3",
       },
       {
         id: "proj-photo-1",

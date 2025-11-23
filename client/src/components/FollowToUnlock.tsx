@@ -52,7 +52,7 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
   };
 
   const handleFollowClick = () => {
-    window.open('https://www.instagram.com/slx_codm', '_blank');
+    window.open('https://www.instagram.com/slx.wav', '_blank');
   };
 
   if (isUnlocked) {
