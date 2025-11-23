@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Search, Filter } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Search, Filter, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,33 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function Classes() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [likedWeapons, setLikedWeapons] = useState<Set<string>>(new Set());
   const { language } = useLanguage();
+
+  // Load likes from localStorage on mount
+  useEffect(() => {
+    const savedLikes = localStorage.getItem("slx_weapon_likes");
+    if (savedLikes) {
+      setLikedWeapons(new Set(JSON.parse(savedLikes)));
+    }
+  }, []);
+
+  // Save likes to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("slx_weapon_likes", JSON.stringify(Array.from(likedWeapons)));
+  }, [likedWeapons]);
+
+  const toggleLike = (weaponId: string) => {
+    setLikedWeapons(prev => {
+      const updated = new Set(prev);
+      if (updated.has(weaponId)) {
+        updated.delete(weaponId);
+      } else {
+        updated.add(weaponId);
+      }
+      return updated;
+    });
+  };
 
   const classesTexts = {
     pt: {
@@ -165,24 +191,40 @@ export default function Classes() {
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
-                  {/* Title and Type */}
-                  <div className="space-y-2">
-                    <h3
-                      className="text-xl font-bold text-foreground group-hover:text-primary transition-colors"
-                      data-testid={`text-weapon-name-${weapon.id}`}
+                  {/* Title and Type + Like Button */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-2 flex-1">
+                      <h3
+                        className="text-xl font-bold text-foreground group-hover:text-primary transition-colors"
+                        data-testid={`text-weapon-name-${weapon.id}`}
+                      >
+                        {weapon.name}
+                      </h3>
+                      <Badge
+                        variant="outline"
+                        className={`text-xs ${
+                          typeColors[weapon.type] ||
+                          "bg-gray-500/10 text-gray-400 border-gray-500/20"
+                        }`}
+                        data-testid={`badge-weapon-type-${weapon.id}`}
+                      >
+                        {weapon.type}
+                      </Badge>
+                    </div>
+                    <button
+                      onClick={() => toggleLike(weapon.id)}
+                      className="flex-shrink-0 p-2 rounded-lg border border-border hover:border-primary hover-elevate transition-all duration-200"
+                      aria-label={likedWeapons.has(weapon.id) ? "Unlike" : "Like"}
+                      data-testid={`button-like-weapon-${weapon.id}`}
                     >
-                      {weapon.name}
-                    </h3>
-                    <Badge
-                      variant="outline"
-                      className={`text-xs ${
-                        typeColors[weapon.type] ||
-                        "bg-gray-500/10 text-gray-400 border-gray-500/20"
-                      }`}
-                      data-testid={`badge-weapon-type-${weapon.id}`}
-                    >
-                      {weapon.type}
-                    </Badge>
+                      <Heart
+                        className={`h-5 w-5 transition-colors ${
+                          likedWeapons.has(weapon.id)
+                            ? "fill-red-500 text-red-500"
+                            : "text-muted-foreground hover:text-red-500"
+                        }`}
+                      />
+                    </button>
                   </div>
 
                   {/* Description */}
