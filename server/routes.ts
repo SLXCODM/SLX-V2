@@ -161,6 +161,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Note: GET /api/contacts endpoint removed - requires authentication system
   // Will be re-added when auth layer is implemented
 
+  // Weapon Likes Routes
+
+  // GET /api/weapon-likes - Get all weapon likes
+  app.get("/api/weapon-likes", async (_req, res) => {
+    try {
+      const likes = await storage.getAllWeaponLikes();
+      res.json(likes);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch weapon likes" });
+    }
+  });
+
+  // GET /api/weapon-likes/:weaponId - Get likes for specific weapon
+  app.get("/api/weapon-likes/:weaponId", async (req, res) => {
+    try {
+      const { weaponId } = req.params;
+      const likes = await storage.getWeaponLikes(weaponId);
+      res.json({ weaponId, likes });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch weapon likes" });
+    }
+  });
+
+  // POST /api/weapon-likes/:weaponId/like - Increment likes
+  app.post("/api/weapon-likes/:weaponId/like", async (req, res) => {
+    try {
+      const { weaponId } = req.params;
+      const likes = await storage.incrementWeaponLikes(weaponId);
+      res.json({ weaponId, likes });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update weapon likes" });
+    }
+  });
+
+  // POST /api/weapon-likes/:weaponId/unlike - Decrement likes
+  app.post("/api/weapon-likes/:weaponId/unlike", async (req, res) => {
+    try {
+      const { weaponId } = req.params;
+      const likes = await storage.decrementWeaponLikes(weaponId);
+      res.json({ weaponId, likes });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update weapon likes" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

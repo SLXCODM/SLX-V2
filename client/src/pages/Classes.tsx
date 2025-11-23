@@ -6,14 +6,66 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { weaponsData, type Weapon } from "@shared/weaponsData";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+
+interface WeaponLikes {
+  weaponId: string;
+  likes: number;
+}
 
 export default function Classes() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [likedWeapons, setLikedWeapons] = useState<Set<string>>(new Set());
   const { language } = useLanguage();
+  const queryClient = useQueryClient();
 
-  // Load likes from localStorage on mount
+  // Fetch all weapon likes
+  const { data: allLikes = [] } = useQuery({
+    queryKey: ['/api/weapon-likes'],
+    queryFn: async () => {
+      const res = await fetch('/api/weapon-likes');
+      return res.json() as Promise<WeaponLikes[]>;
+    },
+  });
+
+  // Create a map of weapon likes for quick lookup
+  const likeCountMap = new Map(allLikes.map(w => [w.weaponId, w.likes]));
+
+  // Get weapon like count
+  const getWeaponLikes = (weaponId: string): number => {
+    return likeCountMap.get(weaponId) || 0;
+  };
+
+  // Like mutation
+  const likeMutation = useMutation({
+    mutationFn: async (weaponId: string) => {
+      const res = await fetch(`/api/weapon-likes/${weaponId}/like`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      return res.json() as Promise<WeaponLikes>;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/weapon-likes'] });
+    },
+  });
+
+  // Unlike mutation
+  const unlikeMutation = useMutation({
+    mutationFn: async (weaponId: string) => {
+      const res = await fetch(`/api/weapon-likes/${weaponId}/unlike`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      return res.json() as Promise<WeaponLikes>;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/weapon-likes'] });
+    },
+  });
+
+  // Load locally liked weapons from localStorage
   useEffect(() => {
     const savedLikes = localStorage.getItem("slx_weapon_likes");
     if (savedLikes) {
@@ -21,21 +73,29 @@ export default function Classes() {
     }
   }, []);
 
-  // Save likes to localStorage whenever they change
+  // Save locally liked weapons to localStorage
   useEffect(() => {
     localStorage.setItem("slx_weapon_likes", JSON.stringify(Array.from(likedWeapons)));
   }, [likedWeapons]);
 
   const toggleLike = (weaponId: string) => {
-    setLikedWeapons(prev => {
-      const updated = new Set(prev);
-      if (updated.has(weaponId)) {
+    const isCurrentlyLiked = likedWeapons.has(weaponId);
+    
+    if (isCurrentlyLiked) {
+      unlikeMutation.mutate(weaponId);
+      setLikedWeapons(prev => {
+        const updated = new Set(prev);
         updated.delete(weaponId);
-      } else {
+        return updated;
+      });
+    } else {
+      likeMutation.mutate(weaponId);
+      setLikedWeapons(prev => {
+        const updated = new Set(prev);
         updated.add(weaponId);
-      }
-      return updated;
-    });
+        return updated;
+      });
+    }
   };
 
   const classesTexts = {
@@ -231,7 +291,7 @@ export default function Classes() {
                         }`}
                       />
                       <span className="text-xs font-medium text-muted-foreground">
-                        {likedWeapons.size}
+                        {getWeaponLikes(weapon.id)}
                       </span>
                     </button>
                   </div>

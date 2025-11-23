@@ -4,7 +4,8 @@ import {
   type Contact,
   type InsertContact,
   type AboutContent,
-  type InsertAboutContent
+  type InsertAboutContent,
+  type WeaponLike
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -24,17 +25,25 @@ export interface IStorage {
   // About Content
   getAboutContent(): Promise<AboutContent | undefined>;
   updateAboutContent(content: InsertAboutContent): Promise<AboutContent>;
+
+  // Weapon Likes
+  getWeaponLikes(weaponId: string): Promise<number>;
+  getAllWeaponLikes(): Promise<WeaponLike[]>;
+  incrementWeaponLikes(weaponId: string): Promise<number>;
+  decrementWeaponLikes(weaponId: string): Promise<number>;
 }
 
 export class MemStorage implements IStorage {
   private projects: Map<string, Project>;
   private contacts: Map<string, Contact>;
   private aboutContent: AboutContent | undefined;
+  private weaponLikes: Map<string, number>;
 
   constructor() {
     this.projects = new Map();
     this.contacts = new Map();
     this.aboutContent = undefined;
+    this.weaponLikes = new Map();
     
     // Initialize with mock data
     this.initializeMockData();
@@ -269,6 +278,35 @@ Bem, eu... não consigo pensar direito, não consigo falar muito, meu trabalho m
     };
     this.aboutContent = content;
     return content;
+  }
+
+  // Weapon Likes
+  async getWeaponLikes(weaponId: string): Promise<number> {
+    return this.weaponLikes.get(weaponId) || 0;
+  }
+
+  async getAllWeaponLikes(): Promise<WeaponLike[]> {
+    const likes: WeaponLike[] = [];
+    this.weaponLikes.forEach((likeCount, weaponId) => {
+      if (likeCount > 0) {
+        likes.push({ weaponId, likes: likeCount });
+      }
+    });
+    return likes;
+  }
+
+  async incrementWeaponLikes(weaponId: string): Promise<number> {
+    const current = this.weaponLikes.get(weaponId) || 0;
+    const updated = current + 1;
+    this.weaponLikes.set(weaponId, updated);
+    return updated;
+  }
+
+  async decrementWeaponLikes(weaponId: string): Promise<number> {
+    const current = this.weaponLikes.get(weaponId) || 0;
+    const updated = Math.max(0, current - 1);
+    this.weaponLikes.set(weaponId, updated);
+    return updated;
   }
 }
 
