@@ -42,14 +42,20 @@ export default function Classes() {
     pt: {
       title: "Classes de Armas SLX",
       description: "Encontre as melhores configurações e código de armas para melhorar sua gameplay",
-      searchPlaceholder: "Pesquise pelo nome da arma (ex: XM4, AK, Sniper...)...",
-      allWeapons: "Todas"
+      searchPlaceholder: "Pesquise pelo nome da arma (ex: XM4, Outlaw, Type 19...)...",
+      allWeapons: "Todas",
+      copyCode: "Copiar Código",
+      code: "Código da Classe",
+      likedWeapons: "Armas Favoritas"
     },
     en: {
       title: "SLX Weapon Classes",
       description: "Find the best weapon configurations and codes to improve your gameplay",
-      searchPlaceholder: "Search by weapon name (e.g., XM4, AK, Sniper...)...",
-      allWeapons: "All"
+      searchPlaceholder: "Search by weapon name (e.g., XM4, Outlaw, Type 19...)...",
+      allWeapons: "All",
+      copyCode: "Copy Code",
+      code: "Class Code",
+      likedWeapons: "Favorite Weapons"
     }
   };
 
@@ -175,11 +181,11 @@ export default function Classes() {
                 data-testid={`card-weapon-${weapon.id}`}
               >
                 {/* Weapon Image */}
-                {weapon.image && (
+                {(language === "pt" ? weapon.imagePt : weapon.imageEn) && (
                   <div className="aspect-video overflow-hidden bg-card">
                     <img
-                      src={weapon.image}
-                      alt={weapon.name}
+                      src={language === "pt" ? weapon.imagePt : weapon.imageEn}
+                      alt={language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       data-testid={`img-weapon-${weapon.id}`}
                       onError={(e) => {
@@ -198,7 +204,7 @@ export default function Classes() {
                         className="text-xl font-bold text-foreground group-hover:text-primary transition-colors"
                         data-testid={`text-weapon-name-${weapon.id}`}
                       >
-                        {weapon.name}
+                        {language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
                       </h3>
                       <Badge
                         variant="outline"
@@ -238,24 +244,24 @@ export default function Classes() {
                   {/* Code Section */}
                   <div className="bg-muted/50 rounded p-3 space-y-2">
                     <p className="text-xs font-semibold text-muted-foreground uppercase">
-                      Código da Classe
+                      {ct.code}
                     </p>
                     <code
                       className="text-sm font-mono text-primary block break-all"
                       data-testid={`text-weapon-code-${weapon.id}`}
                     >
-                      {weapon.code}
+                      {language === "pt" ? weapon.codePt || weapon.code : weapon.codeEn || weapon.code}
                     </code>
                     <Button
                       size="sm"
                       variant="outline"
                       className="w-full text-xs"
                       onClick={() => {
-                        navigator.clipboard.writeText(weapon.code);
+                        navigator.clipboard.writeText(language === "pt" ? weapon.codePt || weapon.code : weapon.codeEn || weapon.code);
                       }}
                       data-testid={`button-copy-code-${weapon.id}`}
                     >
-                      Copiar Código
+                      {ct.copyCode}
                     </Button>
                   </div>
                 </div>
