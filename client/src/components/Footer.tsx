@@ -89,30 +89,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social Media */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground" data-testid="text-footer-social-title">
-              {t.social}
-            </h4>
-            <div className="flex gap-3 flex-wrap">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-md border border-border flex items-center justify-center hover-elevate active-elevate-2 hover:border-primary transition-colors duration-300"
-                    aria-label={social.name}
-                    data-testid={social.testId}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
+          {/* Social Media - Hidden, only shown on home */}
         </div>
 
         {/* Bottom Bar */}

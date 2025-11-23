@@ -9,6 +9,7 @@ import codmBgImage from "@assets/Picsart_25-01-08_09-25-56-556_1763836943841.jpg
 import photoBgImage from "@assets/IMG_20250719_145627~2_1763837256708.jpg";
 import agricultureBgImage from "@assets/IMG_20250627_135015_1_1763837432932.jpg";
 import devIcon from "@assets/generated_images/personal_development_icon.png";
+import heroBgImage from "@assets/IMG_20240114_185124_255 (3)_1763914486948.jpg";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -103,8 +104,16 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" data-testid="section-hero">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${heroBgImage})`
+          }}
+        />
+        
+        {/* Dark Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background" />
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-24 md:py-32 text-center">
