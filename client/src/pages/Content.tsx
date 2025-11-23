@@ -223,10 +223,18 @@ export default function Content() {
 
                         {/* Content */}
                         <div className="p-6 space-y-3">
-                          <div className="space-y-2">
-                            <h3 className="text-2xl font-semibold leading-tight group-hover:text-primary transition-colors duration-300">
-                              Substack
-                            </h3>
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex-1 space-y-2">
+                              <h3 className="text-2xl font-semibold leading-tight group-hover:text-primary transition-colors duration-300">
+                                Substack
+                              </h3>
+                              <Badge
+                                variant="outline"
+                                className="bg-orange-500/10 text-orange-400 border-orange-500/20"
+                              >
+                                {language === "pt" ? "Dev Pessoal" : "Personal Dev"}
+                              </Badge>
+                            </div>
                           </div>
                           <p className="text-sm text-muted-foreground leading-relaxed">
                             {language === "pt" 

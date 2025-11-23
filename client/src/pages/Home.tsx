@@ -61,7 +61,7 @@ export default function Home() {
       icon: Brain,
       descriptionPt: "Psicologia, filosofia, neurociência e autoconhecimento",
       descriptionEn: "Psychology, philosophy, neuroscience and self-knowledge",
-      imageUrl: devIcon,
+      imageUrl: null,
       link: "/conteudo?category=development",
       testId: "card-category-development"
     },
@@ -209,22 +209,24 @@ export default function Home() {
                 const CardContent = (
                   <Card className="relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300 group">
                       {/* Background Image with Overlay */}
-                      <div className="absolute inset-0">
-                        <img
-                          src={category.imageUrl}
-                          alt={title}
-                          className="w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover"
-                          style={
-                            category.id === "gaming"
-                              ? { objectPosition: "85% 90%" }
-                              : undefined
-                          }
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
-                      </div>
+                      {category.imageUrl && (
+                        <div className="absolute inset-0">
+                          <img
+                            src={category.imageUrl}
+                            alt={title}
+                            className="w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover"
+                            style={
+                              category.id === "gaming"
+                                ? { objectPosition: "85% 90%" }
+                                : undefined
+                            }
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
+                        </div>
+                      )}
 
                       {/* Content */}
-                      <div className="relative h-full flex flex-col justify-end p-6 md:p-8">
+                      <div className={`relative h-full flex flex-col ${category.imageUrl ? 'justify-end' : 'justify-start'} p-6 md:p-8`}>
                         <div className="space-y-3">
                           <Icon className="h-8 w-8 text-primary" />
                           <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors duration-300">
