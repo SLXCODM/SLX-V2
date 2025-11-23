@@ -6,6 +6,8 @@ import ProjectCard from "@/components/ProjectCard";
 import FollowToUnlock from "@/components/FollowToUnlock";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Project } from "@shared/schema";
+import { SiSubstack } from "react-icons/si";
+import { PenTool } from "lucide-react";
 
 export default function Content() {
   const [location] = useLocation();
@@ -31,7 +33,7 @@ export default function Content() {
     { value: "photography", label: language === "pt" ? "Fotografia" : "Photography", testId: "tab-photography" },
     { value: "agriculture", label: language === "pt" ? "Agricultura" : "Agriculture", testId: "tab-agriculture" },
     { value: "development", label: language === "pt" ? "Dev Pessoal" : "Personal Dev", testId: "tab-development" },
-    { value: "writer", label: language === "pt" ? "Escritor" : "Writer", testId: "tab-writer", external: true, url: "https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page" },
+    { value: "writer", label: language === "pt" ? "Escritor" : "Writer", testId: "tab-writer", isWriter: true },
   ];
 
   const contentTexts = {
@@ -73,21 +75,38 @@ export default function Content() {
           <Tabs value={currentTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="w-full justify-start overflow-x-auto flex-wrap gap-2 bg-transparent h-auto p-0" data-testid="tabs-content-filter">
               {tabs.map(tab => {
-                if (tab.external) {
+                if (tab.isWriter) {
                   return (
-                    <a
+                    <div
                       key={tab.value}
-                      href={tab.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      className="px-6 py-3 text-sm font-medium transition-all duration-300 rounded-md bg-card"
                       data-testid={tab.testId}
                     >
-                      <button
-                        className="px-6 py-3 text-sm font-medium transition-all duration-300 rounded-md bg-card hover:bg-primary/10 text-muted-foreground hover:text-primary"
-                      >
-                        {tab.label}
-                      </button>
-                    </a>
+                      <div className="flex items-center gap-2">
+                        {/* Substack Link */}
+                        <a
+                          href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-card hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
+                          title="Substack"
+                          data-testid="button-writer-substack"
+                        >
+                          <SiSubstack className="h-4 w-4" />
+                          <span>Substack</span>
+                        </a>
+                        
+                        {/* Write.as (no link) */}
+                        <button
+                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-card hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300 cursor-help"
+                          title="Write.as - Coming soon"
+                          data-testid="button-writer-writeas"
+                        >
+                          <PenTool className="h-4 w-4" />
+                          <span>Write.as</span>
+                        </button>
+                      </div>
+                    </div>
                   );
                 }
                 

@@ -4,10 +4,12 @@ import { Menu, X, Gamepad2, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import RafflePopup from "./RafflePopup";
 
 export default function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showRafflePopup, setShowRafflePopup] = useState(false);
   const { language, setLanguage } = useLanguage();
 
   const navItems = [
@@ -22,7 +24,11 @@ export default function Header() {
   const codmId = "6870254103403626497";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" data-testid="header-main">
+    <>
+      {showRafflePopup && (
+        <RafflePopup onClose={() => setShowRafflePopup(false)} language="pt" />
+      )}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" data-testid="header-main">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* CODM ID Bar */}
         <div className="hidden md:flex items-center justify-end gap-2 py-2 border-b border-border/50 text-xs text-muted-foreground" data-testid="codm-id-bar">
@@ -61,7 +67,10 @@ export default function Header() {
             <Button
               variant={language === "pt" ? "default" : "outline"}
               size="sm"
-              onClick={() => setLanguage("pt")}
+              onClick={() => {
+                setLanguage("pt");
+                setShowRafflePopup(true);
+              }}
               className="text-xs"
               data-testid="button-lang-pt-header"
             >
@@ -126,5 +135,6 @@ export default function Header() {
         </div>
       )}
     </header>
+    </>
   );
 }
