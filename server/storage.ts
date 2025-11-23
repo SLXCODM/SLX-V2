@@ -50,13 +50,7 @@ export class MemStorage implements IStorage {
         category: "gaming",
         description: "Classes de armas profissionais do SLX",
         imageUrl: "/attached_assets/generated_images/weapon_classes_background.png",
-        externalUrl: JSON.stringify({
-          isLocked: true,
-          links: [
-            { label: "TikTok", url: "https://www.tiktok.com/@slxcodm_" },
-            { label: "YouTube", url: "https://www.youtube.com/@SLXCODM" }
-          ]
-        }),
+        externalUrl: "/classes",
         featured: true,
         order: "0",
       },

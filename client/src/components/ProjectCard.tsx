@@ -50,7 +50,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const handleClick = () => {
     if (!parsedUrl?.isLocked && project.externalUrl && !parsedUrl?.links) {
-      window.open(project.externalUrl, "_blank", "noopener,noreferrer");
+      // Check if it's an internal link (starts with /)
+      if (project.externalUrl.startsWith("/")) {
+        window.location.href = project.externalUrl;
+      } else {
+        window.open(project.externalUrl, "_blank", "noopener,noreferrer");
+      }
     }
   };
 
