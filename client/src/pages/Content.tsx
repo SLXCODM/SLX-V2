@@ -33,7 +33,7 @@ export default function Content() {
     { value: "photography", label: language === "pt" ? "Fotografia" : "Photography", testId: "tab-photography" },
     { value: "agriculture", label: language === "pt" ? "Agricultura" : "Agriculture", testId: "tab-agriculture" },
     { value: "development", label: language === "pt" ? "Dev Pessoal" : "Personal Dev", testId: "tab-development" },
-    { value: "writer", label: language === "pt" ? "Escritor" : "Writer", testId: "tab-writer", isWriter: true },
+    { value: "writer", label: language === "pt" ? "Escritor" : "Writer", testId: "tab-writer" },
   ];
 
   const contentTexts = {
@@ -74,53 +74,16 @@ export default function Content() {
           {/* Tabs Filter */}
           <Tabs value={currentTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="w-full justify-start overflow-x-auto flex-wrap gap-2 bg-transparent h-auto p-0" data-testid="tabs-content-filter">
-              {tabs.map(tab => {
-                if (tab.isWriter) {
-                  return (
-                    <div
-                      key={tab.value}
-                      className="px-6 py-3 text-sm font-medium transition-all duration-300 rounded-md bg-card"
-                      data-testid={tab.testId}
-                    >
-                      <div className="flex items-center gap-2">
-                        {/* Substack Link */}
-                        <a
-                          href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-card hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
-                          title="Substack"
-                          data-testid="button-writer-substack"
-                        >
-                          <SiSubstack className="h-4 w-4" />
-                          <span>Substack</span>
-                        </a>
-                        
-                        {/* Write.as (no link) */}
-                        <button
-                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-card hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300 cursor-help"
-                          title="Write.as - Coming soon"
-                          data-testid="button-writer-writeas"
-                        >
-                          <PenTool className="h-4 w-4" />
-                          <span>Write.as</span>
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }
-                
-                return (
-                  <TabsTrigger
-                    key={tab.value}
-                    value={tab.value}
-                    className="px-6 py-3 text-sm font-medium transition-all duration-300 rounded-md bg-card hover:bg-primary/10 text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:hover:bg-primary"
-                    data-testid={tab.testId}
-                  >
-                    {tab.label}
-                  </TabsTrigger>
-                );
-              })}
+              {tabs.map(tab => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className="px-6 py-3 text-sm font-medium transition-all duration-300 rounded-md bg-card hover:bg-primary/10 text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:hover:bg-primary"
+                  data-testid={tab.testId}
+                >
+                  {tab.label}
+                </TabsTrigger>
+              ))}
             </TabsList>
 
             {currentTab === "gaming" ? (
@@ -159,6 +122,54 @@ export default function Content() {
                   )}
                 </TabsContent>
               </FollowToUnlock>
+            ) : currentTab === "writer" ? (
+              <TabsContent value={currentTab} className="mt-8">
+                <div className="flex flex-col items-center justify-center py-16 space-y-8">
+                  <div className="text-center space-y-4">
+                    <h2 className="text-3xl font-bold">{language === "pt" ? "Minhas Páginas de Escritor" : "My Writer Pages"}</h2>
+                    <p className="text-muted-foreground max-w-2xl">
+                      {language === "pt" 
+                        ? "Conteúdo escrito em diferentes plataformas"
+                        : "Written content on different platforms"}
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-6 max-w-2xl mx-auto">
+                    {/* Substack Button */}
+                    <a
+                      href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                      data-testid="button-writer-substack"
+                    >
+                      <div className="flex items-center justify-center gap-3 px-8 py-6 rounded-lg border-2 border-primary bg-primary/5 hover:bg-primary/10 transition-all duration-300 hover-elevate">
+                        <SiSubstack className="h-6 w-6 text-primary" />
+                        <div className="text-left">
+                          <div className="font-semibold text-foreground">Substack</div>
+                          <div className="text-sm text-muted-foreground">{language === "pt" ? "Newsletter semanal" : "Weekly newsletter"}</div>
+                        </div>
+                      </div>
+                    </a>
+
+                    {/* Write.as Button (no link) */}
+                    <button
+                      disabled
+                      className="flex-1 opacity-60 cursor-not-allowed"
+                      title={language === "pt" ? "Em breve" : "Coming soon"}
+                      data-testid="button-writer-writeas"
+                    >
+                      <div className="flex items-center justify-center gap-3 px-8 py-6 rounded-lg border-2 border-border bg-card/50 transition-all duration-300">
+                        <PenTool className="h-6 w-6 text-muted-foreground" />
+                        <div className="text-left">
+                          <div className="font-semibold text-muted-foreground">Write.as</div>
+                          <div className="text-sm text-muted-foreground/70">{language === "pt" ? "Em breve" : "Coming soon"}</div>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </TabsContent>
             ) : (
               <TabsContent value={currentTab} className="mt-8">
                 {/* Error State */}
