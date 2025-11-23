@@ -62,7 +62,7 @@ export default function Home() {
       descriptionPt: "Psicologia, filosofia, neurociência e autoconhecimento",
       descriptionEn: "Psychology, philosophy, neuroscience and self-knowledge",
       imageUrl: devIcon,
-      link: null,
+      link: "/conteudo?category=development",
       testId: "card-category-development"
     },
   ];
@@ -207,7 +207,7 @@ export default function Home() {
                 const title = language === "pt" ? category.titlePt : category.titleEn;
                 const description = language === "pt" ? category.descriptionPt : category.descriptionEn;
                 const CardContent = (
-                  <Card className={`relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300 ${!category.link ? 'opacity-60 cursor-not-allowed' : ''}`}>
+                  <Card className="relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300 group">
                       {/* Background Image with Overlay */}
                       <div className="absolute inset-0">
                         <img

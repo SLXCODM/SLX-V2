@@ -176,17 +176,11 @@ export default function Content() {
                           <h3 className="text-2xl font-semibold leading-tight text-muted-foreground">
                             Write.as
                           </h3>
-                          <Badge
-                            variant="outline"
-                            className="bg-muted text-muted-foreground border-border"
-                          >
-                            {language === "pt" ? "Em Breve" : "Coming Soon"}
-                          </Badge>
                         </div>
                         <p className="text-sm text-muted-foreground/70 leading-relaxed">
                           {language === "pt" 
-                            ? "Uma segunda plataforma de escrita para diferentes tipos de conteúdo."
-                            : "A second writing platform for different types of content."}
+                            ? "Diários anônimos. Desabafos sinceros, melancolia profunda e reflexões sobre como eu vejo a realidade. Textos pesados sobre histórias de vida, depressão e solidão."
+                            : "Anonymous diaries. Honest confessions, deep melancholy and reflections on how I see reality. Heavy texts about life stories, depression and loneliness."}
                         </p>
                       </div>
                     </Card>
@@ -212,54 +206,42 @@ export default function Content() {
                     ))}
                   </div>
                 ) : currentTab === "development" ? (
-                  <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
                     {/* Substack card first */}
-                    <div className="mb-8">
-                      <a
-                        href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-testid="button-dev-substack"
-                      >
-                        <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer">
-                          {/* Background with gradient and icon */}
-                          <div className="aspect-video overflow-hidden bg-gradient-to-br from-purple-900/20 to-purple-600/10 flex items-center justify-center relative">
-                            <div className="absolute inset-0 bg-black/20" />
-                            <SiSubstack className="h-32 w-32 text-purple-400/30 transition-transform duration-500 group-hover:scale-110" />
-                          </div>
+                    <a
+                      href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-dev-substack"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full">
+                        {/* Background with gradient and icon */}
+                        <div className="aspect-video overflow-hidden bg-gradient-to-br from-purple-900/20 to-purple-600/10 flex items-center justify-center relative">
+                          <div className="absolute inset-0 bg-black/20" />
+                          <SiSubstack className="h-32 w-32 text-purple-400/30 transition-transform duration-500 group-hover:scale-110" />
+                        </div>
 
-                          {/* Content */}
-                          <div className="p-6 space-y-3">
-                            <div className="space-y-2">
-                              <h3 className="text-2xl font-semibold leading-tight group-hover:text-primary transition-colors duration-300">
-                                Substack
-                              </h3>
-                            </div>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                              {language === "pt" 
-                                ? "Reflexões sobre superdotação, melancolia, desenvolvimento pessoal e estudos. Desabafos sinceros sobre como vejo a realidade e as complexidades da vida."
-                                : "Reflections on giftedness, melancholy, personal development and learning. Honest thoughts on how I see reality and life's complexities."}
-                            </p>
+                        {/* Content */}
+                        <div className="p-6 space-y-3">
+                          <div className="space-y-2">
+                            <h3 className="text-2xl font-semibold leading-tight group-hover:text-primary transition-colors duration-300">
+                              Substack
+                            </h3>
                           </div>
-                        </Card>
-                      </a>
-                    </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {language === "pt" 
+                              ? "Reflexões sobre superdotação, melancolia, desenvolvimento pessoal e estudos. Desabafos sinceros sobre como vejo a realidade e as complexidades da vida."
+                              : "Reflections on giftedness, melancholy, personal development and learning. Honest thoughts on how I see reality and life's complexities."}
+                          </p>
+                        </div>
+                      </Card>
+                    </a>
 
                     {/* Other development projects */}
-                    {filteredProjects.length > 0 ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
-                        {filteredProjects.map(project => (
-                          <ProjectCard key={project.id} project={project} />
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="text-center py-16" data-testid="empty-state-content">
-                        <p className="text-muted-foreground">
-                          {language === "pt" ? "Nenhum conteúdo encontrado nesta categoria ainda." : "No content found in this category yet."}
-                        </p>
-                      </div>
-                    )}
-                  </>
+                    {filteredProjects.map(project => (
+                      <ProjectCard key={project.id} project={project} />
+                    ))}
+                  </div>
                 ) : filteredProjects.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
                     {filteredProjects.map(project => (
