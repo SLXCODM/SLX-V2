@@ -69,3 +69,9 @@ export type Contact = typeof contacts.$inferSelect;
 
 export type InsertAboutContent = z.infer<typeof insertAboutContentSchema>;
 export type AboutContent = typeof aboutContent.$inferSelect;
+
+// Weapon Likes
+export interface WeaponLike {
+  weaponId: string;
+  likes: number;
+}
