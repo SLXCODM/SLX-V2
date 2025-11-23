@@ -82,7 +82,7 @@ export default function Content() {
                   <TabsTrigger
                     key={tab.value}
                     value={tab.value}
-                    className="px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                    className="px-6 py-3 text-sm font-medium transition-all duration-300 rounded-md bg-card hover:bg-primary/10 text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:hover:bg-primary"
                     data-testid={tab.testId}
                   >
                     {tab.label}

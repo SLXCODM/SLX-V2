@@ -49,7 +49,7 @@ export class MemStorage implements IStorage {
         title: "Classes",
         category: "gaming",
         description: "Classes de armas profissionais do SLX",
-        imageUrl: "/attached_assets/generated_images/weapon_classes_background.png",
+        imageUrl: "/weapon_classes_background.png",
         externalUrl: "/classes",
         featured: true,
         order: "0",
@@ -59,7 +59,7 @@ export class MemStorage implements IStorage {
         title: "Meus Tutoriais Exclusivos",
         category: "gaming",
         description: "Conteúdo exclusivo para melhorar sua gameplay",
-        imageUrl: "/attached_assets/generated_images/professional_tutorials_background.png",
+        imageUrl: "/professional_tutorials_background.png",
         externalUrl: JSON.stringify({
           isLocked: true,
           links: [
@@ -75,7 +75,7 @@ export class MemStorage implements IStorage {
         title: "Minhas configurações",
         category: "gaming",
         description: "As melhores configurações do jogo",
-        imageUrl: "/attached_assets/generated_images/settings_configuration_background.png",
+        imageUrl: "/settings_configuration_background.png",
         externalUrl: JSON.stringify({
           isLocked: true,
           links: [

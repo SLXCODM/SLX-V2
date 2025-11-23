@@ -39,16 +39,15 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" data-testid="nav-desktop">
+          <nav className="hidden md:flex items-center gap-2" data-testid="nav-desktop">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path} data-testid={`link-nav-${item.label.toLowerCase()}`}>
                 <span
                   className={cn(
-                    "text-sm font-medium transition-all duration-300 hover:text-primary relative",
-                    "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300",
+                    "px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md",
                     location === item.path
-                      ? "text-primary after:w-full"
-                      : "text-muted-foreground after:w-0 hover:after:w-full"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-card text-muted-foreground hover:bg-primary/10 hover:text-primary"
                   )}
                 >
                   {item.label}
