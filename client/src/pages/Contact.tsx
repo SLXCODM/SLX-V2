@@ -8,10 +8,12 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 import { apiRequest } from "@/lib/queryClient";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { InsertContact } from "@shared/schema";
 
 export default function Contact() {
   const { toast } = useToast();
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,6 +21,57 @@ export default function Contact() {
     message: "",
     honeypot: "", // Anti-spam field (hidden from user)
   });
+
+  const texts = {
+    pt: {
+      title: "Contato",
+      description: "Entre em contato para colaborações, patrocínios ou apenas para conversar",
+      emailLabel: "Email Direto",
+      collaborationTitle: "Colaborações & Patrocínios",
+      collaborationDesc: "Aberto para parcerias com marcas que se alinham com conteúdo profissional, gaming de alto nível, fotografia ou desenvolvimento pessoal.",
+      responseTitle: "Tempo de Resposta",
+      responseDesc: "Procuro responder em até 48 horas. Para assuntos urgentes, prefira contato direto via Instagram ou Discord.",
+      formTitle: "Envie uma Mensagem",
+      nameLabel: "Nome",
+      namePlaceholder: "Seu nome",
+      emailLabel2: "Email",
+      emailPlaceholder: "seu@email.com",
+      subjectLabel: "Assunto",
+      subjectPlaceholder: "Assunto da mensagem",
+      messageLabel: "Mensagem",
+      messagePlaceholder: "Sua mensagem...",
+      sendButton: "Enviar Mensagem",
+      successTitle: "Mensagem enviada!",
+      successDesc: "Obrigado por entrar em contato. Responderei em breve.",
+      errorTitle: "Erro ao enviar",
+      errorDesc: "Ocorreu um erro. Tente novamente.",
+    },
+    en: {
+      title: "Contact",
+      description: "Get in touch for collaborations, sponsorships or just to chat",
+      emailLabel: "Direct Email",
+      collaborationTitle: "Collaborations & Sponsorships",
+      collaborationDesc: "Open for partnerships with brands that align with professional content, high-level gaming, photography or personal development.",
+      responseTitle: "Response Time",
+      responseDesc: "I aim to respond within 48 hours. For urgent matters, prefer direct contact via Instagram or Discord.",
+      formTitle: "Send a Message",
+      nameLabel: "Name",
+      namePlaceholder: "Your name",
+      emailLabel2: "Email",
+      emailPlaceholder: "your@email.com",
+      subjectLabel: "Subject",
+      subjectPlaceholder: "Message subject",
+      messageLabel: "Message",
+      messagePlaceholder: "Your message...",
+      sendButton: "Send Message",
+      successTitle: "Message sent!",
+      successDesc: "Thank you for reaching out. I'll respond soon.",
+      errorTitle: "Error sending",
+      errorDesc: "An error occurred. Please try again.",
+    }
+  };
+
+  const t = texts[language];
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContact) => {
@@ -30,15 +83,15 @@ export default function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado por entrar em contato. Responderei em breve.",
+        title: t.successTitle,
+        description: t.successDesc,
       });
       setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" });
     },
     onError: (error: Error) => {
       toast({
-        title: "Erro ao enviar",
-        description: error.message || "Ocorreu um erro. Tente novamente.",
+        title: t.errorTitle,
+        description: error.message || t.errorDesc,
         variant: "destructive",
       });
     },
@@ -66,10 +119,10 @@ export default function Contact() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight" data-testid="text-contact-title">
-                Contato
+                {t.title}
               </h1>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed" data-testid="text-contact-description">
-                Entre em contato para colaborações, patrocínios ou apenas para conversar
+                {t.description}
               </p>
             </div>
 
@@ -81,7 +134,7 @@ export default function Contact() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground" data-testid="text-email-label">
-                    Email Direto
+                    {t.emailLabel}
                   </h3>
                   <a
                     href="mailto:slowedbase@gmail.com"
@@ -98,21 +151,19 @@ export default function Contact() {
             <div className="space-y-6">
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold" data-testid="text-collaboration-info-title">
-                  Colaborações & Patrocínios
+                  {t.collaborationTitle}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-collaboration-info-description">
-                  Aberto para parcerias com marcas que se alinham com conteúdo
-                  profissional, gaming de alto nível, fotografia ou desenvolvimento pessoal.
+                  {t.collaborationDesc}
                 </p>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold" data-testid="text-response-info-title">
-                  Tempo de Resposta
+                  {t.responseTitle}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-response-info-description">
-                  Normalmente respondo em 1-3 dias úteis. Mensagens urgentes podem
-                  ser enviadas diretamente para o email acima.
+                  {t.responseDesc}
                 </p>
               </div>
             </div>
@@ -136,7 +187,7 @@ export default function Contact() {
                 {/* Name */}
                 <div className="space-y-2">
                   <Label htmlFor="name" data-testid="label-name">
-                    Nome *
+                    {t.nameLabel} *
                   </Label>
                   <Input
                     id="name"
@@ -144,7 +195,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="Seu nome"
+                    placeholder={t.namePlaceholder}
                     className="bg-background"
                     data-testid="input-name"
                   />
@@ -153,7 +204,7 @@ export default function Contact() {
                 {/* Email */}
                 <div className="space-y-2">
                   <Label htmlFor="email" data-testid="label-email">
-                    Email *
+                    {t.emailLabel2} *
                   </Label>
                   <Input
                     id="email"
@@ -162,7 +213,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="seu@email.com"
+                    placeholder={t.emailPlaceholder}
                     className="bg-background"
                     data-testid="input-email"
                   />
@@ -171,7 +222,7 @@ export default function Contact() {
                 {/* Subject */}
                 <div className="space-y-2">
                   <Label htmlFor="subject" data-testid="label-subject">
-                    Assunto *
+                    {t.subjectLabel} *
                   </Label>
                   <Input
                     id="subject"
@@ -179,7 +230,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    placeholder="Sobre o que você quer falar?"
+                    placeholder={t.subjectPlaceholder}
                     className="bg-background"
                     data-testid="input-subject"
                   />
@@ -188,7 +239,7 @@ export default function Contact() {
                 {/* Message */}
                 <div className="space-y-2">
                   <Label htmlFor="message" data-testid="label-message">
-                    Mensagem *
+                    {t.messageLabel} *
                   </Label>
                   <Textarea
                     id="message"
@@ -196,7 +247,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="Escreva sua mensagem aqui..."
+                    placeholder={t.messagePlaceholder}
                     rows={6}
                     className="bg-background resize-none"
                     data-testid="input-message"
@@ -211,10 +262,10 @@ export default function Contact() {
                   data-testid="button-submit-contact"
                 >
                   {contactMutation.isPending ? (
-                    "Enviando..."
+                    language === "pt" ? "Enviando..." : "Sending..."
                   ) : (
                     <>
-                      Enviar Mensagem
+                      {t.sendButton}
                       <Send className="ml-2 h-4 w-4" />
                     </>
                   )}

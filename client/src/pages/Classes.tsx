@@ -5,10 +5,29 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { weaponsData, type Weapon } from "@shared/weaponsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Classes() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const { language } = useLanguage();
+
+  const classesTexts = {
+    pt: {
+      title: "Classes de Armas SLX",
+      description: "Encontre as melhores configurações e código de armas para melhorar sua gameplay",
+      searchPlaceholder: "Pesquise pelo nome da arma (ex: XM4, AK, Sniper...)...",
+      allWeapons: "Todas"
+    },
+    en: {
+      title: "SLX Weapon Classes",
+      description: "Find the best weapon configurations and codes to improve your gameplay",
+      searchPlaceholder: "Search by weapon name (e.g., XM4, AK, Sniper...)...",
+      allWeapons: "All"
+    }
+  };
+
+  const ct = classesTexts[language];
 
   // Fuzzy search helper
   const fuzzyMatch = (searchStr: string, target: string): number => {
@@ -66,10 +85,10 @@ export default function Classes() {
         <div className="space-y-8 mb-12">
           <div className="space-y-4 text-center">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight" data-testid="text-classes-title">
-              Classes de Armas SLX
+              {ct.title}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-classes-description">
-              Encontre as melhores configurações e código de armas para melhorar sua gameplay
+              {ct.description}
             </p>
           </div>
 
@@ -79,7 +98,7 @@ export default function Classes() {
             <div className="relative" data-testid="search-weapons">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
-                placeholder="Pesquise pelo nome da arma (ex: XM4, AK, Sniper...)..."
+                placeholder={ct.searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 py-6 text-base"
@@ -96,7 +115,7 @@ export default function Classes() {
                 data-testid="filter-all-weapons"
               >
                 <Filter className="h-4 w-4 mr-2" />
-                Todas
+                {ct.allWeapons}
               </Button>
               {weaponTypes.map(type => (
                 <Button

@@ -11,11 +11,11 @@ export default function Header() {
   const { language, setLanguage } = useLanguage();
 
   const navItems = [
-    { path: "/", label: "Início" },
-    { path: "/conteudo", label: "Conteúdo" },
-    { path: "/redes-sociais", label: "Redes Sociais" },
-    { path: "/doacoes", label: "Doações" },
-    { path: "/sobre", label: "Sobre" },
+    { path: "/", label: language === "pt" ? "Início" : "Home" },
+    { path: "/conteudo", label: language === "pt" ? "Conteúdo" : "Content" },
+    { path: "/redes-sociais", label: language === "pt" ? "Redes Sociais" : "Social" },
+    { path: "/doacoes", label: language === "pt" ? "Doações" : "Donate" },
+    { path: "/sobre", label: language === "pt" ? "Sobre" : "About" },
   ];
 
   // CODM ID

@@ -28,11 +28,24 @@ export default function Content() {
 
   const tabs = [
     { value: "gaming", label: "Call of Duty Mobile", testId: "tab-gaming" },
-    { value: "photography", label: "Fotografia", testId: "tab-photography" },
-    { value: "agriculture", label: "Agricultura", testId: "tab-agriculture" },
-    { value: "development", label: "Dev Pessoal", testId: "tab-development" },
-    { value: "writer", label: "Escritor", testId: "tab-writer", external: true, url: "https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page" },
+    { value: "photography", label: language === "pt" ? "Fotografia" : "Photography", testId: "tab-photography" },
+    { value: "agriculture", label: language === "pt" ? "Agricultura" : "Agriculture", testId: "tab-agriculture" },
+    { value: "development", label: language === "pt" ? "Dev Pessoal" : "Personal Dev", testId: "tab-development" },
+    { value: "writer", label: language === "pt" ? "Escritor" : "Writer", testId: "tab-writer", external: true, url: "https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page" },
   ];
+
+  const contentTexts = {
+    pt: {
+      title: "Conteúdo",
+      description: "Explore meus projetos, tutoriais e criações em diferentes áreas"
+    },
+    en: {
+      title: "Content",
+      description: "Explore my projects, tutorials and creations in different areas"
+    }
+  };
+
+  const ct = contentTexts[language];
 
   // Set default tab to gaming
   const defaultTab = "gaming";
@@ -49,10 +62,10 @@ export default function Content() {
           {/* Header */}
           <div className="space-y-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight" data-testid="text-content-title">
-              Conteúdo
+              {ct.title}
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-content-description">
-              Explore meus projetos, tutoriais e criações em diferentes áreas
+              {ct.description}
             </p>
           </div>
 
