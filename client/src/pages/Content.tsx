@@ -124,49 +124,76 @@ export default function Content() {
               </FollowToUnlock>
             ) : currentTab === "writer" ? (
               <TabsContent value={currentTab} className="mt-8">
-                <div className="flex flex-col items-center justify-center py-16 space-y-8">
-                  <div className="text-center space-y-4">
-                    <h2 className="text-3xl font-bold">{language === "pt" ? "Minhas Páginas de Escritor" : "My Writer Pages"}</h2>
-                    <p className="text-muted-foreground max-w-2xl">
-                      {language === "pt" 
-                        ? "Conteúdo escrito em diferentes plataformas"
-                        : "Written content on different platforms"}
-                    </p>
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-6 max-w-2xl mx-auto">
-                    {/* Substack Button */}
-                    <a
-                      href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1"
-                      data-testid="button-writer-substack"
-                    >
-                      <div className="flex items-center justify-center gap-3 px-8 py-6 rounded-lg border-2 border-primary bg-primary/5 hover:bg-primary/10 transition-all duration-300 hover-elevate">
-                        <SiSubstack className="h-6 w-6 text-primary" />
-                        <div className="text-left">
-                          <div className="font-semibold text-foreground">Substack</div>
-                          <div className="text-sm text-muted-foreground">{language === "pt" ? "Newsletter semanal" : "Weekly newsletter"}</div>
-                        </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                  {/* Substack Card */}
+                  <a
+                    href="https://slnx.substack.com/?utm_campaign=profile&utm_medium=profile-page"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="button-writer-substack"
+                  >
+                    <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full">
+                      {/* Background with gradient and icon */}
+                      <div className="aspect-video overflow-hidden bg-gradient-to-br from-purple-900/20 to-purple-600/10 flex items-center justify-center relative">
+                        <div className="absolute inset-0 bg-black/20" />
+                        <SiSubstack className="h-32 w-32 text-purple-400/30 transition-transform duration-500 group-hover:scale-110" />
                       </div>
-                    </a>
 
-                    {/* Write.as Button (no link) */}
-                    <button
-                      disabled
-                      className="flex-1 opacity-60 cursor-not-allowed"
-                      title={language === "pt" ? "Em breve" : "Coming soon"}
-                      data-testid="button-writer-writeas"
-                    >
-                      <div className="flex items-center justify-center gap-3 px-8 py-6 rounded-lg border-2 border-border bg-card/50 transition-all duration-300">
-                        <PenTool className="h-6 w-6 text-muted-foreground" />
-                        <div className="text-left">
-                          <div className="font-semibold text-muted-foreground">Write.as</div>
-                          <div className="text-sm text-muted-foreground/70">{language === "pt" ? "Em breve" : "Coming soon"}</div>
+                      {/* Content */}
+                      <div className="p-6 space-y-3">
+                        <div className="space-y-2">
+                          <h3 className="text-2xl font-semibold leading-tight group-hover:text-primary transition-colors duration-300">
+                            Substack
+                          </h3>
+                          <Badge
+                            variant="outline"
+                            className="bg-purple-500/10 text-purple-400 border-purple-500/20"
+                          >
+                            {language === "pt" ? "Newsletter Semanal" : "Weekly Newsletter"}
+                          </Badge>
                         </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {language === "pt" 
+                            ? "Análises profundas sobre gaming, vida e desenvolvimento pessoal entregues direto na sua caixa de entrada."
+                            : "Deep analysis on gaming, life and personal development delivered straight to your inbox."}
+                        </p>
                       </div>
-                    </button>
+                    </Card>
+                  </a>
+
+                  {/* Write.as Card (disabled) */}
+                  <div
+                    className="opacity-60 cursor-not-allowed"
+                    title={language === "pt" ? "Em breve" : "Coming soon"}
+                    data-testid="button-writer-writeas"
+                  >
+                    <Card className="overflow-hidden h-full">
+                      {/* Background with gradient and icon */}
+                      <div className="aspect-video overflow-hidden bg-gradient-to-br from-slate-700/20 to-slate-600/10 flex items-center justify-center relative">
+                        <div className="absolute inset-0 bg-black/40" />
+                        <PenTool className="h-32 w-32 text-slate-400/30" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-6 space-y-3">
+                        <div className="space-y-2">
+                          <h3 className="text-2xl font-semibold leading-tight text-muted-foreground">
+                            Write.as
+                          </h3>
+                          <Badge
+                            variant="outline"
+                            className="bg-muted text-muted-foreground border-border"
+                          >
+                            {language === "pt" ? "Em Breve" : "Coming Soon"}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground/70 leading-relaxed">
+                          {language === "pt" 
+                            ? "Uma segunda plataforma de escrita para diferentes tipos de conteúdo."
+                            : "A second writing platform for different types of content."}
+                        </p>
+                      </div>
+                    </Card>
                   </div>
                 </div>
               </TabsContent>
