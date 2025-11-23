@@ -219,7 +219,7 @@ export default function Classes() {
                     </div>
                     <button
                       onClick={() => toggleLike(weapon.id)}
-                      className="flex-shrink-0 p-2 rounded-lg border border-border hover:border-primary hover-elevate transition-all duration-200"
+                      className="flex-shrink-0 px-3 py-2 rounded-lg border border-border hover:border-primary hover-elevate transition-all duration-200 flex items-center gap-1.5"
                       aria-label={likedWeapons.has(weapon.id) ? "Unlike" : "Like"}
                       data-testid={`button-like-weapon-${weapon.id}`}
                     >
@@ -230,6 +230,9 @@ export default function Classes() {
                             : "text-muted-foreground hover:text-red-500"
                         }`}
                       />
+                      <span className="text-xs font-medium text-muted-foreground">
+                        {likedWeapons.size}
+                      </span>
                     </button>
                   </div>
 

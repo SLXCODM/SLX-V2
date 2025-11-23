@@ -19,7 +19,8 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
       followButton: "Seguir no Instagram",
       checkButton: "Já Segui - Verificar",
       checking: "Verificando...",
-      unlocked: "Desbloqueado! ✨",
+      unlockedTitle: "Acesso Total Desbloqueado!",
+      unlockedDesc: "Você tem acesso a todo conteúdo exclusivo do SLX Gaming",
     },
     en: {
       title: "Exclusive Content",
@@ -27,7 +28,8 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
       followButton: "Follow on Instagram",
       checkButton: "Already Followed - Check",
       checking: "Checking...",
-      unlocked: "Unlocked! ✨",
+      unlockedTitle: "Full Access Unlocked!",
+      unlockedDesc: "You have access to all exclusive SLX Gaming content",
     }
   };
 
@@ -58,9 +60,12 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
   if (isUnlocked) {
     return (
       <div className="space-y-4" data-testid="content-unlocked">
-        <div className="flex items-center gap-2 text-primary font-semibold">
-          <Check className="h-5 w-5" />
-          {t.unlocked}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-primary font-semibold text-lg">
+            <span className="text-2xl">🌟</span>
+            {t.unlockedTitle}
+          </div>
+          <p className="text-muted-foreground text-sm">{t.unlockedDesc}</p>
         </div>
         {children}
       </div>
