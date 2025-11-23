@@ -88,8 +88,6 @@ export default function Footer() {
               <li><a href="/contato" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-contato">{t.contact}</a></li>
             </ul>
           </div>
-
-          {/* Social Media - Hidden, only shown on home */}
         </div>
 
         {/* Bottom Bar */}
