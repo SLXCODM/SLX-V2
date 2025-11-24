@@ -174,11 +174,11 @@ export default function Sponsors() {
                     {t.directEmail}
                   </h3>
                   <a
-                    href="mailto:slowedbase@gmail.com"
+                    href="mailto:M1n3bas3@gmail.com"
                     className="text-sm font-medium hover:text-primary transition-colors duration-300"
                     data-testid="link-sponsor-email"
                   >
-                    slowedbase@gmail.com
+                    M1n3bas3@gmail.com
                   </a>
                 </div>
               </div>

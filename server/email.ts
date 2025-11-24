@@ -63,7 +63,7 @@ export async function sendContactEmail(data: ContactEmailData) {
     // Send to admin
     const adminResponse = await client.emails.send({
       from: fromEmail,
-      to: 'slowedbase@gmail.com',
+      to: 'M1n3bas3@gmail.com',
       subject: `[Contato do Site] ${data.subject}`,
       html: emailHtml,
     });
@@ -107,7 +107,7 @@ export async function sendSponsorshipEmail(data: ContactEmailData) {
     // Send to admin
     const adminResponse = await client.emails.send({
       from: fromEmail,
-      to: 'slowedbase@gmail.com',
+      to: 'M1n3bas3@gmail.com',
       subject: `[Patrocínio] ${data.subject} - ${data.name}`,
       html: emailHtml,
     });
