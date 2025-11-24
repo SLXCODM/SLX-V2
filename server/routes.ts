@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertProjectSchema, insertContactSchema, projectCategories } from "@shared/schema";
 import { contactRateLimiter } from "./rate-limiter";
+import { sendContactEmail, sendSponsorshipEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Projects Routes
