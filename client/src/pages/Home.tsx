@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import codmBgImage from "@assets/Picsart_25-01-08_09-25-56-556_1763836943841.jpg";
 import photoBgImage from "@assets/IMG_20250719_145627~2_1763837256708.jpg";
 import agricultureBgImage from "@assets/IMG_20250627_135015_1_1763837432932.jpg";
-import devIcon from "@assets/generated_images/personal_development_icon.png";
+import devIcon from "@assets/generated_images/bright_glowing_brain_icon_personal_development.png";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -207,7 +207,7 @@ export default function Home() {
                 const title = language === "pt" ? category.titlePt : category.titleEn;
                 const description = language === "pt" ? category.descriptionPt : category.descriptionEn;
                 const CardContent = (
-                  <Card className="relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300 group">
+                  <Card className={`relative overflow-hidden h-80 hover-elevate active-elevate-2 transition-all duration-300 group ${category.id === 'development' ? 'bg-black' : ''}`}>
                       {/* Background Image with Overlay */}
                       {category.imageUrl && (
                         <div className="absolute inset-0">
@@ -221,7 +221,7 @@ export default function Home() {
                                 : undefined
                             }
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
+                          <div className={`absolute inset-0 ${category.id === 'development' ? 'bg-black/40' : 'bg-gradient-to-t from-background via-background/80 to-background/20'}`} />
                         </div>
                       )}
 
