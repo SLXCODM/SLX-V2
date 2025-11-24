@@ -112,7 +112,7 @@ export default function Home() {
         />
         
         {/* Dark Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background/90" />
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-24 md:py-32 text-center">
@@ -167,6 +167,14 @@ export default function Home() {
             {/* Social Links */}
             <div className="pt-8 border-t border-border/30">
               <SocialLinks language={language} />
+            </div>
+
+            {/* CODM ID */}
+            <div className="pt-8 text-center">
+              <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
+                <Gamepad2 className="h-4 w-4" />
+                <span>ID: 6870254103403626497</span>
+              </p>
             </div>
           </div>
         </div>
