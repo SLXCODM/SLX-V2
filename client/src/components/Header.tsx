@@ -62,52 +62,55 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Language Selector */}
-          <div className="flex gap-1 order-last md:order-none" data-testid="language-selector-header">
+          {/* Mobile Menu Button and Language Selector */}
+          <div className="flex items-center gap-2" data-testid="mobile-controls">
+            {/* Language Selector */}
+            <div className="flex gap-1" data-testid="language-selector-header">
+              <Button
+                variant={language === "pt" ? "default" : "outline"}
+                size="sm"
+                onClick={() => {
+                  setLanguage("pt");
+                  setShowRafflePopup(true);
+                }}
+                className="text-xs"
+                data-testid="button-lang-pt-header"
+              >
+                PT
+              </Button>
+              <Button
+                variant={language === "en" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setLanguage("en")}
+                className="text-xs"
+                data-testid="button-lang-en-header"
+              >
+                EN
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
             <Button
-              variant={language === "pt" ? "default" : "outline"}
-              size="sm"
-              onClick={() => {
-                setLanguage("pt");
-                setShowRafflePopup(true);
-              }}
-              className="text-xs"
-              data-testid="button-lang-pt-header"
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              data-testid="button-mobile-menu-toggle"
             >
-              PT
-            </Button>
-            <Button
-              variant={language === "en" ? "default" : "outline"}
-              size="sm"
-              onClick={() => setLanguage("en")}
-              className="text-xs"
-              data-testid="button-lang-en-header"
-            >
-              EN
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-testid="button-mobile-menu-toggle"
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </Button>
         </div>
       </div>
 
       {/* Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-16 bg-background border-b border-border z-40 md:hidden"
+          className="fixed inset-0 top-16 bg-background/98 backdrop-blur-sm border-b border-border z-40 md:hidden"
           data-testid="nav-mobile-overlay"
         >
           <nav className="flex flex-col p-4 gap-2" data-testid="nav-mobile">
