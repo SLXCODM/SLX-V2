@@ -120,7 +120,7 @@ export default function Header() {
           }}
           data-testid="nav-mobile-overlay"
         >
-          <nav className="flex flex-col p-4 gap-2" data-testid="nav-mobile">
+          <nav className="flex flex-col" data-testid="nav-mobile">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -130,11 +130,10 @@ export default function Header() {
               >
                 <button
                   className={cn(
-                    "w-full text-left px-6 py-4 rounded-md text-base font-medium transition-all duration-300",
-                    "hover-elevate active-elevate-2 min-h-12",
+                    "w-full text-left px-6 py-4 text-base font-medium transition-all duration-300",
                     location === item.path
-                      ? "bg-primary/10 text-foreground border border-primary/20"
-                      : "bg-gray-800 text-white hover:bg-gray-700 border border-gray-700"
+                      ? "bg-gray-900 text-white"
+                      : "bg-black text-white hover:bg-gray-900"
                   )}
                 >
                   {item.label}
