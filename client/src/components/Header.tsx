@@ -127,7 +127,7 @@ export default function Header() {
                     "hover-elevate active-elevate-2 min-h-12",
                     location === item.path
                       ? "bg-primary/10 text-foreground border border-primary/20"
-                      : "text-foreground hover:bg-card border border-transparent"
+                      : "bg-card/70 text-foreground hover:bg-card border border-border/50"
                   )}
                 >
                   {item.label}

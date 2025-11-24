@@ -49,7 +49,7 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-[60] p-4 pt-20" data-testid="raffle-popup">
+    <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-[60] p-4 pt-32" data-testid="raffle-popup">
       <div className="bg-card border border-border rounded-lg max-w-md w-full p-6 md:p-8 space-y-5 md:space-y-6 relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
