@@ -34,7 +34,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const [parsedUrl, setParsedUrl] = useState<ParsedUrl | null>(null);
 
   useEffect(() => {
-    const globalUnlockKey = 'slx_site_unlocked';
+    const globalUnlockKey = 'slx_codm_unlocked';
     const isAlreadyUnlocked = localStorage.getItem(globalUnlockKey) === 'true';
     setIsUnlocked(isAlreadyUnlocked);
 
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const handleFollowCheck = async () => {
     setIsChecking(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
-    const globalUnlockKey = 'slx_site_unlocked';
+    const globalUnlockKey = 'slx_codm_unlocked';
     localStorage.setItem(globalUnlockKey, 'true');
     setIsUnlocked(true);
     setIsChecking(false);
