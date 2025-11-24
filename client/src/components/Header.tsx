@@ -12,17 +12,6 @@ export default function Header() {
   const [showRafflePopup, setShowRafflePopup] = useState(false);
   const { language, setLanguage } = useLanguage();
 
-  // Control body overflow when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.documentElement.style.overflow = 'hidden';
-    } else {
-      document.documentElement.style.overflow = '';
-    }
-    return () => {
-      document.documentElement.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
 
   const navItems = [
     { path: "/", label: language === "pt" ? "Início" : "Home" },
@@ -124,9 +113,10 @@ export default function Header() {
         <div
           className="fixed inset-0 md:hidden"
           style={{ 
-            backgroundColor: '#000000',
+            backgroundColor: 'rgb(0, 0, 0)',
             zIndex: 49,
-            top: '64px'
+            top: '64px',
+            opacity: 1
           }}
           data-testid="nav-mobile-overlay"
         >
