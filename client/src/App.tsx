@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Content from "./pages/Content";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import Sponsors from "./pages/Sponsors";
 import Donations from "./pages/Donations";
 import Classes from "./pages/Classes";
 import SocialLinksPage from "./pages/SocialLinksPage";
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/conteudo" component={Content} />
       <Route path="/projetos" component={Projects} />
       <Route path="/contato" component={Contact} />
+      <Route path="/patrocinadores" component={Sponsors} />
       <Route path="/doacoes" component={DonationsPage} />
       <Route path="/classes" component={Classes} />
       <Route path="/redes-sociais" component={SocialLinksPage} />
