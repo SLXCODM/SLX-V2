@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, Gamepad2, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,18 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showRafflePopup, setShowRafflePopup] = useState(false);
   const { language, setLanguage } = useLanguage();
+
+  // Control body overflow when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.documentElement.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const navItems = [
     { path: "/", label: language === "pt" ? "Início" : "Home" },
@@ -110,10 +122,10 @@ export default function Header() {
       {/* Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed left-0 right-0 top-16 bottom-0 bg-black z-50 md:hidden"
+          className="fixed left-0 right-0 top-16 bottom-0 bg-black z-50 md:hidden overflow-hidden"
           data-testid="nav-mobile-overlay"
         >
-          <nav className="flex flex-col p-4 gap-2" data-testid="nav-mobile">
+          <nav className="flex flex-col p-4 gap-2 overflow-y-auto" data-testid="nav-mobile">
             {navItems.map((item) => (
               <Link
                 key={item.path}
