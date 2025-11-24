@@ -110,7 +110,7 @@ export default function Header() {
       {/* Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-16 bg-background/98 backdrop-blur-sm border-b border-border z-40 md:hidden"
+          className="fixed inset-0 top-16 bg-black/95 border-b border-border z-40 md:hidden"
           data-testid="nav-mobile-overlay"
         >
           <nav className="flex flex-col p-4 gap-2" data-testid="nav-mobile">

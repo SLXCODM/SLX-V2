@@ -91,10 +91,6 @@ export default function LanguageSelect({ onComplete }: LanguageSelectProps) {
             </button>
           </div>
 
-          {/* Footer */}
-          <div className="text-sm text-muted-foreground">
-            <p>Estrategista de pensamento • Thought Strategist</p>
-          </div>
         </div>
       )}
     </div>
