@@ -98,65 +98,111 @@ export default function About() {
               </div>
             ) : (
               <div className="space-y-6" data-testid="content-about-static">
-                <p className="text-base md:text-lg leading-relaxed text-foreground">
-                  Uma breve descrição do que você pode gostar de saber sobre este nictófilo:
-                </p>
+                {/* Bio Section */}
+                <div className="space-y-4">
+                  <p className="text-base md:text-lg leading-relaxed text-foreground">
+                    Olá. Sou SLX, estrategista de pensamento, criador de conteúdo técnico e profundo nas áreas de gaming, fotografia, agricultura e desenvolvimento pessoal. Este espaço é onde compartilho minha jornada, experiências e tudo o que aprendi ao longo do caminho.
+                  </p>
+                </div>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  À primeira vista, este texto pode parecer desnecessário, mas recentemente, tenho refletido sobre meu passado,
-                  percebendo que durante toda a minha infância, pensamentos de suicídio me consumiam.
-                </p>
+                {/* Journey Section */}
+                <div className="space-y-4 border-t border-border pt-8">
+                  <p className="font-semibold text-foreground text-lg">
+                    Minha Jornada
+                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Cresci enfrentando desafios pessoais significativos. Durante a infância e adolescência, lutei contra pensamentos sombrios e depressão que pareciam ser uma constante na minha vida. O isolamento e a dor emocional marcaram profundamente meus primeiros anos.
+                  </p>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  Praticamente 7 anos se passaram desde que percebi que meu mundo estava desmoronando. Em toda a minha vida
-                  ou praticamente toda a minha infância, todos os dias de todos os meses de todos os anos... Como eu era apenas
-                  um adolescente, não percebi o que estava acontecendo.
-                </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Quando estava no meu pior momento, quando pensava que não havia razão para continuar, algo mudou. Uma série de eventos inexplicáveis ocorreu na minha vida, e pela primeira vez em anos, senti um pequeno lampejo de esperança. Esse momento transformou tudo.
+                  </p>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  Depois de um tempo solitário, acabei me apaixonando por alguém. Consegui me apaixonar, e como acontece com
-                  quase todas as pessoas, esse amor me destruiu. Mas isso foi bom; me fez uma pessoa não dependente emocionalmente.
-                </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Prometi a mim mesmo que não deixaria aquele momento passar. Decidi que viveria uma vida de significado, não para o mundo, mas para mim mesmo. E assim nasceu SLX.
+                  </p>
+                </div>
 
-                <p className="font-semibold text-foreground">
-                  Por que SLX?
-                </p>
+                {/* Gaming Section */}
+                <div className="space-y-4 border-t border-border pt-8">
+                  <p className="font-semibold text-foreground text-lg">
+                    Call of Duty Mobile
+                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Sou um jogador apaixonado por Call of Duty Mobile, trazendo o melhor para você através de loadouts de sniper, dicas tryhard, gameplay profissional e tutoriais detalhados. Compartilho todas as minhas configurações e até mesmo momentos de ASMR e criatividade sem filtros.
+                  </p>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  Com 6 dias restantes para cometer o ato que esperei minha vida toda, minha vida passou por mudanças profundas,
-                  coisas inexplicáveis aconteceram e finalmente, pela primeira vez, senti o desejo de viver... Finalmente um
-                  momento sem ansiedade, apenas a emoção de ser um ser humano feliz.
-                </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Se você está aqui para melhorar suas habilidades ou apenas aproveitar boas partidas, este é o lugar certo. Conecte-se comigo através das minhas redes sociais para acompanhar as últimas estratégias e conteúdo exclusivo.
+                  </p>
+                </div>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  A partir de então, prometi a mim mesmo que mudaria o rumo da minha vida, seria alguém importante, pelo menos
-                  para mim. Não posso dizer que me senti curado depois daquele dia, mas de alguma forma uma faísca se acendeu
-                  em uma janela de luz de pensamento que me fez lembrar quem sou e a importância de ser eu mesmo.
-                </p>
+                {/* Setup Section */}
+                <div className="space-y-4 border-t border-border pt-8">
+                  <p className="font-semibold text-foreground text-lg">
+                    Setup & Equipamentos
+                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Utilizo equipamentos de qualidade para criar conteúdo profissional:
+                  </p>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  SLX foi um nome apenas para não deixar claro que o significado é seis, para mostrar que não queria expor o
-                  que aconteceu comigo, eu era apenas uma das milhares de crianças que passaram toda a vida com depressão, e
-                  piorando a cada dia que passava.
-                </p>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground text-base">
+                    <li>Smartphone: ASUS ROG Phone 8 (principal para CODM)</li>
+                    <li>Cooler: Nubia 4 Pro para manter performance máxima</li>
+                    <li>Câmera: [Sua câmera principal para fotografia]</li>
+                    <li>Edição: [Seu software de edição preferido]</li>
+                  </ul>
 
-                <p className="font-semibold text-foreground">
-                  Minha mensagem:
-                </p>
+                  <p className="text-xs text-muted-foreground italic mt-4">
+                    * Setup completo em imagens abaixo
+                  </p>
+                </div>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  Meu objetivo com este texto (caso alguém leia um dia) é apenas mostrar que não é o fim, a depressão pode
-                  ser curada e se você precisar de ajuda, não faça como eu mantendo para mim mesmo, vá e procure ajuda porque
-                  os sintomas vão piorar a cada dia que passa e você ignora isso.
-                </p>
+                {/* Gallery Placeholder */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-border pt-8">
+                  <div className="aspect-video bg-card border border-border rounded-lg flex items-center justify-center text-muted-foreground">
+                    <p className="text-sm">Imagem do Setup (1)</p>
+                  </div>
+                  <div className="aspect-video bg-card border border-border rounded-lg flex items-center justify-center text-muted-foreground">
+                    <p className="text-sm">Imagem do Setup (2)</p>
+                  </div>
+                </div>
 
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  Para SLX, peça ajuda.
-                </p>
+                {/* Values Section */}
+                <div className="space-y-4 border-t border-border pt-8">
+                  <p className="font-semibold text-foreground text-lg">
+                    O que SLX Representa
+                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    SLX não é apenas um nome. É um símbolo de ressurreição, de encontrar significado nas trevas. Significa estratégia, profundidade, autenticidade. Aqui você encontra conteúdo que não apenas entretém, mas faz você pensar, refletir e crescer.
+                  </p>
 
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Não sou um influencer superficial ou um motivador genérico. Sou alguém que trabalha com profundidade, análise e integridade em tudo que faço.
+                  </p>
+                </div>
+
+                {/* Message Section */}
+                <div className="space-y-4 border-t border-border pt-8">
+                  <p className="font-semibold text-foreground text-lg">
+                    Uma Mensagem Importante
+                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Se você está passando pelo que eu passei, saiba que não está sozinho. A depressão é real e devastadora, mas também é tratável. Se você precisa de ajuda, peço que procure. Não guarde para si como eu fiz. Cada dia que você atrasa é um dia de sofrimento desnecessário.
+                  </p>
+
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    Sua vida tem valor. Você tem valor.
+                  </p>
+                </div>
+
+                {/* Collaboration Section */}
                 <div className="mt-12 p-6 md:p-8 bg-card border border-border rounded-lg space-y-4">
+                  <p className="font-semibold text-foreground">
+                    Interessado em Colaborar ou Patrocinar?
+                  </p>
                   <p className="text-sm text-muted-foreground">
-                    Se você leu até aqui, você é uma pessoa rara. Por favor, certifique-se de me avisar:
+                    Se você é uma marca, empresa ou criador interessado em trabalhar comigo, gostaria de ouvir sobre suas ideias. Envie uma mensagem para:
                   </p>
                   <Button variant="outline" className="gap-2" asChild data-testid="button-email-contact">
                     <a href="mailto:slowedbase@gmail.com">
@@ -164,17 +210,6 @@ export default function About() {
                       slowedbase@gmail.com
                     </a>
                   </Button>
-                </div>
-
-                <div className="mt-12 space-y-4">
-                  <p className="font-semibold text-foreground">
-                    Como está o SLX hoje em dia?
-                  </p>
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    Bem, eu... não consigo pensar direito, não consigo falar muito, meu trabalho me cansa e me sinto pior a
-                    cada dia por essa razão... Estou aproveitando o tempo que me resta para conhecer pessoas e me divertir
-                    um pouco em um jogo estranho...
-                  </p>
                 </div>
               </div>
             )}

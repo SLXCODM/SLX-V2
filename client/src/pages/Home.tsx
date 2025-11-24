@@ -154,9 +154,8 @@ export default function Home() {
                 <ArrowDown className="ml-2 h-5 w-5" />
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="px-8 py-6 text-base"
+                className="px-8 py-6 text-base bg-primary/90 hover:bg-primary text-primary-foreground"
                 asChild
                 data-testid="button-hero-donate"
               >
