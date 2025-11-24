@@ -107,7 +107,7 @@ export default function Header() {
       {/* Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-16 bg-card border-b border-border z-40 md:hidden"
+          className="fixed inset-0 top-16 bg-background border-b border-border z-40 md:hidden"
           data-testid="nav-mobile-overlay"
         >
           <nav className="flex flex-col p-4 gap-2" data-testid="nav-mobile">
@@ -123,7 +123,7 @@ export default function Header() {
                     "w-full text-left px-6 py-4 rounded-md text-base font-medium transition-all duration-300",
                     "hover-elevate active-elevate-2 min-h-12",
                     location === item.path
-                      ? "bg-primary/10 text-primary border border-primary/20"
+                      ? "bg-primary/10 text-foreground border border-primary/20"
                       : "text-foreground hover:bg-card border border-transparent"
                   )}
                 >

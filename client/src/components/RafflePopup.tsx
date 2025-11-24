@@ -50,7 +50,7 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4" data-testid="raffle-popup">
-      <div className="bg-card border border-border rounded-lg max-w-md w-full p-4 md:p-8 space-y-4 md:space-y-6 relative max-h-[90vh] overflow-y-auto">
+      <div className="bg-card border border-border rounded-lg max-w-md w-full p-6 md:p-8 space-y-5 md:space-y-6 relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
@@ -60,10 +60,10 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
         </button>
 
         <div className="text-center space-y-2">
-          <div className="flex justify-center mb-2 md:mb-4">
-            <Gift className="h-10 md:h-12 w-10 md:w-12 text-primary animate-bounce" />
+          <div className="flex justify-center mb-3 md:mb-4">
+            <Gift className="h-11 md:h-12 w-11 md:w-12 text-primary animate-bounce" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}>
             {t.title}
           </h2>
           <p className="text-base md:text-lg font-semibold text-primary">
@@ -75,7 +75,7 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
           {t.description}
         </p>
 
-        <div className="bg-muted/50 rounded-lg p-3 space-y-1 border border-border">
+        <div className="bg-muted/50 rounded-lg p-4 space-y-2 border border-border">
           {t.specs.map((spec, index) => (
             <p key={index} className="text-muted-foreground text-xs md:text-sm">
               {spec}
