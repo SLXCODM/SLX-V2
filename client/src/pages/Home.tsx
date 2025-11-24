@@ -61,7 +61,7 @@ export default function Home() {
       icon: Brain,
       descriptionPt: "Psicologia, filosofia, neurociência e autoconhecimento",
       descriptionEn: "Psychology, philosophy, neuroscience and self-knowledge",
-      imageUrl: null,
+      imageUrl: devIcon,
       link: "/conteudo?category=development",
       testId: "card-category-development"
     },

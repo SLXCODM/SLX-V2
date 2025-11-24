@@ -63,7 +63,7 @@ export default function Header() {
           </nav>
 
           {/* Language Selector */}
-          <div className="flex gap-1" data-testid="language-selector-header">
+          <div className="flex gap-1 order-last md:order-none" data-testid="language-selector-header">
             <Button
               variant={language === "pt" ? "default" : "outline"}
               size="sm"
