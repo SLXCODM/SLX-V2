@@ -126,6 +126,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { honeypot, ...contactData } = validatedData;
       
       const contact = await storage.createContact(contactData);
+      
+      // Send emails
+      try {
+        await sendContactEmail(contactData);
+      } catch (emailError) {
+        console.error("Email sending failed:", emailError);
+        // Don't fail the request if email fails - contact is still saved
+      }
+      
       res.status(201).json({ 
         message: "Contact form submitted successfully",
         id: contact.id 
