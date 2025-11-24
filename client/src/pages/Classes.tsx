@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { weaponsData, type Weapon } from "@shared/weaponsData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import FollowToUnlock from "@/components/FollowToUnlock";
 
 interface WeaponLikes {
   weaponId: string;
@@ -170,7 +171,7 @@ export default function Classes() {
     "Pistol": "bg-gray-500/10 text-gray-400 border-gray-500/20",
   };
 
-  return (
+  const contentComponent = (
     <div className="min-h-screen py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
@@ -343,5 +344,11 @@ export default function Classes() {
         )}
       </div>
     </div>
+  );
+
+  return (
+    <FollowToUnlock contentName="Call of Duty Mobile" language={language}>
+      {contentComponent}
+    </FollowToUnlock>
   );
 }
