@@ -14,8 +14,9 @@ Site profissional minimalista para SLX - estrategista de pensamento, criador de 
 
 ### Backend
 - **Framework**: Express.js
-- **Storage**: In-memory (MemStorage) - pode migrar para PostgreSQL
+- **Storage**: In-memory (MemStorage)
 - **API**: RESTful com validação Zod
+- **Email**: Resend (transactional emails)
 
 ## Estrutura do Projeto
 
@@ -26,6 +27,7 @@ Site profissional minimalista para SLX - estrategista de pensamento, criador de 
       Header.tsx         - Navegação principal (mobile + desktop)
       Footer.tsx         - Rodapé com links e redes sociais
       ProjectCard.tsx    - Card reutilizável para projetos
+      FollowToUnlock.tsx - Sistema de desbloqueio de conteúdo
       /ui                - Componentes Shadcn
     /pages
       Home.tsx           - Hero + categorias de conteúdo
@@ -33,11 +35,17 @@ Site profissional minimalista para SLX - estrategista de pensamento, criador de 
       Content.tsx        - Grid de projetos com filtros por categoria
       Projects.tsx       - Canais e plataformas
       Contact.tsx        - Formulário de contato
+      Sponsors.tsx       - Página de patrocínios com mediakit
+      Classes.tsx        - Classes de armas do CODM
+      Donations.tsx      - Página de doações
 /server
   routes.ts            - API endpoints
   storage.ts           - Interface de storage
+  email.ts             - Serviço de envio de emails (Resend)
+  rate-limiter.ts      - Limitação de taxa para contato
 /shared
   schema.ts            - Tipos compartilhados (Projects, Contacts, AboutContent)
+  weaponsData.ts       - Dados das armas do CODM
 ```
 
 ## Design System
@@ -65,7 +73,9 @@ Site profissional minimalista para SLX - estrategista de pensamento, criador de 
 1. **Home (`/`)**
    - Hero section full viewport com tagline
    - Grid de 4 categorias (Gaming, Fotografia, Agricultura, Dev Pessoal)
+   - CODM ID exibido (6870254103403626497)
    - Scroll indicator animado
+   - Popup de raffle em PT-BR
 
 2. **Sobre (`/sobre`)**
    - História pessoal profunda sobre depressão, superação, significado de SLX
@@ -73,37 +83,60 @@ Site profissional minimalista para SLX - estrategista de pensamento, criador de 
    - Email de contato para leitores raros
 
 3. **Conteúdo (`/conteudo`)**
-   - Tabs para filtrar por categoria (Tudo, Gaming, Fotografia, Agricultura, Dev Pessoal)
+   - Tabs para filtrar por categoria (Tudo, Gaming, Fotografia, Agricultura, Dev Pessoal, Writer)
+   - FollowToUnlock na aba Gaming (desbloqueio global com `slx_codm_unlocked`)
    - Grid responsivo de ProjectCards
    - Suporta query params (?category=gaming)
 
-4. **Projetos (`/projetos`)**
+4. **Classes (`/classes`)**
+   - Exibição de 16 armas do CODM com stats, builds e dicas
+   - Busca e filtro por tipo de arma
+   - Sistema de likes em storage
+   - Acesso bloqueado até desbloquear na aba de Conteúdo
+
+5. **Projetos (`/projetos`)**
    - Cards grandes para YouTube Gaming, Instagram, TikTok, YouTube Agricultura
    - Ícones coloridos, descrições, CTAs
    - Seção de colaboração/patrocínio
 
-5. **Contato (`/contato`)**
+6. **Contato (`/contato`)**
    - Formulário: Nome, Email, Assunto, Mensagem
-   - Email direto: slowedbase@gmail.com
-   - Info sobre colaborações e tempo de resposta
+   - Honeypot anti-spam
+   - Rate limiting: 3 mensagens por minuto
+   - Email automático para admin via Resend
+   - Confirmação enviada ao usuário
+
+7. **Patrocínios (`/patrocinadores`)**
+   - Mediakit integrado via iframe (https://beacons.ai/slx_codm/mediakit)
+   - Link externo como fallback
+   - Formulário de contato para patrocínios
+   - Mesmo sistema de email que Contact
 
 ## Funcionalidades
 
-### Implementadas (Frontend)
+### Implementadas
 - [x] Navegação responsiva (mobile menu overlay)
-- [x] Hero section impactante
+- [x] Hero section impactante com CODM ID
 - [x] Filtros de categoria com Tabs
 - [x] Cards de projeto com hover states sutis
-- [x] Formulário de contato
+- [x] Formulário de contato com Resend
+- [x] Formulário de patrocínios com mediakit integrado
 - [x] Footer com redes sociais
 - [x] Dark mode por padrão (minimalista)
 - [x] Smooth scroll
 - [x] Data-testids em todos os elementos interativos
-
-### Pendentes (Backend)
-- [ ] API endpoints para projetos
-- [ ] API endpoint para contato
-- [ ] Storage real (PostgreSQL ou in-memory)
+- [x] Sistema de Follow to Unlock para conteúdo CODM
+- [x] Desbloqueio global com localStorage (`slx_codm_unlocked`)
+- [x] Página de Classes com 16 armas CODM
+- [x] Página de Doações bilíngue
+- [x] Seletor de idioma PT/BR/EN
+- [x] Popup de raffle em PT-BR
+- [x] API endpoints para projetos
+- [x] API endpoint para contato (com rate limiting)
+- [x] Envio de emails transacionais (Resend)
+- [x] Storage em memória
+- [x] Honeypot anti-spam
+- [x] Sistema de likes para armas
 
 ## Dados Mock
 
@@ -130,14 +163,29 @@ npm run dev
 
 Acessa: http://localhost:5000
 
+## Sistema de Email (Resend)
+
+- **Integração**: Resend connector configurado
+- **Fluxo**: Formulários enviados → Resend API → Emails automáticos para admin + confirmação ao usuário
+- **Rate Limiting**: 3 mensagens por minuto por IP
+- **Anti-spam**: Honeypot field para detectar bots
+
+## Sistema de Desbloqueio CODM
+
+- **Chave Global**: `slx_codm_unlocked` no localStorage
+- **Trigger**: Usuário clica "Já Segui" no FollowToUnlock na aba Gaming
+- **Efeito**: Desbloqueia:
+  - Todos os ProjectCards com `isLocked: true` na categoria gaming
+  - Página de Classes (/classes)
+  - Handcam, Minhas Configurações, Meus Tutoriais Exclusivos
+
 ## Próximos Passos
 
-1. Implementar backend APIs
-2. Conectar formulário de contato real
-3. Adicionar sistema de admin para gerenciar projetos
-4. Otimizar imagens
-5. SEO completo
-6. Analytics
+1. Adicionar sistema de admin para gerenciar projetos
+2. Otimizar imagens
+3. SEO completo
+4. Analytics
+5. Migrar para PostgreSQL (banco de dados real)
 
 ## Identidade de Marca
 
