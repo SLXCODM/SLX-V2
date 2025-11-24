@@ -50,7 +50,7 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4" data-testid="raffle-popup">
-      <div className="bg-card border border-border rounded-lg max-w-md w-full p-8 space-y-6 relative">
+      <div className="bg-card border border-border rounded-lg max-w-md w-full p-4 md:p-8 space-y-4 md:space-y-6 relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
@@ -60,32 +60,32 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
         </button>
 
         <div className="text-center space-y-2">
-          <div className="flex justify-center mb-4">
-            <Gift className="h-12 w-12 text-primary animate-bounce" />
+          <div className="flex justify-center mb-2 md:mb-4">
+            <Gift className="h-10 md:h-12 w-10 md:w-12 text-primary animate-bounce" />
           </div>
-          <h2 className="text-5xl font-bold text-foreground" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}>
             {t.title}
           </h2>
-          <p className="text-lg font-semibold text-primary">
+          <p className="text-base md:text-lg font-semibold text-primary">
             {t.subtitle}
           </p>
         </div>
 
-        <p className="text-center text-muted-foreground">
+        <p className="text-center text-muted-foreground text-sm md:text-base">
           {t.description}
         </p>
 
-        <div className="bg-muted/50 rounded-lg p-4 space-y-2 border border-border">
+        <div className="bg-muted/50 rounded-lg p-3 space-y-1 border border-border">
           {t.specs.map((spec, index) => (
-            <p key={index} className="text-muted-foreground text-sm">
+            <p key={index} className="text-muted-foreground text-xs md:text-sm">
               {spec}
             </p>
           ))}
         </div>
 
         <div className="text-center">
-          <p className="text-lg font-bold text-primary">{t.callToAction}</p>
-          <p className="text-sm text-muted-foreground mt-1">{t.ctaSubtext}</p>
+          <p className="text-base md:text-lg font-bold text-primary">{t.callToAction}</p>
+          <p className="text-xs md:text-sm text-muted-foreground mt-1">{t.ctaSubtext}</p>
         </div>
 
         <Button
