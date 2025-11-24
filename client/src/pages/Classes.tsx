@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Search, Filter, Heart } from "lucide-react";
+import { Search, Filter, Heart, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { weaponsData, type Weapon } from "@shared/weaponsData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import FollowToUnlock from "@/components/FollowToUnlock";
+import { useLocation } from "wouter";
 
 interface WeaponLikes {
   weaponId: string;
@@ -19,7 +19,15 @@ export default function Classes() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [likedWeapons, setLikedWeapons] = useState<Set<string>>(new Set());
   const { language } = useLanguage();
+  const [, navigate] = useLocation();
+  const [isUnlocked, setIsUnlocked] = useState(false);
   const queryClient = useQueryClient();
+
+  // Check if CODM content is unlocked globally
+  useEffect(() => {
+    const unlocked = localStorage.getItem('slx_codm_unlocked') === 'true';
+    setIsUnlocked(unlocked);
+  }, []);
 
   // Fetch all weapon likes
   const { data: allLikes = [] } = useQuery({
@@ -170,6 +178,32 @@ export default function Classes() {
     "Marksman": "bg-orange-500/10 text-orange-400 border-orange-500/20",
     "Pistol": "bg-gray-500/10 text-gray-400 border-gray-500/20",
   };
+
+  // Show locked message if not unlocked
+  if (!isUnlocked) {
+    return (
+      <div className="min-h-screen py-24 md:py-32 flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center space-y-6 p-8 bg-card border border-border rounded-lg">
+          <div className="relative w-20 h-20 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
+            <Lock className="h-10 w-10 text-primary" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-foreground">
+              {language === "pt" ? "Conteúdo Bloqueado" : "Locked Content"}
+            </h2>
+            <p className="text-muted-foreground">
+              {language === "pt" 
+                ? "Desbloqueie o conteúdo de Call of Duty Mobile na aba de Conteúdo"
+                : "Unlock Call of Duty Mobile content in the Content tab"}
+            </p>
+          </div>
+          <Button onClick={() => navigate("/conteudo?category=gaming")}>
+            {language === "pt" ? "Ir para Conteúdo" : "Go to Content"}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   const contentComponent = (
     <div className="min-h-screen py-24 md:py-32 bg-background">
@@ -346,9 +380,5 @@ export default function Classes() {
     </div>
   );
 
-  return (
-    <FollowToUnlock contentName="Call of Duty Mobile" language={language}>
-      {contentComponent}
-    </FollowToUnlock>
-  );
+  return contentComponent;
 }
