@@ -303,4 +303,10 @@
   .pulse-glow {
     animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  /* Montserrat font for Classes page title */
+  [data-testid="text-classes-title"] {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900;
+  }
 }
