@@ -211,7 +211,7 @@ export default function Classes() {
         {/* Header */}
         <div className="space-y-8 mb-12">
           <div className="space-y-4 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight" style={{ fontFamily: 'Montserrat, sans-serif' }} data-testid="text-classes-title">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight font-montserrat" data-testid="text-classes-title">
               {ct.title}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-classes-description">
