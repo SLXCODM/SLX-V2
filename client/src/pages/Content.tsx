@@ -164,7 +164,7 @@ export default function Content() {
                               {language === "pt" ? "Melancolia Visual" : "Visual Melancholy"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Imagens escuras com sentimento. Meu modo de ver a realidade — triste, melancólica, profunda." : "Dark images with feeling. My way of seeing reality — sad, melancholic, profound."}
+                              {language === "pt" ? "Essa é a forma que enxergo o mundo, escuro, sombrio e vazio, mas não triste, apenas confortável e sozinho." : "This is how I see the world — dark, gloomy and empty, but not sad, just comfortable and alone."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -192,10 +192,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Mistério" : "Mystery"}
+                              {language === "pt" ? "Quem sou eu?" : "Who am I?"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Fragmentos de um rosto que poucos conhecem. Você quer me ver, mas deixo apenas pistas." : "Fragments of a face few know. You want to see me, but I leave only clues."}
+                              {language === "pt" ? "As pessoas querem ver meu rosto inteiro, querem entender quem eu sou só pela aparência. Não entendem o que somente os gestos traduzem.." : "People want to see my whole face, want to understand who I am just by appearance. They don't understand what only gestures translate.."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -226,7 +226,7 @@ export default function Content() {
                               {language === "pt" ? "Gatinhos" : "Kittens"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Momentos com meu gato. Pequenas cenas de afeto e companhia nos dias cinzentos." : "Moments with my cat. Little scenes of affection and company on grey days."}
+                              {language === "pt" ? "Fotos de gatinhos fofos pra te lembrar da leveza da vida." : "Cute kitten photos to remind you of life's lightness."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -254,10 +254,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Criação" : "Creation"}
+                              {language === "pt" ? "O que eu faço?" : "What do I do?"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Meu gato observando enquanto edito vídeos, programo sites e mexo com coisas inteligentes. Companhia nos processos criativos." : "My cat watching while I edit videos, code websites and work with smart things. Companionship in creative processes."}
+                              {language === "pt" ? "Enquanto todo mundo vive no barulho, eu fico aqui... Criando, editando, produzindo ideias que ninguém vê. Silêncio, foco, e um pouco de esquizofrenia" : "While everyone else lives in the noise, I stay here... Creating, editing, producing ideas no one sees. Silence, focus, and a little schizophrenia."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -285,10 +285,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Esforço" : "Effort"}
+                              {language === "pt" ? "Meu trabalho" : "My work"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Minha mão na terra. O esforço real do trabalho agrícola — não é fácil, mas é genuíno." : "My hand in the earth. The real effort of agricultural work — it's not easy, but it's genuine."}
+                              {language === "pt" ? "Um trabalho pesado, sujo e cansativo. um lembrete que sou o melhor, não por ser bom, mas por conseguir me doar 100% em tudo o que faço e trazer o melhor possível para meu público." : "Heavy, dirty and tiring work. A reminder that I'm the best, not for being good, but for being able to give 100% in everything I do and bring the best possible to my audience."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -316,10 +316,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Poesia Visual" : "Visual Poetry"}
+                              {language === "pt" ? "Foco nos detalhes" : "Focus on details"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Pequenos detalhes de um mundo difícil de ser notado. Meu modo de ver a natureza — poética, sensível, quase invisível." : "Small details of a world hard to notice. My way of seeing nature — poetic, sensitive, almost invisible."}
+                              {language === "pt" ? "Tem coisa que quase ninguém vê somente porque não param pra observar, eu paro. E quanto mais eu observo, mais percebo o quanto o mundo é cheio de detalhes que não cabem na pressa." : "There are things almost no one sees only because they don't stop to observe. I do. And the more I observe, the more I realize how full the world is of details that don't fit in the rush."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
