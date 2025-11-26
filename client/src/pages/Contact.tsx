@@ -8,21 +8,21 @@ export default function Contact() {
   const texts = {
     pt: {
       title: "Contato",
-      description: "Entre em contato para colaborações, patrocínios ou apenas para conversar",
+      description: "Entre em contato para colaborações e patrocínios",
       emailLabel: "Email Direto",
       collaborationTitle: "Colaborações & Patrocínios",
       collaborationDesc: "Aberto para parcerias com marcas que se alinham com conteúdo profissional, gaming de alto nível, fotografia ou desenvolvimento pessoal.",
       responseTitle: "Tempo de Resposta",
-      responseDesc: "Procuro responder em até 48 horas. Para assuntos urgentes, prefira contato direto via Instagram ou Discord.",
+      responseDesc: "Procuro responder em até 48 horas. Para assuntos urgentes, prefira contato direto via Instagram.",
     },
     en: {
       title: "Contact",
-      description: "Get in touch for collaborations, sponsorships or just to chat",
+      description: "Get in touch for collaborations and sponsorships",
       emailLabel: "Direct Email",
       collaborationTitle: "Collaborations & Sponsorships",
       collaborationDesc: "Open for partnerships with brands that align with professional content, high-level gaming, photography or personal development.",
       responseTitle: "Response Time",
-      responseDesc: "I aim to respond within 48 hours. For urgent matters, prefer direct contact via Instagram or Discord.",
+      responseDesc: "I aim to respond within 48 hours. For urgent matters, prefer direct contact via Instagram.",
     }
   };
 
