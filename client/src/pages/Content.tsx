@@ -463,7 +463,7 @@ export default function Content() {
                     {filteredProjects.length > 0 && (
                       <div>
                         <h3 className="text-xl font-semibold mb-6" data-testid="text-agriculture-projects">
-                          {language === "pt" ? "Mais Conteúdo" : "More Content"}
+                          {language === "pt" ? "YouTube" : "YouTube"}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
                           {filteredProjects.map(project => (
