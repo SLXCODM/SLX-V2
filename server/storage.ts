@@ -136,7 +136,7 @@ export class MemStorage implements IStorage {
         title: "Acompanhe meu trabalho rural",
         category: "agriculture",
         description: "Vem ver a experiencia de morar no campo, trago videos sobre o meu trabalho aqui",
-        imageUrl: "/attached_assets/photo-agriculture-work.jpg",
+        imageUrl: "/attached_assets/photo-rural-harvest.jpg",
         externalUrl: "https://www.youtube.com/@SLNXofc",
         featured: false,
         order: "5",
