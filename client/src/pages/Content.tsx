@@ -415,29 +415,60 @@ export default function Content() {
                   </div>
                 ) : currentTab === "agriculture" ? (
                   <div className="space-y-8">
-                    {/* Agriculture Stories Info */}
-                    <div className="bg-card/50 border border-border rounded-lg p-6 md:p-8">
-                      <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                        {language === "pt" 
-                          ? "Acompanhe meus Stories no Instagram (@slx.wav) para conteúdo diário sobre agricultura, técnicas de cultivo, sustentabilidade e a beleza do trabalho com a terra. Histórias que mostram o dia a dia do processo agrícola com uma perspectiva profunda e reflexiva."
-                          : "Follow my Instagram Stories (@slx.wav) for daily content about agriculture, cultivation techniques, sustainability and the beauty of working with the land. Stories that show the daily life of the agricultural process with a deep and reflective perspective."}
-                      </p>
-                    </div>
+                    {/* Agriculture Stories Card */}
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-agriculture-stories"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                          {/* Image */}
+                          <div className="aspect-square overflow-hidden bg-card relative order-2 md:order-1">
+                            <img 
+                              src={photoNature}
+                              alt="Agriculture work"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                          {/* Content */}
+                          <div className="p-6 md:p-8 flex flex-col justify-center order-1 md:order-2">
+                            <div className="space-y-4">
+                              <div className="space-y-2">
+                                <h3 className="text-2xl md:text-3xl font-bold group-hover:text-primary transition-colors duration-300">
+                                  {language === "pt" ? "Meu Trabalho" : "My Work"}
+                                </h3>
+                                <p className="text-sm text-muted-foreground uppercase tracking-wide">
+                                  {language === "pt" ? "Stories do Instagram" : "Instagram Stories"}
+                                </p>
+                              </div>
+                              <p className="text-base text-muted-foreground leading-relaxed">
+                                {language === "pt" 
+                                  ? "Acompanhe meus Stories no Instagram (@slx.wav) para conteúdo diário sobre agricultura, técnicas de cultivo, sustentabilidade e a beleza do trabalho com a terra. Histórias que mostram o dia a dia do processo agrícola com uma perspectiva profunda e reflexiva."
+                                  : "Follow my Instagram Stories (@slx.wav) for daily content about agriculture, cultivation techniques, sustainability and the beauty of working with the land. Stories that show the daily life of the agricultural process with a deep and reflective perspective."}
+                              </p>
+                              <div className="flex items-center gap-2 text-primary text-sm font-medium pt-2">
+                                {language === "pt" ? "Ver Stories" : "View Stories"}
+                                <ExternalLink className="w-4 h-4" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
 
                     {/* Projects Grid */}
-                    {filteredProjects.length > 0 ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
-                        {filteredProjects.map(project => (
-                          <ProjectCard key={project.id} project={project} />
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="text-center py-16" data-testid="empty-state-content">
-                        <p className="text-muted-foreground">
-                          {language === "pt" 
-                            ? "Mais conteúdo em breve. Acompanhe os Stories!"
-                            : "More content coming soon. Follow the Stories!"}
-                        </p>
+                    {filteredProjects.length > 0 && (
+                      <div>
+                        <h3 className="text-xl font-semibold mb-6" data-testid="text-agriculture-projects">
+                          {language === "pt" ? "Mais Conteúdo" : "More Content"}
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
+                          {filteredProjects.map(project => (
+                            <ProjectCard key={project.id} project={project} />
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
