@@ -9,7 +9,7 @@ import FollowToUnlock from "@/components/FollowToUnlock";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Project } from "@shared/schema";
 import { SiSubstack } from "react-icons/si";
-import { PenTool } from "lucide-react";
+import { PenTool, ExternalLink } from "lucide-react";
 
 export default function Content() {
   const [location] = useLocation();
@@ -124,6 +124,208 @@ export default function Content() {
                   )}
                 </TabsContent>
               </FollowToUnlock>
+            ) : currentTab === "photography" ? (
+              <TabsContent value={currentTab} className="mt-8">
+                <div className="space-y-8">
+                  {/* Intro Text */}
+                  <div className="bg-card/50 border border-border rounded-lg p-6 md:p-8">
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      {language === "pt" 
+                        ? "Fotos melancólicas com sentido e sentimento. Cada imagem conta uma história de profundidade e emoção. Conheça meu trabalho no Instagram e explore mais sobre a forma como vejo e capto o mundo."
+                        : "Melancholic photos with meaning and feeling. Each image tells a story of depth and emotion. Get to know my work on Instagram and explore how I see and capture the world."}
+                    </p>
+                  </div>
+
+                  {/* Photography Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-photo-collection-1"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                        <div className="aspect-square overflow-hidden bg-card relative">
+                          <img 
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+                            alt="Melancholic hands"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                              {language === "pt" ? "Silhuetas" : "Silhouettes"}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {language === "pt" ? "Contrastes de luz e sombra" : "Light and shadow contrasts"}
+                            </p>
+                          </div>
+                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
+                            {language === "pt" ? "Ver no Instagram" : "View on Instagram"}
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-photo-collection-2"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                        <div className="aspect-square overflow-hidden bg-card relative">
+                          <img 
+                            src="https://images.unsplash.com/photo-1518577915332-23d08d30ad04?w=400&h=400&fit=crop"
+                            alt="Mirror reflection"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                              {language === "pt" ? "Auto-retratos" : "Self-Portraits"}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {language === "pt" ? "Reflexões pessoais e introspectivas" : "Personal and introspective reflections"}
+                            </p>
+                          </div>
+                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
+                            {language === "pt" ? "Ver no Instagram" : "View on Instagram"}
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-photo-collection-3"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                        <div className="aspect-square overflow-hidden bg-card relative">
+                          <img 
+                            src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"
+                            alt="Intimate moments"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                              {language === "pt" ? "Intimidade" : "Intimacy"}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {language === "pt" ? "Momentos sensíveis e afetuosos" : "Sensitive and affectionate moments"}
+                            </p>
+                          </div>
+                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
+                            {language === "pt" ? "Ver no Instagram" : "View on Instagram"}
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-photo-collection-4"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                        <div className="aspect-square overflow-hidden bg-card relative">
+                          <img 
+                            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop"
+                            alt="Creative workspace"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                              {language === "pt" ? "Criatividade" : "Creativity"}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {language === "pt" ? "Processos e paixões profissionais" : "Professional processes and passions"}
+                            </p>
+                          </div>
+                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
+                            {language === "pt" ? "Ver no Instagram" : "View on Instagram"}
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-photo-collection-5"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                        <div className="aspect-square overflow-hidden bg-card relative">
+                          <img 
+                            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop"
+                            alt="Nature connection"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                              {language === "pt" ? "Natureza" : "Nature"}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {language === "pt" ? "Conexão com o mundo natural" : "Connection with the natural world"}
+                            </p>
+                          </div>
+                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
+                            {language === "pt" ? "Ver no Instagram" : "View on Instagram"}
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+
+                    <a
+                      href="https://www.instagram.com/slx.wav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="button-photo-collection-6"
+                    >
+                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                        <div className="aspect-square overflow-hidden bg-card relative">
+                          <img 
+                            src="https://images.unsplash.com/photo-1520763185298-1b434c919abe?w=400&h=400&fit=crop"
+                            alt="Poetic nature"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                              {language === "pt" ? "Poesia Visual" : "Visual Poetry"}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">
+                              {language === "pt" ? "Detalhes que contam histórias" : "Details that tell stories"}
+                            </p>
+                          </div>
+                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
+                            {language === "pt" ? "Ver no Instagram" : "View on Instagram"}
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+                  </div>
+                </div>
+              </TabsContent>
             ) : currentTab === "writer" ? (
               <TabsContent value={currentTab} className="mt-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -204,6 +406,34 @@ export default function Content() {
                     {[1, 2, 3, 4, 5, 6].map(i => (
                       <div key={i} className="h-96 bg-card border border-border rounded-lg animate-pulse" />
                     ))}
+                  </div>
+                ) : currentTab === "agriculture" ? (
+                  <div className="space-y-8">
+                    {/* Agriculture Stories Info */}
+                    <div className="bg-card/50 border border-border rounded-lg p-6 md:p-8">
+                      <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                        {language === "pt" 
+                          ? "Acompanhe meus Stories no Instagram (@slx.wav) para conteúdo diário sobre agricultura, técnicas de cultivo, sustentabilidade e a beleza do trabalho com a terra. Histórias que mostram o dia a dia do processo agrícola com uma perspectiva profunda e reflexiva."
+                          : "Follow my Instagram Stories (@slx.wav) for daily content about agriculture, cultivation techniques, sustainability and the beauty of working with the land. Stories that show the daily life of the agricultural process with a deep and reflective perspective."}
+                      </p>
+                    </div>
+
+                    {/* Projects Grid */}
+                    {filteredProjects.length > 0 ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
+                        {filteredProjects.map(project => (
+                          <ProjectCard key={project.id} project={project} />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-16" data-testid="empty-state-content">
+                        <p className="text-muted-foreground">
+                          {language === "pt" 
+                            ? "Mais conteúdo em breve. Acompanhe os Stories!"
+                            : "More content coming soon. Follow the Stories!"}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 ) : currentTab === "development" ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
