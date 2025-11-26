@@ -459,49 +459,6 @@ export default function Content() {
                       </Card>
                     </a>
 
-                    {/* Agriculture YouTube Card */}
-                    <a
-                      href="https://www.youtube.com/@SLNXofc"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-testid="button-agriculture-youtube"
-                    >
-                      <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                          {/* Image */}
-                          <div className="aspect-square overflow-hidden bg-card relative">
-                            <img 
-                              src={photoAgricultureWork}
-                              alt="Rural work"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          </div>
-                          {/* Content */}
-                          <div className="p-6 md:p-8 flex flex-col justify-center">
-                            <div className="space-y-4">
-                              <div className="space-y-2">
-                                <h3 className="text-2xl md:text-3xl font-bold group-hover:text-primary transition-colors duration-300">
-                                  {language === "pt" ? "Acompanhe meu trabalho rural" : "Follow my rural work"}
-                                </h3>
-                                <p className="text-sm text-muted-foreground uppercase tracking-wide">
-                                  {language === "pt" ? "YouTube" : "YouTube"}
-                                </p>
-                              </div>
-                              <p className="text-base text-muted-foreground leading-relaxed">
-                                {language === "pt" 
-                                  ? "Vem ver a experiencia de morar no campo, trago videos sobre o meu trabalho aqui"
-                                  : "Come see the experience of living in the countryside, I bring videos about my work here"}
-                              </p>
-                              <div className="flex items-center gap-2 text-primary text-sm font-medium pt-2">
-                                {language === "pt" ? "Assistir no YouTube" : "Watch on YouTube"}
-                                <ExternalLink className="w-4 h-4" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    </a>
-
                     {/* Projects Grid */}
                     {filteredProjects.length > 0 && (
                       <div>
