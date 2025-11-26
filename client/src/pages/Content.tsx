@@ -161,10 +161,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Silhuetas" : "Silhouettes"}
+                              {language === "pt" ? "Melancolia Visual" : "Visual Melancholy"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Contrastes de luz e sombra" : "Light and shadow contrasts"}
+                              {language === "pt" ? "Imagens escuras com sentimento. Meu modo de ver a realidade — triste, melancólica, profunda." : "Dark images with feeling. My way of seeing reality — sad, melancholic, profound."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -192,10 +192,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Auto-retratos" : "Self-Portraits"}
+                              {language === "pt" ? "Mistério" : "Mystery"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Reflexões pessoais e introspectivas" : "Personal and introspective reflections"}
+                              {language === "pt" ? "Fragmentos de um rosto que poucos conhecem. Você quer me ver, mas deixo apenas pistas." : "Fragments of a face few know. You want to see me, but I leave only clues."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -223,10 +223,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Intimidade" : "Intimacy"}
+                              {language === "pt" ? "Gatinhos" : "Kittens"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Momentos sensíveis e afetuosos" : "Sensitive and affectionate moments"}
+                              {language === "pt" ? "Momentos com meu gato. Pequenas cenas de afeto e companhia nos dias cinzentos." : "Moments with my cat. Little scenes of affection and company on grey days."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -254,10 +254,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Criatividade" : "Creativity"}
+                              {language === "pt" ? "Criação" : "Creation"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Processos e paixões profissionais" : "Professional processes and passions"}
+                              {language === "pt" ? "Meu gato observando enquanto edito vídeos, programo sites e mexo com coisas inteligentes. Companhia nos processos criativos." : "My cat watching while I edit videos, code websites and work with smart things. Companionship in creative processes."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -285,10 +285,10 @@ export default function Content() {
                         <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                              {language === "pt" ? "Natureza" : "Nature"}
+                              {language === "pt" ? "Esforço" : "Effort"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Conexão com o mundo natural" : "Connection with the natural world"}
+                              {language === "pt" ? "Minha mão na terra. O esforço real do trabalho agrícola — não é fácil, mas é genuíno." : "My hand in the earth. The real effort of agricultural work — it's not easy, but it's genuine."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
@@ -319,7 +319,7 @@ export default function Content() {
                               {language === "pt" ? "Poesia Visual" : "Visual Poetry"}
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">
-                              {language === "pt" ? "Detalhes que contam histórias" : "Details that tell stories"}
+                              {language === "pt" ? "Pequenos detalhes de um mundo difícil de ser notado. Meu modo de ver a natureza — poética, sensível, quase invisível." : "Small details of a world hard to notice. My way of seeing nature — poetic, sensitive, almost invisible."}
                             </p>
                           </div>
                           <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
