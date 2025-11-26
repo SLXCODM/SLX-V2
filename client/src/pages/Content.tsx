@@ -10,6 +10,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Project } from "@shared/schema";
 import { SiSubstack } from "react-icons/si";
 import { PenTool, ExternalLink } from "lucide-react";
+import photoSilhouettes from "@assets/photo-silhouettes.jpg";
+import photoSelfPortrait from "@assets/photo-selfportrait.jpg";
+import photoIntimacy from "@assets/photo-intimacy.jpg";
+import photoCreativity from "@assets/photo-creativity.jpg";
+import photoNature from "@assets/photo-nature.jpg";
+import photoPoetry from "@assets/photo-poetry.jpg";
 
 export default function Content() {
   const [location] = useLocation();
@@ -147,7 +153,7 @@ export default function Content() {
                       <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
                         <div className="aspect-square overflow-hidden bg-card relative">
                           <img 
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+                            src={photoSilhouettes}
                             alt="Melancholic hands"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -178,7 +184,7 @@ export default function Content() {
                       <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
                         <div className="aspect-square overflow-hidden bg-card relative">
                           <img 
-                            src="https://images.unsplash.com/photo-1518577915332-23d08d30ad04?w=400&h=400&fit=crop"
+                            src={photoSelfPortrait}
                             alt="Mirror reflection"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -209,7 +215,7 @@ export default function Content() {
                       <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
                         <div className="aspect-square overflow-hidden bg-card relative">
                           <img 
-                            src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"
+                            src={photoIntimacy}
                             alt="Intimate moments"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -240,7 +246,7 @@ export default function Content() {
                       <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
                         <div className="aspect-square overflow-hidden bg-card relative">
                           <img 
-                            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop"
+                            src={photoCreativity}
                             alt="Creative workspace"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -271,7 +277,7 @@ export default function Content() {
                       <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
                         <div className="aspect-square overflow-hidden bg-card relative">
                           <img 
-                            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop"
+                            src={photoNature}
                             alt="Nature connection"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -302,7 +308,7 @@ export default function Content() {
                       <Card className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 cursor-pointer h-full flex flex-col">
                         <div className="aspect-square overflow-hidden bg-card relative">
                           <img 
-                            src="https://images.unsplash.com/photo-1520763185298-1b434c919abe?w=400&h=400&fit=crop"
+                            src={photoPoetry}
                             alt="Poetic nature"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
