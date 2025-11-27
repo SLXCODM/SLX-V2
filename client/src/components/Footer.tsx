@@ -84,7 +84,6 @@ export default function Footer() {
               <li><a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-home">{t.home}</a></li>
               <li><a href="/sobre" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-sobre">{t.about}</a></li>
               <li><a href="/conteudo" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-conteudo">{t.content}</a></li>
-              <li><a href="/projetos" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-projetos">{t.projects}</a></li>
               <li><a href="/contato" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-contato">{t.contact}</a></li>
             </ul>
           </div>

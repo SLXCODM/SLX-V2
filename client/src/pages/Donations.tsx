@@ -11,7 +11,7 @@ export default function Donations({ language }: DonationsProps) {
     pt: {
       title: "Suporte e Doações",
       subtitle: "Ajude a manter o conteúdo de qualidade em funcionamento",
-      description: "Suas contribuições permitem que eu continue criando conteúdo exclusivo, tutoriais profundos e análises técnicas.",
+      description: "Sua contribuição permite que eu continue criando conteúdo, cada vez melhor, inspirando mais pessoas a serem humanas.",
       thankYou: "Muito Obrigado!",
       yourSupport: "Seu apoio significa muito e ajuda diretamente no desenvolvimento do conteúdo.",
       livepixMain: "LivePix",

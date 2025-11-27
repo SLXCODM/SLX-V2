@@ -393,8 +393,8 @@ export default function Content() {
                         </div>
                         <p className="text-sm text-muted-foreground/70 leading-relaxed">
                           {language === "pt" 
-                            ? "Diários anônimos. Desabafos sinceros, melancolia profunda e reflexões sobre como eu vejo a realidade. Textos pesados sobre histórias de vida, depressão e solidão."
-                            : "Anonymous diaries. Honest confessions, deep melancholy and reflections on how I see reality. Heavy texts about life stories, depression and loneliness."}
+                            ? "Diários anônimos. Desabafos sinceros, melancolia profunda e reflexões sobre como eu vejo a realidade. Textos pesados sobre a minha vida, depressão e solidão."
+                            : "Anonymous diaries. Honest confessions, deep melancholy and reflections on how I see reality. Heavy texts about my life, depression and loneliness."}
                         </p>
                       </div>
                     </Card>

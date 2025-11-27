@@ -238,7 +238,7 @@ export const weaponsData: Weapon[] = [
     namePt: "HS0405",
     nameEn: "HS0405",
     type: "Shotgun",
-    description: "Escopeta automática devastadora",
+    description: "Escopeta com alta mobilidade",
     code: "1F2A4A5E6A",
     codePt: "1F2A4A5E6A",
     codeEn: "1F2A4A5E6A",
