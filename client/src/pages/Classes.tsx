@@ -259,7 +259,6 @@ export default function Classes() {
               ))}
             </div>
           </div>
-        </div>
 
         {/* Results Count */}
         <div className="mb-6">
