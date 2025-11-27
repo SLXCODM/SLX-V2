@@ -407,10 +407,10 @@ export default function Content() {
                 {isError ? (
                   <div className="text-center py-16 space-y-4" data-testid="error-state-content">
                     <p className="text-destructive font-medium">
-                      Erro ao carregar projetos
+                      {language === "pt" ? "Erro ao carregar projetos" : "Error loading projects"}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      {error instanceof Error ? error.message : "Tente novamente mais tarde"}
+                      {error instanceof Error ? error.message : (language === "pt" ? "Tente novamente mais tarde" : "Try again later")}
                     </p>
                   </div>
                 ) : isLoading ? (
@@ -533,8 +533,8 @@ export default function Content() {
                   <div className="text-center py-16" data-testid="empty-state-content">
                     <p className="text-muted-foreground">
                       {projects.length === 0 
-                        ? "Nenhum projeto disponível no momento." 
-                        : "Nenhum conteúdo encontrado nesta categoria ainda."}
+                        ? (language === "pt" ? "Nenhum projeto disponível no momento." : "No projects available at the moment.")
+                        : (language === "pt" ? "Nenhum conteúdo encontrado nesta categoria ainda." : "No content found in this category yet.")}
                     </p>
                   </div>
                 )}
