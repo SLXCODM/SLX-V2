@@ -141,16 +141,6 @@ export class MemStorage implements IStorage {
         featured: false,
         order: "5",
       },
-      {
-        id: "proj-dev-1",
-        title: "Desenvolvimento Pessoal",
-        category: "development",
-        description: "Reflexões sobre psicologia, filosofia e autoconhecimento",
-        imageUrl: "/attached_assets/setup2.jpg",
-        externalUrl: "https://tiktok.com/@slx",
-        featured: false,
-        order: "6",
-      },
     ];
 
     mockProjects.forEach(project => {
