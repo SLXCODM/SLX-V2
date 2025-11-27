@@ -1,7 +1,7 @@
 export const projectTranslations: Record<string, { titleEn: string; descriptionEn: string }> = {
   "proj-gaming-0": {
-    titleEn: "Classes",
-    descriptionEn: "Professional weapon classes from SLX",
+    titleEn: "Loadouts",
+    descriptionEn: "Professional weapon loadouts from SLX",
   },
   "proj-gaming-1": {
     titleEn: "My Exclusive Tutorials",
