@@ -118,7 +118,7 @@ export default function Classes() {
       likedWeapons: "Armas Favoritas"
     },
     en: {
-      title: "SLX Weapon Classes",
+      title: "SLX Weapon Loadouts",
       description: "Find the best weapon configurations and codes to improve your gameplay",
       searchPlaceholder: "Search by weapon name (e.g., XM4, Outlaw, Type 19...)...",
       allWeapons: "All",
@@ -337,7 +337,7 @@ export default function Classes() {
                       className="text-sm text-muted-foreground leading-relaxed"
                       data-testid={`text-weapon-description-${weapon.id}`}
                     >
-                      {weapon.description}
+                      {language === "pt" ? weapon.description : weapon.descriptionEn || weapon.description}
                     </p>
 
                     {/* Code Section */}

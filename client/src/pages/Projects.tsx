@@ -225,7 +225,7 @@ export default function Projects() {
           {/* Social Links Section with Ads */}
           <div className="space-y-8">
             {/* Social Icons */}
-            <SocialLinks />
+            <SocialLinks language={language} />
             
             {/* AdSense Ad */}
             <div className="my-8">
