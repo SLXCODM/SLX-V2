@@ -271,119 +271,121 @@ export default function Classes() {
           </p>
         </div>
 
-        {/* AdSense Ad - Middle */}
-        <AdSenseUnit slot="5678901234" format="auto" />
+        <div className="space-y-12">
+          {/* AdSense Ad - Middle */}
+          <AdSenseUnit slot="5678901234" format="auto" />
 
-        {/* Weapons Grid */}
-        {filteredWeapons.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="grid-weapons">
-            {filteredWeapons.map(weapon => (
-            <Card
-                key={weapon.id}
-                className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300"
-                data-testid={`card-weapon-${weapon.id}`}
-              >
-                {/* Weapon Image */}
-                {(language === "pt" ? weapon.imagePt : weapon.imageEn) && (
-                  <div className="aspect-video overflow-hidden bg-card">
-                    <img
-                      src={language === "pt" ? weapon.imagePt : weapon.imageEn}
-                      alt={language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      data-testid={`img-weapon-${weapon.id}`}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
-                    />
-                  </div>
-                )}
-
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  {/* Title and Type + Like Button */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-2 flex-1">
-                      <h3
-                        className="text-xl font-bold text-foreground group-hover:text-primary transition-colors"
-                        data-testid={`text-weapon-name-${weapon.id}`}
-                      >
-                        {language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
-                      </h3>
-                      <Badge
-                        variant="outline"
-                        className={`text-xs ${
-                          typeColors[weapon.type] ||
-                          "bg-gray-500/10 text-gray-400 border-gray-500/20"
-                        }`}
-                        data-testid={`badge-weapon-type-${weapon.id}`}
-                      >
-                        {weapon.type}
-                      </Badge>
-                    </div>
-                    <button
-                      onClick={() => toggleLike(weapon.id)}
-                      className="flex-shrink-0 px-3 py-2 rounded-lg border border-border hover:border-primary hover-elevate transition-all duration-200 flex items-center gap-1.5"
-                      aria-label={likedWeapons.has(weapon.id) ? "Unlike" : "Like"}
-                      data-testid={`button-like-weapon-${weapon.id}`}
-                    >
-                      <Heart
-                        className={`h-5 w-5 transition-colors ${
-                          likedWeapons.has(weapon.id)
-                            ? "fill-red-500 text-red-500"
-                            : "text-muted-foreground hover:text-red-500"
-                        }`}
+          {/* Weapons Grid */}
+          {filteredWeapons.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="grid-weapons">
+              {filteredWeapons.map(weapon => (
+              <Card
+                  key={weapon.id}
+                  className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300"
+                  data-testid={`card-weapon-${weapon.id}`}
+                >
+                  {/* Weapon Image */}
+                  {(language === "pt" ? weapon.imagePt : weapon.imageEn) && (
+                    <div className="aspect-video overflow-hidden bg-card">
+                      <img
+                        src={language === "pt" ? weapon.imagePt : weapon.imageEn}
+                        alt={language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-testid={`img-weapon-${weapon.id}`}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
                       />
-                      <span className="text-xs font-medium text-muted-foreground">
-                        {getWeaponLikes(weapon.id)}
-                      </span>
-                    </button>
-                  </div>
+                    </div>
+                  )}
 
-                  {/* Description */}
-                  <p
-                    className="text-sm text-muted-foreground leading-relaxed"
-                    data-testid={`text-weapon-description-${weapon.id}`}
-                  >
-                    {weapon.description}
-                  </p>
+                  {/* Content */}
+                  <div className="p-6 space-y-4">
+                    {/* Title and Type + Like Button */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-2 flex-1">
+                        <h3
+                          className="text-xl font-bold text-foreground group-hover:text-primary transition-colors"
+                          data-testid={`text-weapon-name-${weapon.id}`}
+                        >
+                          {language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
+                        </h3>
+                        <Badge
+                          variant="outline"
+                          className={`text-xs ${
+                            typeColors[weapon.type] ||
+                            "bg-gray-500/10 text-gray-400 border-gray-500/20"
+                          }`}
+                          data-testid={`badge-weapon-type-${weapon.id}`}
+                        >
+                          {weapon.type}
+                        </Badge>
+                      </div>
+                      <button
+                        onClick={() => toggleLike(weapon.id)}
+                        className="flex-shrink-0 px-3 py-2 rounded-lg border border-border hover:border-primary hover-elevate transition-all duration-200 flex items-center gap-1.5"
+                        aria-label={likedWeapons.has(weapon.id) ? "Unlike" : "Like"}
+                        data-testid={`button-like-weapon-${weapon.id}`}
+                      >
+                        <Heart
+                          className={`h-5 w-5 transition-colors ${
+                            likedWeapons.has(weapon.id)
+                              ? "fill-red-500 text-red-500"
+                              : "text-muted-foreground hover:text-red-500"
+                          }`}
+                        />
+                        <span className="text-xs font-medium text-muted-foreground">
+                          {getWeaponLikes(weapon.id)}
+                        </span>
+                      </button>
+                    </div>
 
-                  {/* Code Section */}
-                  <div className="bg-muted/50 rounded p-3 space-y-2">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase">
-                      {ct.code}
+                    {/* Description */}
+                    <p
+                      className="text-sm text-muted-foreground leading-relaxed"
+                      data-testid={`text-weapon-description-${weapon.id}`}
+                    >
+                      {weapon.description}
                     </p>
-                    <code
-                      className="text-sm font-mono text-primary block break-all"
-                      data-testid={`text-weapon-code-${weapon.id}`}
-                    >
-                      {language === "pt" ? weapon.codePt || weapon.code : weapon.codeEn || weapon.code}
-                    </code>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="w-full text-xs"
-                      onClick={() => {
-                        navigator.clipboard.writeText(language === "pt" ? weapon.codePt || weapon.code : weapon.codeEn || weapon.code);
-                      }}
-                      data-testid={`button-copy-code-${weapon.id}`}
-                    >
-                      {ct.copyCode}
-                    </Button>
+
+                    {/* Code Section */}
+                    <div className="bg-muted/50 rounded p-3 space-y-2">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase">
+                        {ct.code}
+                      </p>
+                      <code
+                        className="text-sm font-mono text-primary block break-all"
+                        data-testid={`text-weapon-code-${weapon.id}`}
+                      >
+                        {language === "pt" ? weapon.codePt || weapon.code : weapon.codeEn || weapon.code}
+                      </code>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full text-xs"
+                        onClick={() => {
+                          navigator.clipboard.writeText(language === "pt" ? weapon.codePt || weapon.code : weapon.codeEn || weapon.code);
+                        }}
+                        data-testid={`button-copy-code-${weapon.id}`}
+                      >
+                        {ct.copyCode}
+                      </Button>
+                    </div>
                   </div>
-                </div>
-            </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20" data-testid="empty-state-weapons">
-            <p className="text-lg text-muted-foreground">
-              Nenhuma arma encontrada com "{searchTerm}"
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Tente outro termo de busca ou ajuste os filtros
-            </p>
-          </div>
-        )}
+              </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20" data-testid="empty-state-weapons">
+              <p className="text-lg text-muted-foreground">
+                Nenhuma arma encontrada com "{searchTerm}"
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Tente outro termo de busca ou ajuste os filtros
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
