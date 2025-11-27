@@ -14,7 +14,11 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("pt");
+  const [language, setLanguage] = useState<Language>(() => {
+    // Load language from localStorage on initial load
+    const saved = localStorage.getItem("slx_language");
+    return (saved as Language) || "pt";
+  });
   const [isLanguageSelected, setIsLanguageSelected] = useState(false);
   const [showRaffle, setShowRaffle] = useState(false);
 
@@ -37,6 +41,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
+    // Save language to localStorage
+    localStorage.setItem("slx_language", lang);
   };
 
   const completeLanguageSelection = () => {
