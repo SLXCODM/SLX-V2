@@ -179,13 +179,25 @@ Acessa: http://localhost:5000
   - Página de Classes (/classes)
   - Handcam, Minhas Configurações, Meus Tutoriais Exclusivos
 
+## Google AdSense Integration
+
+- **Status**: Implementado ✅
+- **Publisher ID**: ca-pub-2053964731459379
+- **Ads Placement**:
+  - Home page: After categories section (slot: 1234567890)
+  - Content page: Above photography grid (slot: 2345678901)
+  - About page: Middle of content (slot: 3456789012)
+- **Component**: AdSenseUnit.tsx (reutilizável em qualquer página)
+- **Note**: Ads não aparecem em localhost - funcionam apenas em domínio verificado (slx-codm.vercel.app)
+
 ## Próximos Passos
 
-1. Adicionar sistema de admin para gerenciar projetos
-2. Otimizar imagens
-3. SEO completo
-4. Analytics
-5. Migrar para PostgreSQL (banco de dados real)
+1. Monitorar performance dos anúncios no AdSense dashboard
+2. Adicionar mais anúncios em outras páginas conforme necessário
+3. Adicionar sistema de admin para gerenciar projetos
+4. Otimizar imagens
+5. Analytics
+6. Migrar para PostgreSQL (banco de dados real)
 
 ## Identidade de Marca
 

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AdSenseUnit } from "@/components/AdSenseUnit";
 import type { AboutContent } from "@shared/schema";
 
 export default function About() {
@@ -95,6 +96,7 @@ export default function About() {
             ) : aboutContent ? (
               <div className="space-y-6" data-testid="content-about-dynamic">
                 {renderPlainTextContent(aboutContent.content)}
+                <AdSenseUnit slot="3456789012" format="auto" />
               </div>
             ) : (
               <div className="space-y-6" data-testid="content-about-static">
@@ -104,6 +106,9 @@ export default function About() {
                     Olá. Sou SLX, estrategista de pensamento, criador de conteúdo técnico e profundo nas áreas de gaming, fotografia, agricultura e desenvolvimento pessoal. Este espaço é onde compartilho minha jornada, experiências e tudo o que aprendi ao longo do caminho.
                   </p>
                 </div>
+
+                {/* AdSense Ad */}
+                <AdSenseUnit slot="3456789012" format="auto" />
 
                 {/* Journey Section */}
                 <div className="space-y-4 border-t border-border pt-8">

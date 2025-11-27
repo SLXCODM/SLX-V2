@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import RafflePopup from "@/components/RafflePopup";
 import SocialLinks from "@/components/SocialLinks";
+import { AdSenseUnit } from "@/components/AdSenseUnit";
 import { useLanguage } from "@/contexts/LanguageContext";
 import codmBgImage from "@assets/Picsart_25-01-08_09-25-56-556_1763836943841.jpg";
 import photoBgImage from "@assets/IMG_20250719_145627~2_1763837256708.jpg";
@@ -267,6 +268,11 @@ export default function Home() {
                 );
               })}
             </div>
+          </div>
+
+          {/* AdSense Banner */}
+          <div className="mt-16 mb-12">
+            <AdSenseUnit slot="1234567890" format="auto" />
           </div>
         </div>
       </section>
