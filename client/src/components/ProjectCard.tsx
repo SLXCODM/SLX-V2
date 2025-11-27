@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import type { Project } from "@shared/schema";
+import { projectTranslations } from "@/data/projectTranslations";
 
 interface ProjectCardProps {
   project: Project;
@@ -110,7 +111,9 @@ export default function ProjectCard({ project, language = "pt" }: ProjectCardPro
         <div className="relative z-10 text-center space-y-4 p-4">
           <Lock className="h-10 w-10 text-primary mx-auto" />
           <div>
-            <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">
+              {language === "en" ? (projectTranslations[project.id]?.titleEn || project.title) : project.title}
+            </h3>
             <p className="text-sm text-white/80 mb-4">{lt.unlockPrompt}</p>
           </div>
           <div className="space-y-2">
@@ -166,7 +169,7 @@ export default function ProjectCard({ project, language = "pt" }: ProjectCardPro
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 space-y-2">
             <h3 className="text-xl font-semibold leading-tight group-hover:text-primary transition-colors duration-300" data-testid={`text-project-title-${project.id}`}>
-              {project.title}
+              {language === "en" ? (projectTranslations[project.id]?.titleEn || project.title) : project.title}
             </h3>
             <Badge
               variant="outline"
@@ -184,7 +187,7 @@ export default function ProjectCard({ project, language = "pt" }: ProjectCardPro
           )}
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed" data-testid={`text-project-description-${project.id}`}>
-          {project.description}
+          {language === "en" ? (projectTranslations[project.id]?.descriptionEn || project.description) : project.description}
         </p>
 
         {/* Multiple Links */}
