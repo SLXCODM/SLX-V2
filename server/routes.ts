@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertProjectSchema, insertContactSchema, projectCategories } from "@shared/schema";
+import { insertProjectSchema, insertContactSchema, insertProductSchema, projectCategories } from "@shared/schema";
 import { contactRateLimiter } from "./rate-limiter";
 import { sendContactEmail, sendSponsorshipEmail } from "./email";
 
@@ -213,6 +213,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ weaponId, likes });
     } catch (error) {
       res.status(500).json({ error: "Failed to update weapon likes" });
+    }
+  });
+
+  // Products Routes
+  
+  // GET /api/products - Get all products
+  app.get("/api/products", async (_req, res) => {
+    try {
+      const products = await storage.getProducts();
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch products" });
+    }
+  });
+
+  // GET /api/products/:id - Get single product
+  app.get("/api/products/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const product = await storage.getProduct(id);
+      
+      if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      
+      res.json(product);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch product" });
+    }
+  });
+
+  // POST /api/products - Create new product
+  app.post("/api/products", async (req, res) => {
+    try {
+      const validatedData = insertProductSchema.parse(req.body);
+      const product = await storage.createProduct(validatedData);
+      res.status(201).json(product);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ error: error.message });
+      } else {
+        res.status(400).json({ error: "Invalid product data" });
+      }
+    }
+  });
+
+  // PATCH /api/products/:id - Update product
+  app.patch("/api/products/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const partialSchema = insertProductSchema.partial();
+      const validatedUpdates = partialSchema.parse(req.body);
+      
+      const product = await storage.updateProduct(id, validatedUpdates);
+      
+      if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      
+      res.json(product);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ error: error.message });
+      } else {
+        res.status(400).json({ error: "Failed to update product" });
+      }
+    }
+  });
+
+  // DELETE /api/products/:id - Delete product
+  app.delete("/api/products/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deleted = await storage.deleteProduct(id);
+      
+      if (!deleted) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete product" });
     }
   });
 
