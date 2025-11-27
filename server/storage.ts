@@ -309,36 +309,47 @@ slowedbase@gmail.com`,
     const mockProducts: Array<InsertProduct & { id: string }> = [
       {
         id: "prod-1",
-        name: "Preset Fotografia - Melancolia Visual",
-        description: "Preset exclusivo para Adobe Lightroom com cores e tons da série Melancolia Visual",
-        price: "2999", // R$ 29,99
-        imageUrl: "/attached_assets/photo-silhouettes.jpg",
-        category: "preset",
+        name: "Curso: Domínio de Sniper no CODM",
+        description: "Guia completo sobre técnicas avançadas de sniper, posicionamento e clutches em Call of Duty Mobile",
+        price: "4999", // R$ 49,99
+        imageUrl: null,
+        category: "course",
         featured: true,
         active: true,
         order: "0",
       },
       {
         id: "prod-2",
-        name: "E-book: Pensamento Estratégico",
-        description: "Guia completo sobre desenvolvimento mental e estratégia de vida",
+        name: "Curso: Loadouts Competitivos 2024",
+        description: "Configurações otimizadas para ranked, análise de metas, builds e estratégias competitivas",
         price: "4999", // R$ 49,99
         imageUrl: null,
-        category: "ebook",
+        category: "course",
         featured: true,
         active: true,
         order: "1",
       },
       {
         id: "prod-3",
-        name: "Mentoria 1:1 (Sessão)",
-        description: "Sessão de mentoria privada sobre desenvolvimento pessoal e estratégia",
+        name: "Mentorias de Gameplay Privadas",
+        description: "Sessões 1:1 de mentoria focadas em melhorar sua gameplay, decision-making e controle mental",
         price: "19999", // R$ 199,99
         imageUrl: null,
         category: "service",
         featured: false,
         active: true,
         order: "2",
+      },
+      {
+        id: "prod-4",
+        name: "Links de Afiliados - Streamers & Creators",
+        description: "Conteúdo técnico através de links de afiliados com criadores de conteúdo CODM certificados",
+        price: "0", // Gratuito com comissão
+        imageUrl: null,
+        category: "affiliate",
+        featured: false,
+        active: true,
+        order: "3",
       },
     ];
 

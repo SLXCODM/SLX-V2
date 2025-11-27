@@ -16,6 +16,7 @@ export default function Header() {
   const navItems = [
     { path: "/", label: language === "pt" ? "Início" : "Home" },
     { path: "/conteudo", label: language === "pt" ? "Conteúdo" : "Content" },
+    { path: "/loja", label: language === "pt" ? "Loja" : "Shop" },
     { path: "/redes-sociais", label: language === "pt" ? "Redes Sociais" : "Social" },
     { path: "/patrocinadores", label: language === "pt" ? "Patrocínios" : "Sponsors" },
     { path: "/doacoes", label: language === "pt" ? "Doações" : "Donate" },
