@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { AdSenseUnit } from "@/components/AdSenseUnit";
 import { weaponsData, type Weapon } from "@shared/weaponsData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -220,11 +219,9 @@ export default function Classes() {
             </p>
           </div>
 
-          {/* AdSense Ad - Top */}
-          <AdSenseUnit slot="4567890123" format="auto" />
         </div>
 
-          {/* Search and Filter */}
+        {/* Search and Filter */}
           <div className="space-y-4">
             {/* Search Input */}
             <div className="relative" data-testid="search-weapons">
@@ -271,15 +268,11 @@ export default function Classes() {
           </p>
         </div>
 
-        <div className="space-y-12">
-          {/* AdSense Ad - Middle */}
-          <AdSenseUnit slot="5678901234" format="auto" />
-
-          {/* Weapons Grid */}
-          {filteredWeapons.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="grid-weapons">
-              {filteredWeapons.map(weapon => (
-              <Card
+        {/* Weapons Grid */}
+        {filteredWeapons.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="grid-weapons">
+            {filteredWeapons.map(weapon => (
+            <Card
                   key={weapon.id}
                   className="group overflow-hidden hover-elevate active-elevate-2 transition-all duration-300"
                   data-testid={`card-weapon-${weapon.id}`}
@@ -372,20 +365,19 @@ export default function Classes() {
                       </Button>
                     </div>
                   </div>
-              </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20" data-testid="empty-state-weapons">
-              <p className="text-lg text-muted-foreground">
-                Nenhuma arma encontrada com "{searchTerm}"
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Tente outro termo de busca ou ajuste os filtros
-              </p>
-            </div>
-          )}
-        </div>
+            </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20" data-testid="empty-state-weapons">
+            <p className="text-lg text-muted-foreground">
+              Nenhuma arma encontrada com "{searchTerm}"
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Tente outro termo de busca ou ajuste os filtros
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
