@@ -47,10 +47,11 @@ export default function Classes() {
       const res = await apiRequest('GET', '/api/weapon-likes');
       return res.json() as Promise<WeaponLikes[]>;
     },
-    refetchInterval: 2000, // Refetch every 2 seconds
+    refetchInterval: 1000, // Refetch every 1 second for real-time sync
     staleTime: 0,
     gcTime: 0,
     refetchOnMount: true,
+    refetchOnWindowFocus: 'always', // Refetch when tab regains focus
   });
 
   // Server is the only source of truth
