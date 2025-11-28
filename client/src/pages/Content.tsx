@@ -96,6 +96,20 @@ export default function Content() {
               ))}
             </TabsList>
 
+            {/* Background decorative image */}
+            <div className="mt-12 mb-8 relative h-48 md:h-64 rounded-lg overflow-hidden bg-card border border-border opacity-30 pointer-events-none">
+              <img 
+                src={photoSilhouettes}
+                alt="background"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Advertisement Section */}
+            <div className="my-12">
+              <AdSenseUnit slot="6789012345" format="auto" />
+            </div>
+
             {currentTab === "gaming" ? (
               <FollowToUnlock contentName="Call of Duty Mobile" language={language}>
                 <TabsContent value={currentTab} className="mt-8">
@@ -116,9 +130,7 @@ export default function Content() {
                       ))}
                     </div>
                   ) : filteredProjects.length > 0 ? (
-                    <div className="space-y-12">
-                      <AdSenseUnit slot="6789012345" format="auto" />
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
                         {filteredProjects.map(project => (
                           <ProjectCard key={project.id} project={project} language={language} />
                         ))}
@@ -148,7 +160,6 @@ export default function Content() {
                   </div>
 
                   {/* Photography Grid */}
-                  <AdSenseUnit slot="2345678901" format="auto" />
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <a
                       href="https://www.instagram.com/slx.wav"
