@@ -1,4 +1,4 @@
-import { X, Gift } from "lucide-react";
+import { X, Gift, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface RafflePopupProps {
@@ -12,15 +12,15 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
       title: "SORTEIO INSANO",
       subtitle: "ASUS ROG PHONE 8 + Cooler Nubia 4 Pro",
       description: "Estou sorteando o melhor smartphone gaming do mercado!",
+      greenText: "Participe agora, ganhe prêmios incríveis!",
       specs: [
-        "✨ Snapdragon 8 Gen 3",
-        "✨ 12GB RAM | 256GB Storage",
-        "✨ Display 165Hz AMOLED",
-        "✨ 120fps liso no CODM",
-        "✨ Bateria 5500mAh",
-        "❄️ Cooler Magnético Nubia 4 Pro"
+        "Snapdragon 8 Gen 3",
+        "12GB RAM | 256GB Storage",
+        "Display 165Hz AMOLED",
+        "120fps liso no CODM",
+        "Bateria 5500mAh",
+        "Cooler Magnético Nubia 4 Pro"
       ],
-      callToAction: "PARTICIPE DA RIFA",
       ctaSubtext: "A partir de R$ 1,00 por número",
       button: "PARTICIPAR AGORA",
     },
@@ -28,15 +28,15 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
       title: "INSANE RAFFLE",
       subtitle: "ASUS ROG PHONE 8 + Nubia 4 Pro Cooler",
       description: "I'm raffling off the best gaming smartphone on the market!",
+      greenText: "Participate now, win amazing prizes!",
       specs: [
-        "✨ Snapdragon 8 Gen 3",
-        "✨ 12GB RAM | 256GB Storage",
-        "✨ 165Hz AMOLED Display",
-        "✨ 120fps smooth on CODM",
-        "✨ 5500mAh Battery",
-        "❄️ Nubia 4 Pro Magnetic Cooler"
+        "Snapdragon 8 Gen 3",
+        "12GB RAM | 256GB Storage",
+        "165Hz AMOLED Display",
+        "120fps smooth on CODM",
+        "5500mAh Battery",
+        "Nubia 4 Pro Magnetic Cooler"
       ],
-      callToAction: "JOIN THE RAFFLE",
       ctaSubtext: "Starting from $1.00 per number",
       button: "PARTICIPATE NOW",
     }
@@ -49,8 +49,8 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-[60] p-4 pt-32" data-testid="raffle-popup">
-      <div className="bg-card border border-border rounded-lg max-w-md w-full p-6 md:p-8 space-y-5 md:space-y-6 relative max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4" data-testid="raffle-popup">
+      <div className="max-w-md w-full space-y-6 p-8 bg-card border border-border rounded-lg max-h-[90vh] overflow-y-auto relative">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
@@ -59,41 +59,44 @@ export default function RafflePopup({ onClose, language }: RafflePopupProps) {
           <X className="h-5 w-5" />
         </button>
 
-        <div className="text-center space-y-2">
-          <div className="flex justify-center mb-3 md:mb-4">
-            <Gift className="h-11 md:h-12 w-11 md:w-12 text-primary animate-bounce" />
+        {/* Title */}
+        <div className="text-center space-y-1">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Gift className="h-6 w-6 text-purple-500 animate-bounce" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}>
-            {t.title}
-          </h2>
-          <p className="text-base md:text-lg font-semibold text-primary">
-            {t.subtitle}
-          </p>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">{t.title}</h2>
+          <p className="text-sm text-muted-foreground">{t.subtitle}</p>
         </div>
 
-        <p className="text-center text-muted-foreground text-sm md:text-base">
-          {t.description}
-        </p>
+        {/* Description */}
+        <p className="text-center text-sm text-foreground">{t.description}</p>
 
-        <div className="bg-muted/50 rounded-lg p-4 space-y-2 border border-border">
+        {/* Green highlight text */}
+        <p className="text-center text-sm font-semibold text-green-500">{t.greenText}</p>
+
+        {/* Benefits list */}
+        <div className="space-y-2 py-2">
           {t.specs.map((spec, index) => (
-            <p key={index} className="text-muted-foreground text-xs md:text-sm">
-              {spec}
-            </p>
+            <div key={index} className="flex items-start gap-2">
+              <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+              <span className="text-sm text-foreground">{spec}</span>
+            </div>
           ))}
         </div>
 
+        {/* CTA Subtext */}
         <div className="text-center">
-          <p className="text-base md:text-lg font-bold text-primary">{t.callToAction}</p>
-          <p className="text-xs md:text-sm text-muted-foreground mt-1">{t.ctaSubtext}</p>
+          <p className="text-xs text-muted-foreground">{t.ctaSubtext}</p>
         </div>
 
+        {/* Button */}
         <Button
           onClick={handleParticipate}
           size="lg"
-          className="w-full"
+          className="w-full gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
           data-testid="button-participate-raffle"
         >
+          <Gift className="h-5 w-5" />
           {t.button}
         </Button>
       </div>
