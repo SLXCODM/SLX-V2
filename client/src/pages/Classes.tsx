@@ -329,12 +329,12 @@ export default function Classes() {
                       <button
                         onClick={() => toggleLike(weapon.id)}
                         className="flex-shrink-0 px-3 py-2 rounded-lg border border-border hover:border-primary hover-elevate transition-all duration-200 flex items-center gap-1.5"
-                        aria-label={likedWeapons.has(weapon.id) ? "Unlike" : "Like"}
+                        aria-label={getWeaponLikes(weapon.id) > 0 ? "Unlike" : "Like"}
                         data-testid={`button-like-weapon-${weapon.id}`}
                       >
                         <Heart
                           className={`h-5 w-5 transition-colors ${
-                            likedWeapons.has(weapon.id)
+                            getWeaponLikes(weapon.id) > 0
                               ? "fill-red-500 text-red-500"
                               : "text-muted-foreground hover:text-red-500"
                           }`}
