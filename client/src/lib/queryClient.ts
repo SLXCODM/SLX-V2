@@ -5,8 +5,8 @@ const getApiBaseUrl = () => {
   if (import.meta.env.VITE_API_BASE_URL) {
     return import.meta.env.VITE_API_BASE_URL;
   }
-  // Use Railway backend in production, empty string for local dev
-  if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+  // Use Railway backend in production (slx-codm.vercel.app), empty string for localhost dev
+  if (typeof window !== "undefined" && (window.location.hostname.includes("vercel.app") || window.location.hostname.includes("slx-codm"))) {
     return "https://web-production-cadd.up.railway.app";
   }
   return "";
