@@ -41,10 +41,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    // Save language to localStorage
+    // Save language to localStorage (without reload - let raffle show first)
     localStorage.setItem("slx_language", lang);
-    // Force page reload to clear all caches
-    window.location.reload();
   };
 
   const completeLanguageSelection = () => {

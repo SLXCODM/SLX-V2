@@ -9,7 +9,7 @@ interface LanguageSelectProps {
 }
 
 export default function LanguageSelect({ onComplete }: LanguageSelectProps) {
-  const { setLanguage } = useLanguage();
+  const { setLanguage, language } = useLanguage();
   const [selectedLanguage, setSelectedLanguage] = useState<"pt" | "en" | null>(null);
   const [showRaffle, setShowRaffle] = useState(false);
 
@@ -18,6 +18,8 @@ export default function LanguageSelect({ onComplete }: LanguageSelectProps) {
     setLanguage(lang);
     
     if (lang === "pt") {
+      // Mark raffle as shown in this session
+      sessionStorage.setItem("slx_raffle_shown", "true");
       setShowRaffle(true);
     } else {
       onComplete();
