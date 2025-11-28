@@ -5,15 +5,9 @@ import {
   type InsertAboutContent,
   type WeaponLike,
   type Product,
-  type InsertProduct,
-  weaponLikes as weaponLikesTable,
-  projects as projectsTable,
-  aboutContent as aboutContentTable,
-  products as productsTable
+  type InsertProduct
 } from "@shared/schema";
 import { randomUUID } from "crypto";
-import { db } from "./db";
-import { eq } from "drizzle-orm";
 
 // Convert relative asset paths to absolute Railway URLs
 function resolveImageUrl(url: string | null): string | null {
@@ -274,64 +268,31 @@ slowedbase@gmail.com`,
 
   // Weapon Likes
   async getWeaponLikes(weaponId: string): Promise<number> {
-    try {
-      const result = await db.select().from(weaponLikesTable).where(eq(weaponLikesTable.weaponId, weaponId));
-      return result[0]?.likes || 0;
-    } catch (error) {
-      return this.weaponLikes.get(weaponId) || 0;
-    }
+    return this.weaponLikes.get(weaponId) || 0;
   }
 
   async getAllWeaponLikes(): Promise<WeaponLike[]> {
-    try {
-      return await db.select().from(weaponLikesTable);
-    } catch (error) {
-      const likes: WeaponLike[] = [];
-      this.weaponLikes.forEach((likeCount, weaponId) => {
-        if (likeCount > 0) {
-          likes.push({ weaponId, likes: likeCount });
-        }
-      });
-      return likes;
-    }
+    const likes: WeaponLike[] = [];
+    this.weaponLikes.forEach((likeCount, weaponId) => {
+      if (likeCount > 0) {
+        likes.push({ weaponId, likes: likeCount });
+      }
+    });
+    return likes;
   }
 
   async incrementWeaponLikes(weaponId: string): Promise<number> {
-    try {
-      const existing = await db.select().from(weaponLikesTable).where(eq(weaponLikesTable.weaponId, weaponId));
-      const current = existing[0]?.likes || 0;
-      const updated = current + 1;
-      
-      if (existing.length > 0) {
-        await db.update(weaponLikesTable).set({ likes: updated }).where(eq(weaponLikesTable.weaponId, weaponId));
-      } else {
-        await db.insert(weaponLikesTable).values({ weaponId, likes: updated });
-      }
-      return updated;
-    } catch (error) {
-      const current = this.weaponLikes.get(weaponId) || 0;
-      const updated = current + 1;
-      this.weaponLikes.set(weaponId, updated);
-      return updated;
-    }
+    const current = this.weaponLikes.get(weaponId) || 0;
+    const updated = current + 1;
+    this.weaponLikes.set(weaponId, updated);
+    return updated;
   }
 
   async decrementWeaponLikes(weaponId: string): Promise<number> {
-    try {
-      const existing = await db.select().from(weaponLikesTable).where(eq(weaponLikesTable.weaponId, weaponId));
-      const current = existing[0]?.likes || 0;
-      const updated = Math.max(0, current - 1);
-      
-      if (existing.length > 0) {
-        await db.update(weaponLikesTable).set({ likes: updated }).where(eq(weaponLikesTable.weaponId, weaponId));
-      }
-      return updated;
-    } catch (error) {
-      const current = this.weaponLikes.get(weaponId) || 0;
-      const updated = Math.max(0, current - 1);
-      this.weaponLikes.set(weaponId, updated);
-      return updated;
-    }
+    const current = this.weaponLikes.get(weaponId) || 0;
+    const updated = Math.max(0, current - 1);
+    this.weaponLikes.set(weaponId, updated);
+    return updated;
   }
 
   private initializeProducts() {
