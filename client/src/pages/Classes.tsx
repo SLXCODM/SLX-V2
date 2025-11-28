@@ -39,12 +39,14 @@ export default function Classes() {
   }, []);
 
   // Fetch all weapon likes
-  const { data: allLikes = [] } = useQuery({
+  const { data: allLikes = [], refetch } = useQuery({
     queryKey: ['/api/weapon-likes'],
     queryFn: async () => {
       const res = await fetch('/api/weapon-likes');
       return res.json() as Promise<WeaponLikes[]>;
     },
+    refetchOnMount: true,
+    refetchInterval: 5000, // Refetch every 5 seconds
   });
 
   // Create a map of weapon likes for quick lookup
@@ -64,8 +66,8 @@ export default function Classes() {
       });
       return res.json() as Promise<WeaponLikes>;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/weapon-likes'] });
+    onSuccess: async () => {
+      await refetch();
     },
   });
 
@@ -78,8 +80,8 @@ export default function Classes() {
       });
       return res.json() as Promise<WeaponLikes>;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/weapon-likes'] });
+    onSuccess: async () => {
+      await refetch();
     },
   });
 
