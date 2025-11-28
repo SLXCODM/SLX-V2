@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ProjectCard from "@/components/ProjectCard";
 import FollowToUnlock from "@/components/FollowToUnlock";
-import { AdSenseUnit } from "@/components/AdSenseUnit";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Project } from "@shared/schema";
 import { SiSubstack } from "react-icons/si";
@@ -117,7 +116,6 @@ export default function Content() {
                     </div>
                   ) : filteredProjects.length > 0 ? (
                     <div className="space-y-12">
-                      <AdSenseUnit slot="6789012345" format="auto" />
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-testid="grid-content-projects">
                         {filteredProjects.map(project => (
                           <ProjectCard key={project.id} project={project} language={language} />
@@ -148,7 +146,6 @@ export default function Content() {
                   </div>
 
                   {/* Photography Grid */}
-                  <AdSenseUnit slot="2345678901" format="auto" />
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <a
                       href="https://www.instagram.com/slx.wav"
