@@ -68,20 +68,8 @@ export default function Content() {
     : projects.filter(p => p.category === currentTab);
 
   const contentComponent = (
-    <div className="relative min-h-screen py-24 md:py-32 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://web-production-cadd.up.railway.app/attached_assets/IMG_20240114_185124_255 (3)_1763914486948.jpg')`
-        }}
-      />
-      
-      {/* Dark Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background/90" />
-      
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
+    <div className="min-h-screen py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="space-y-12">
           {/* Header */}
           <div className="space-y-4 text-center">
