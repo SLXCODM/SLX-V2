@@ -1,15 +1,13 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-// Get API base URL from environment or fallback to Railway backend
+// Get API base URL
 const getApiBaseUrl = () => {
-  if (import.meta.env.VITE_API_BASE_URL) {
-    return import.meta.env.VITE_API_BASE_URL;
+  // Development: use local backend
+  if (import.meta.env.DEV) {
+    return "";
   }
-  // Use Railway backend in production (slx-codm.vercel.app), empty string for localhost dev
-  if (typeof window !== "undefined" && (window.location.hostname.includes("vercel.app") || window.location.hostname.includes("slx-codm"))) {
-    return "https://web-production-cadd.up.railway.app";
-  }
-  return "";
+  // Production: always use Railway backend
+  return "https://web-production-cadd.up.railway.app";
 };
 
 async function throwIfResNotOk(res: Response) {
