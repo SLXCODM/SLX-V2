@@ -5,9 +5,15 @@ import {
   type InsertAboutContent,
   type WeaponLike,
   type Product,
-  type InsertProduct
+  type InsertProduct,
+  weaponLikes as weaponLikesTable,
+  projects as projectsTable,
+  aboutContent as aboutContentTable,
+  products as productsTable
 } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 // Convert relative asset paths to absolute Railway URLs
 function resolveImageUrl(url: string | null): string | null {
@@ -224,7 +230,7 @@ slowedbase@gmail.com`,
     const project: Project = {
       ...insertProject,
       id,
-      imageUrl: resolveImageUrl(insertProject.imageUrl) || null,
+      imageUrl: insertProject.imageUrl ? resolveImageUrl(insertProject.imageUrl) : null,
       externalUrl: insertProject.externalUrl || null,
       featured: insertProject.featured ?? false,
       order: insertProject.order || "0",
@@ -268,31 +274,64 @@ slowedbase@gmail.com`,
 
   // Weapon Likes
   async getWeaponLikes(weaponId: string): Promise<number> {
-    return this.weaponLikes.get(weaponId) || 0;
+    try {
+      const result = await db.select().from(weaponLikesTable).where(eq(weaponLikesTable.weaponId, weaponId));
+      return result[0]?.likes || 0;
+    } catch (error) {
+      return this.weaponLikes.get(weaponId) || 0;
+    }
   }
 
   async getAllWeaponLikes(): Promise<WeaponLike[]> {
-    const likes: WeaponLike[] = [];
-    this.weaponLikes.forEach((likeCount, weaponId) => {
-      if (likeCount > 0) {
-        likes.push({ weaponId, likes: likeCount });
-      }
-    });
-    return likes;
+    try {
+      return await db.select().from(weaponLikesTable);
+    } catch (error) {
+      const likes: WeaponLike[] = [];
+      this.weaponLikes.forEach((likeCount, weaponId) => {
+        if (likeCount > 0) {
+          likes.push({ weaponId, likes: likeCount });
+        }
+      });
+      return likes;
+    }
   }
 
   async incrementWeaponLikes(weaponId: string): Promise<number> {
-    const current = this.weaponLikes.get(weaponId) || 0;
-    const updated = current + 1;
-    this.weaponLikes.set(weaponId, updated);
-    return updated;
+    try {
+      const existing = await db.select().from(weaponLikesTable).where(eq(weaponLikesTable.weaponId, weaponId));
+      const current = existing[0]?.likes || 0;
+      const updated = current + 1;
+      
+      if (existing.length > 0) {
+        await db.update(weaponLikesTable).set({ likes: updated }).where(eq(weaponLikesTable.weaponId, weaponId));
+      } else {
+        await db.insert(weaponLikesTable).values({ weaponId, likes: updated });
+      }
+      return updated;
+    } catch (error) {
+      const current = this.weaponLikes.get(weaponId) || 0;
+      const updated = current + 1;
+      this.weaponLikes.set(weaponId, updated);
+      return updated;
+    }
   }
 
   async decrementWeaponLikes(weaponId: string): Promise<number> {
-    const current = this.weaponLikes.get(weaponId) || 0;
-    const updated = Math.max(0, current - 1);
-    this.weaponLikes.set(weaponId, updated);
-    return updated;
+    try {
+      const existing = await db.select().from(weaponLikesTable).where(eq(weaponLikesTable.weaponId, weaponId));
+      const current = existing[0]?.likes || 0;
+      const updated = Math.max(0, current - 1);
+      
+      if (existing.length > 0) {
+        await db.update(weaponLikesTable).set({ likes: updated }).where(eq(weaponLikesTable.weaponId, weaponId));
+      }
+      return updated;
+    } catch (error) {
+      const current = this.weaponLikes.get(weaponId) || 0;
+      const updated = Math.max(0, current - 1);
+      this.weaponLikes.set(weaponId, updated);
+      return updated;
+    }
   }
 
   private initializeProducts() {
@@ -346,6 +385,10 @@ slowedbase@gmail.com`,
     mockProducts.forEach(product => {
       const fullProduct: Product = {
         ...product,
+        imageUrl: product.imageUrl ?? null,
+        featured: product.featured ?? false,
+        order: product.order ?? "0",
+        active: product.active ?? true,
         stripeProductId: null,
         stripePriceId: null,
         createdAt: new Date(),
@@ -370,6 +413,10 @@ slowedbase@gmail.com`,
     const product: Product = {
       ...insertProduct,
       id,
+      imageUrl: insertProduct.imageUrl ?? null,
+      featured: insertProduct.featured ?? false,
+      order: insertProduct.order ?? "0",
+      active: insertProduct.active ?? true,
       stripeProductId: null,
       stripePriceId: null,
       createdAt: new Date(),
