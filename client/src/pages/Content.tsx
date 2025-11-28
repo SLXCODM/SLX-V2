@@ -73,7 +73,7 @@ export default function Content() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/attached_assets/IMG_20240114_185124_255 (3)_1763914486948.jpg')`
+          backgroundImage: `url('https://web-production-cadd.up.railway.app/attached_assets/IMG_20240114_185124_255 (3)_1763914486948.jpg')`
         }}
       />
       
@@ -91,11 +91,6 @@ export default function Content() {
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-content-description">
               {ct.description}
             </p>
-          </div>
-
-          {/* Advertisement Section */}
-          <div className="my-8">
-            <AdSenseUnit slot="6789012345" format="auto" />
           </div>
 
           {/* Tabs Filter */}
