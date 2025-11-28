@@ -3,11 +3,15 @@ import {
   type InsertProject,
   type AboutContent,
   type InsertAboutContent,
-  type WeaponLike,
+  type WeaponLikeData,
   type Product,
-  type InsertProduct
+  type InsertProduct,
+  weaponLikes,
+  type WeaponLike as DbWeaponLike
 } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 // Convert relative asset paths to absolute Railway URLs
 function resolveImageUrl(url: string | null): string | null {
@@ -33,7 +37,7 @@ export interface IStorage {
 
   // Weapon Likes
   getWeaponLikes(weaponId: string): Promise<number>;
-  getAllWeaponLikes(): Promise<WeaponLike[]>;
+  getAllWeaponLikes(): Promise<WeaponLikeData[]>;
   incrementWeaponLikes(weaponId: string): Promise<number>;
   decrementWeaponLikes(weaponId: string): Promise<number>;
 
@@ -48,13 +52,11 @@ export interface IStorage {
 export class MemStorage implements IStorage {
   private projects: Map<string, Project>;
   private aboutContent: AboutContent | undefined;
-  private weaponLikes: Map<string, number>;
   private products: Map<string, Product>;
 
   constructor() {
     this.projects = new Map();
     this.aboutContent = undefined;
-    this.weaponLikes = new Map();
     this.products = new Map();
     
     // Initialize with mock data
@@ -266,33 +268,60 @@ slowedbase@gmail.com`,
     return content;
   }
 
-  // Weapon Likes
+  // Weapon Likes - Using PostgreSQL
   async getWeaponLikes(weaponId: string): Promise<number> {
-    return this.weaponLikes.get(weaponId) || 0;
+    const result = await db
+      .select()
+      .from(weaponLikes)
+      .where(eq(weaponLikes.weaponId, weaponId))
+      .limit(1);
+    return result[0]?.likes || 0;
   }
 
-  async getAllWeaponLikes(): Promise<WeaponLike[]> {
-    const likes: WeaponLike[] = [];
-    this.weaponLikes.forEach((likeCount, weaponId) => {
-      if (likeCount > 0) {
-        likes.push({ weaponId, likes: likeCount });
-      }
-    });
-    return likes;
+  async getAllWeaponLikes(): Promise<WeaponLikeData[]> {
+    const results = await db.select().from(weaponLikes);
+    return results.map(row => ({ weaponId: row.weaponId, likes: row.likes }));
   }
 
   async incrementWeaponLikes(weaponId: string): Promise<number> {
-    const current = this.weaponLikes.get(weaponId) || 0;
-    const updated = current + 1;
-    this.weaponLikes.set(weaponId, updated);
-    return updated;
+    const existing = await db
+      .select()
+      .from(weaponLikes)
+      .where(eq(weaponLikes.weaponId, weaponId))
+      .limit(1);
+
+    if (existing.length > 0) {
+      const updated = await db
+        .update(weaponLikes)
+        .set({ likes: existing[0].likes + 1 })
+        .where(eq(weaponLikes.weaponId, weaponId))
+        .returning();
+      return updated[0].likes;
+    } else {
+      const created = await db
+        .insert(weaponLikes)
+        .values({ weaponId, likes: 1 })
+        .returning();
+      return created[0].likes;
+    }
   }
 
   async decrementWeaponLikes(weaponId: string): Promise<number> {
-    const current = this.weaponLikes.get(weaponId) || 0;
-    const updated = Math.max(0, current - 1);
-    this.weaponLikes.set(weaponId, updated);
-    return updated;
+    const existing = await db
+      .select()
+      .from(weaponLikes)
+      .where(eq(weaponLikes.weaponId, weaponId))
+      .limit(1);
+
+    if (existing.length > 0) {
+      const updated = await db
+        .update(weaponLikes)
+        .set({ likes: Math.max(0, existing[0].likes - 1) })
+        .where(eq(weaponLikes.weaponId, weaponId))
+        .returning();
+      return updated[0].likes;
+    }
+    return 0;
   }
 
   private initializeProducts() {
