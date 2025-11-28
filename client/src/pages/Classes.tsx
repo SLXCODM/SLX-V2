@@ -9,6 +9,15 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 
+// Resolve relative asset URLs to absolute Railway URLs
+const resolveImageUrl = (url: string | undefined): string | undefined => {
+  if (!url) return undefined;
+  if (url.startsWith("/attached_assets")) {
+    return `https://web-production-cadd.up.railway.app${url}`;
+  }
+  return url;
+};
+
 interface WeaponLikes {
   weaponId: string;
   likes: number;
@@ -280,7 +289,7 @@ export default function Classes() {
                   {(language === "pt" ? weapon.imagePt : weapon.imageEn) && (
                     <div className="aspect-video overflow-hidden bg-card">
                       <img
-                        src={language === "pt" ? weapon.imagePt : weapon.imageEn}
+                        src={resolveImageUrl(language === "pt" ? weapon.imagePt : weapon.imageEn)}
                         alt={language === "pt" ? weapon.namePt || weapon.name : weapon.nameEn || weapon.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         data-testid={`img-weapon-${weapon.id}`}
