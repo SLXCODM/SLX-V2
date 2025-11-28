@@ -46,7 +46,13 @@ export type Project = typeof projects.$inferSelect;
 export type InsertAboutContent = z.infer<typeof insertAboutContentSchema>;
 export type AboutContent = typeof aboutContent.$inferSelect;
 
-// Weapon Likes
+// Weapon Likes (persisted to PostgreSQL)
+export const weaponLikes = pgTable("weapon_likes", {
+  weaponId: varchar("weapon_id").primaryKey(),
+  likes: text("likes").default("0").notNull(), // numeric string to avoid decimals
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export interface WeaponLike {
   weaponId: string;
   likes: number;
