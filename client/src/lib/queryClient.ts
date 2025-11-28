@@ -23,12 +23,16 @@ export async function apiRequest(
   data?: unknown | undefined,
 ): Promise<Response> {
   const fullUrl = url.startsWith("http") ? url : `${getApiBaseUrl()}${url}`;
-  const res = await fetch(fullUrl, {
+  const fetchOptions: RequestInit = {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
+  };
+  // Only include credentials for same-origin requests
+  if (!fullUrl.includes("railway.app")) {
+    fetchOptions.credentials = "include";
+  }
+  const res = await fetch(fullUrl, fetchOptions);
 
   await throwIfResNotOk(res);
   return res;
