@@ -1,4 +1,4 @@
-import { Lock, Instagram, Check } from "lucide-react";
+import { Instagram, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
@@ -15,8 +15,13 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
   const texts = {
     pt: {
       title: "Conteúdo Exclusivo",
-      subtitle: `Siga @slx_codm no Instagram para acessar ${contentName}`,
-      followButton: "Seguir no Instagram",
+      subtitle: `Desbloqueie ${contentName} seguindo @slx.wav`,
+      greenText: "Siga uma vez, acesse tudo para sempre!",
+      benefit1: "As melhores classes do jogo",
+      benefit2: "Tutoriais exclusivos",
+      benefit3: "Configurações profissionais",
+      benefit4: "Atualizações em primeira mão",
+      followButton: "Seguir @slx.wav",
       checkButton: "Já Segui - Verificar",
       checking: "Verificando...",
       unlockedTitle: "Acesso Total Desbloqueado!",
@@ -24,8 +29,13 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
     },
     en: {
       title: "Exclusive Content",
-      subtitle: `Follow @slx_codm on Instagram to access ${contentName}`,
-      followButton: "Follow on Instagram",
+      subtitle: `Unlock ${contentName} by following @slx.wav`,
+      greenText: "Follow once, access everything forever!",
+      benefit1: "Best Loadouts",
+      benefit2: "Exclusive tutorials",
+      benefit3: "Professional settings",
+      benefit4: "First-hand updates",
+      followButton: "Follow @slx.wav",
       checkButton: "Already Followed - Check",
       checking: "Checking...",
       unlockedTitle: "Full Access Unlocked!",
@@ -72,22 +82,46 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
   }
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center" data-testid="follow-to-unlock-prompt">
-      <div className="max-w-md mx-auto text-center space-y-6 p-8 bg-card border border-border rounded-lg">
-        <div className="relative w-20 h-20 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
-          <Lock className="h-10 w-10 text-primary" />
+    <div className="min-h-[60vh] flex items-center justify-center p-4" data-testid="follow-to-unlock-prompt">
+      <div className="max-w-md mx-auto space-y-6 p-8 bg-card border border-border rounded-lg">
+        {/* Title */}
+        <div className="text-center space-y-1">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Instagram className="h-6 w-6 text-purple-500" />
+          </div>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">{t.title}</h2>
+          <p className="text-sm text-muted-foreground">{t.subtitle}</p>
         </div>
 
-        <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-foreground">{t.title}</h2>
-          <p className="text-muted-foreground">{t.subtitle}</p>
+        {/* Green highlight text */}
+        <p className="text-center text-sm font-semibold text-green-500">{t.greenText}</p>
+
+        {/* Benefits list */}
+        <div className="space-y-2 py-2">
+          <div className="flex items-start gap-2">
+            <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+            <span className="text-sm text-foreground">{t.benefit1}</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+            <span className="text-sm text-foreground">{t.benefit2}</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+            <span className="text-sm text-foreground">{t.benefit3}</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+            <span className="text-sm text-foreground">{t.benefit4}</span>
+          </div>
         </div>
 
+        {/* Buttons */}
         <div className="space-y-3">
           <Button
             onClick={handleFollowClick}
             size="lg"
-            className="w-full gap-2"
+            className="w-full gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
             data-testid="button-follow-instagram"
           >
             <Instagram className="h-5 w-5" />
@@ -115,6 +149,13 @@ export default function FollowToUnlock({ children, contentName, language }: Foll
             )}
           </Button>
         </div>
+
+        {/* Instructions */}
+        <p className="text-xs text-muted-foreground text-center leading-relaxed">
+          {language === 'pt' 
+            ? 'Após seguir no Instagram, volte aqui e clique em "Já Segui" para verificar.'
+            : 'After following on Instagram, come back here and click "Already Followed" to verify.'}
+        </p>
       </div>
     </div>
   );
