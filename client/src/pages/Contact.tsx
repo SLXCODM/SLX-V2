@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { AdSenseUnit } from "@/components/AdSenseUnit";
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -32,6 +33,11 @@ export default function Contact() {
           <p className="text-lg text-muted-foreground" data-testid="text-contact-description">
             {t.description}
           </p>
+        </div>
+
+        {/* Advertisement */}
+        <div className="mb-12">
+          <AdSenseUnit slot="4567890123" format="auto" />
         </div>
 
         {/* Email Card */}
