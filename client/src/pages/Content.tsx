@@ -68,8 +68,20 @@ export default function Content() {
     : projects.filter(p => p.category === currentTab);
 
   const contentComponent = (
-    <div className="min-h-screen py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <div className="relative min-h-screen py-24 md:py-32 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/attached_assets/IMG_20240114_185124_255 (3)_1763914486948.jpg')`
+        }}
+      />
+      
+      {/* Dark Overlay Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background/90" />
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
         <div className="space-y-12">
           {/* Header */}
           <div className="space-y-4 text-center">
@@ -79,6 +91,11 @@ export default function Content() {
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-content-description">
               {ct.description}
             </p>
+          </div>
+
+          {/* Advertisement Section */}
+          <div className="my-8">
+            <AdSenseUnit slot="6789012345" format="auto" />
           </div>
 
           {/* Tabs Filter */}
@@ -95,20 +112,6 @@ export default function Content() {
                 </TabsTrigger>
               ))}
             </TabsList>
-
-            {/* Background decorative image */}
-            <div className="mt-12 mb-8 relative h-48 md:h-64 rounded-lg overflow-hidden bg-card border border-border opacity-30 pointer-events-none">
-              <img 
-                src={photoSilhouettes}
-                alt="background"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Advertisement Section */}
-            <div className="my-12">
-              <AdSenseUnit slot="6789012345" format="auto" />
-            </div>
 
             {currentTab === "gaming" ? (
               <FollowToUnlock contentName="Call of Duty Mobile" language={language}>
