@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, timestamp, boolean, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { sql } from "drizzle-orm";
@@ -47,12 +47,10 @@ export type InsertAboutContent = z.infer<typeof insertAboutContentSchema>;
 export type AboutContent = typeof aboutContent.$inferSelect;
 
 // Weapon Likes
-export const weaponLikes = pgTable("weapon_likes", {
-  weaponId: varchar("weapon_id").primaryKey(),
-  likes: integer("likes").default(0).notNull(),
-});
-
-export type WeaponLike = typeof weaponLikes.$inferSelect;
+export interface WeaponLike {
+  weaponId: string;
+  likes: number;
+}
 
 // Produtos da Loja
 export const products = pgTable("products", {
