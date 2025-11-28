@@ -19,6 +19,7 @@ export default function Footer() {
       about: "Sobre",
       content: "Conteúdo",
       projects: "Projetos",
+      contact: "Contato",
       social: "Redes Sociais",
       copyright: `© ${currentYear} SLX. Todos os direitos reservados.`,
       resetSelector: "Resetar Seletor"
@@ -30,6 +31,7 @@ export default function Footer() {
       about: "About",
       content: "Content",
       projects: "Projects",
+      contact: "Contact",
       social: "Social Media",
       copyright: `© ${currentYear} SLX. All rights reserved.`,
       resetSelector: "Reset Language"
@@ -82,6 +84,7 @@ export default function Footer() {
               <li><a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-home">{t.home}</a></li>
               <li><a href="/sobre" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-sobre">{t.about}</a></li>
               <li><a href="/conteudo" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-conteudo">{t.content}</a></li>
+              <li><a href="/contato" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300" data-testid="link-footer-contato">{t.contact}</a></li>
             </ul>
           </div>
         </div>
