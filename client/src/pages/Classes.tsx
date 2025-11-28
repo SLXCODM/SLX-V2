@@ -40,13 +40,14 @@ export default function Classes() {
     setIsUnlocked(unlocked);
   }, []);
 
-  // Fetch all weapon likes
+  // Fetch all weapon likes with polling to sync across devices
   const { data: allLikes = [] } = useQuery({
     queryKey: ['/api/weapon-likes'],
     queryFn: async () => {
       const res = await fetch('/api/weapon-likes');
       return res.json() as Promise<WeaponLikes[]>;
     },
+    refetchInterval: 5000, // Refetch every 5 seconds to sync likes across devices
   });
 
   // Create a map of weapon likes for quick lookup
