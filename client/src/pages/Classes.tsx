@@ -27,6 +27,7 @@ export default function Classes() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [likedWeapons, setLikedWeapons] = useState<Set<string>>(new Set());
+  const [localLikeChanges, setLocalLikeChanges] = useState<Map<string, number>>(new Map());
   const { language } = useLanguage();
   const [, navigate] = useLocation();
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -50,9 +51,10 @@ export default function Classes() {
   // Create a map of weapon likes for quick lookup
   const likeCountMap = new Map(allLikes.map(w => [w.weaponId, w.likes]));
 
-  // Get weapon like count
+  // Get weapon like count with optimistic updates
   const getWeaponLikes = (weaponId: string): number => {
-    return likeCountMap.get(weaponId) || 0;
+    const localChange = localLikeChanges.get(weaponId) || 0;
+    return (likeCountMap.get(weaponId) || 0) + localChange;
   };
 
   // Like mutation
@@ -64,8 +66,13 @@ export default function Classes() {
       });
       return res.json() as Promise<WeaponLikes>;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/weapon-likes'] });
+      setLocalLikeChanges(prev => {
+        const updated = new Map(prev);
+        updated.delete(data.weaponId);
+        return updated;
+      });
     },
   });
 
@@ -78,8 +85,13 @@ export default function Classes() {
       });
       return res.json() as Promise<WeaponLikes>;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/weapon-likes'] });
+      setLocalLikeChanges(prev => {
+        const updated = new Map(prev);
+        updated.delete(data.weaponId);
+        return updated;
+      });
     },
   });
 
@@ -100,6 +112,11 @@ export default function Classes() {
     const isCurrentlyLiked = likedWeapons.has(weaponId);
     
     if (isCurrentlyLiked) {
+      setLocalLikeChanges(prev => {
+        const updated = new Map(prev);
+        updated.set(weaponId, (updated.get(weaponId) || 0) - 1);
+        return updated;
+      });
       unlikeMutation.mutate(weaponId);
       setLikedWeapons(prev => {
         const updated = new Set(prev);
@@ -107,6 +124,11 @@ export default function Classes() {
         return updated;
       });
     } else {
+      setLocalLikeChanges(prev => {
+        const updated = new Map(prev);
+        updated.set(weaponId, (updated.get(weaponId) || 0) + 1);
+        return updated;
+      });
       likeMutation.mutate(weaponId);
       setLikedWeapons(prev => {
         const updated = new Set(prev);
