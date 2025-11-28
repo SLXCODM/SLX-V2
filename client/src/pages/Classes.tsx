@@ -8,6 +8,7 @@ import { weaponsData, type Weapon } from "@shared/weaponsData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
+import { apiRequest } from "@/lib/queryClient";
 
 // Resolve relative asset URLs to absolute Railway URLs
 const resolveImageUrl = (url: string | undefined): string | undefined => {
@@ -60,10 +61,7 @@ export default function Classes() {
   // Like mutation
   const likeMutation = useMutation({
     mutationFn: async (weaponId: string) => {
-      const res = await fetch(`/api/weapon-likes/${weaponId}/like`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
+      const res = await apiRequest('POST', `/api/weapon-likes/${weaponId}/like`);
       return res.json() as Promise<WeaponLikes>;
     },
     onSuccess: (data) => {
@@ -79,10 +77,7 @@ export default function Classes() {
   // Unlike mutation
   const unlikeMutation = useMutation({
     mutationFn: async (weaponId: string) => {
-      const res = await fetch(`/api/weapon-likes/${weaponId}/unlike`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
+      const res = await apiRequest('POST', `/api/weapon-likes/${weaponId}/unlike`);
       return res.json() as Promise<WeaponLikes>;
     },
     onSuccess: (data) => {
