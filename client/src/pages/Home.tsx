@@ -24,7 +24,7 @@ export default function Home() {
         setShowRaffle(true);
       }
     }
-  }, [language]);
+  }, []);
   const categories = [
     {
       id: "gaming",
