@@ -47,7 +47,10 @@ export default function Classes() {
       const res = await apiRequest('GET', '/api/weapon-likes');
       return res.json() as Promise<WeaponLikes[]>;
     },
-    refetchInterval: 5000, // Refetch every 5 seconds to sync likes across devices
+    refetchInterval: 3000, // Refetch every 3 seconds to sync likes across devices
+    staleTime: 0, // Always refetch immediately when query becomes stale
+    gcTime: 0, // Don't cache data
+    refetchOnMount: true, // Always refetch when component mounts
   });
 
   // Create a map of weapon likes for quick lookup
