@@ -96,6 +96,11 @@ export default function Content() {
               ))}
             </TabsList>
 
+            {/* Advertisement Section - Middle Region */}
+            <div className="my-8">
+              <AdSenseUnit slot="5678901234" format="auto" />
+            </div>
+
             {currentTab === "gaming" ? (
               <FollowToUnlock contentName="Call of Duty Mobile" language={language}>
                 <TabsContent value={currentTab} className="mt-8">
