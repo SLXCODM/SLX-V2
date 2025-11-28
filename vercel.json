@@ -1,8 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "vite build",
   "devCommand": "npm run dev",
-  "installCommand": "npm ci --ignore-scripts",
-  "env": {
-    "SESSION_SECRET": "@SESSION_SECRET"
-  }
+  "installCommand": "npm ci --ignore-scripts"
 }
