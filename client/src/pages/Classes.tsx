@@ -44,7 +44,7 @@ export default function Classes() {
   const { data: allLikes = [] } = useQuery({
     queryKey: ['/api/weapon-likes'],
     queryFn: async () => {
-      const res = await fetch('/api/weapon-likes');
+      const res = await apiRequest('GET', '/api/weapon-likes');
       return res.json() as Promise<WeaponLikes[]>;
     },
     refetchInterval: 5000, // Refetch every 5 seconds to sync likes across devices
