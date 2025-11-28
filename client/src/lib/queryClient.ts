@@ -1,9 +1,13 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-// Get API base URL from environment or fallback to current origin
+// Get API base URL from environment or fallback to Railway backend
 const getApiBaseUrl = () => {
   if (import.meta.env.VITE_API_BASE_URL) {
     return import.meta.env.VITE_API_BASE_URL;
+  }
+  // Use Railway backend in production, empty string for local dev
+  if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+    return "https://web-production-cadd.up.railway.app";
   }
   return "";
 };
