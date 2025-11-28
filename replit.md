@@ -190,6 +190,14 @@ Acessa: http://localhost:5000
 - **Component**: AdSenseUnit.tsx (reutilizável em qualquer página)
 - **Note**: Ads não aparecem em localhost - funcionam apenas em domínio verificado (slx-codm.vercel.app)
 
+## Fixes Recentes (Nov 28, 2025)
+
+- **[FIXED]** Raffle popup agora aparece apenas UMA VEZ por sessão usando `sessionStorage`
+  - Antes: Aparecia múltiplas vezes ao recarregar ou navegar
+  - Depois: Usa `slx_raffle_shown` no sessionStorage para controlar exibição
+  - Afetado: `client/src/pages/Home.tsx` (linhas 18-28)
+  - Status: ✅ Deployado em produção (Vercel)
+
 ## Próximos Passos
 
 1. Monitorar performance dos anúncios no AdSense dashboard
