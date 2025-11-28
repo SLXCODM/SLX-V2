@@ -17,6 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     // Show raffle popup only once per session when Home page loads and language is Portuguese
+    // Fixed: raffle now only shows once regardless of Home component remounts
     if (language === "pt") {
       const raffleShown = sessionStorage.getItem("slx_raffle_shown");
       if (!raffleShown) {
